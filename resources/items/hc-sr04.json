@@ -3,14 +3,14 @@
     "Description": "Measurement distance in centimeters",
     "TYPE": "Sensor Input",
     "PIN":{
-        "Digital": 1,
+        "Digital": 2,
         "Analog": 0,
         "I2C": false,
         "SPI": false,
         "Serial": false
     },
     "PINMODE":{
-        "INPUT": 1,
+        "INPUT": 2,
         "OUTPUT": 0
     },
     "no PINMODE": true, 
@@ -24,17 +24,16 @@
     "custom pin key":["hc-sr04pin_custom_input", null],
     "custom id key":"hc-sr04_sensor_id",
     "code_in_setup": [
-"hc-sr04_sensor_id.begin();"
+"UltraSonicDistanceSensor distanceSensor(triggerPin, echoPin);"
     ],
     "code_function": [
 "float distanceSensor.measureDistanceCm();"
     ],
     "function_list": {
-        "Temperature": "dht11_readTemperature(dht11_sensor_id);"
+        "distance": "dht11_readTemperature(dht11_sensor_id);"
     },
     "var type": {
-        "Temperature": "float",
-        "Humidity": "float"  
+        "distance": "float" 
     }
 
 }

@@ -1,6 +1,7 @@
 {
     "name": "DHT22",
     "Description": "Measure Temperature and Humidity",
+    "TYPE": "Sensor Input",
     "PIN":{
         "Digital": 1,
         "Analog": 0,
@@ -9,23 +10,33 @@
         "Serial": false
     },
     "PINMODE":{
-        "INPUT": 0,
-        "OUTPUT": 1
+        "INPUT": 1,
+        "OUTPUT": 0
     },
+    "no PINMODE": true, 
     "Library": ["DHT sensor library"],
-    "header": [
-            "#include <DHT.h>",
-            "#define DHTPIN dhtpin_custom",
-            "#define DHTTYPE DHT22",
-            "DHT dht22(dhtpin_custom, DHTTYPE);"
+    "header1": [
+        "#include <DHT.h>"
             ],
-    "custom key":["dht22pin_custom"],
+    "header2": [
+        "DHT dht22_sensor_id(dht22pin_custom_input, DHT22);"
+    ],
+    "custom pin key":["dht22pin_custom_input", null],
+    "custom id key":"dht22_sensor_id",
     "code_in_setup": [
-        "dht22.begin();"
+"dht12_sensor_id.begin();"
     ],
     "code_function": [
-        "float dht22_readTemperature(){t = dht22.readTemperature(); if(isnan(t)){return;}else{return t;}",
-        "float dht22_readHumidity(){h = dht22.readHumidity(); if(isnan(h)){return;}else{return h;}"
+"float dht22_readTemperature(DHT dht22_sensor){float t = dht22_sensor.readTemperature(); if(isnan(t)){return;}else{return t;}}",
+"float dht22_readHumidity(DHT dht22_sensor){float h = dht22_sensor.readHumidity(); if(isnan(h)){return;}else{return h;}}"
     ],
-    "function_list": ["dht22_readTemperature();", "dht22_readHumidity();"]
+    "function_list": {
+        "Temperature": "dht22_readTemperature(dht22_sensor_id);",
+        "Humidity":   "dht22_readHumidity(dht22_sensor_id);"
+    },
+    "var type": {
+        "Temperature": "float",
+        "Humidity": "float"  
+    }
+
 }

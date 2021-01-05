@@ -1,0 +1,31 @@
+{
+    "name": "DHT22",
+    "Description": "Measure Temperature and Humidity",
+    "PIN":{
+        "Digital": 1,
+        "Analog": 0,
+        "I2C": false,
+        "SPI": false,
+        "Serial": false
+    },
+    "PINMODE":{
+        "INPUT": 0,
+        "OUTPUT": 1
+    },
+    "Library": ["DHT sensor library"],
+    "header": [
+            "#include <DHT.h>",
+            "#define DHTPIN dhtpin_custom",
+            "#define DHTTYPE DHT22",
+            "DHT dht22(dhtpin_custom, DHTTYPE);"
+            ],
+    "custom key":["dht22pin_custom"],
+    "code_in_setup": [
+        "dht22.begin();"
+    ],
+    "code_function": [
+        "float dht22_readTemperature(){t = dht22.readTemperature(); if(isnan(t)){return;}else{return t;}",
+        "float dht22_readHumidity(){h = dht22.readHumidity(); if(isnan(h)){return;}else{return h;}"
+    ],
+    "function_list": ["dht22_readTemperature();", "dht22_readHumidity();"]
+}

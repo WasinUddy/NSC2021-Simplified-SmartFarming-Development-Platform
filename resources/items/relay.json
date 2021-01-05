@@ -1,0 +1,25 @@
+{
+    "name": "Relay Switch",
+    "Description": "Power Switch",
+    "TYPE": "Digital Output",
+
+    "PIN":{
+        "Digital": 1,
+        "Analog": 0,
+        "I2C": false,
+        "SPI": false,
+        "Serial": false
+    },
+    "PINMODE":{
+        "INPUT": 0,
+        "OUTPUT": 1
+    },
+
+    "no PINMODE": false,
+        "header1": [
+""
+            ],
+    "header2":[
+""
+    ]
+}

@@ -1,0 +1,219 @@
+
+
+            
+=======
+16x2-I2C-LCD_0
+I2C: True
+SPI: None
+Serial: None
+Digital_pins: []
+Analog_pins: []
+=======
+                
+=======
+16x2-I2C-LCD_1
+I2C: True
+SPI: None
+Serial: None
+Digital_pins: []
+Analog_pins: []
+=======
+                
+=======
+16x2-I2C-LCD_2
+I2C: True
+SPI: None
+Serial: None
+Digital_pins: []
+Analog_pins: []
+=======
+                
+=======
+16x2-I2C-LCD_3
+I2C: True
+SPI: None
+Serial: None
+Digital_pins: []
+Analog_pins: []
+=======
+                
+=======
+relay_0
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: [0]
+Analog_pins: []
+=======
+                
+=======
+relay_1
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: [1]
+Analog_pins: []
+=======
+                
+=======
+relay_2
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: [4]
+Analog_pins: []
+=======
+                
+=======
+relay_3
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: [5]
+Analog_pins: []
+=======
+                
+=======
+DHT11_0
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: [6]
+Analog_pins: []
+=======
+                
+=======
+DHT11_1
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: [7]
+Analog_pins: []
+=======
+                
+=======
+DHT11_2
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: [8]
+Analog_pins: []
+=======
+                
+=======
+DHT11_3
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: [9]
+Analog_pins: []
+=======
+                
+=======
+DHT11_4
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: [10]
+Analog_pins: []
+=======
+                
+=======
+DHT11_5
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: [11]
+Analog_pins: []
+=======
+                
+=======
+DHT11_6
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: [12]
+Analog_pins: []
+=======
+                
+=======
+DHT11_7
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: [13]
+Analog_pins: []
+=======
+                
+=======
+DHT11_8
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: [14]
+Analog_pins: []
+=======
+                
+=======
+DHT11_9
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: [15]
+Analog_pins: []
+=======
+                
+=======
+DHT11_10
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: [16]
+Analog_pins: []
+=======
+                
+=======
+DHT11_11
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: [17]
+Analog_pins: []
+=======
+                
+=======
+DHT11_12
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: [18]
+Analog_pins: []
+=======
+                
+=======
+DHT11_13
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: [19]
+Analog_pins: []
+=======
+                
+=======
+DHT11_14
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: []
+Analog_pins: []
+=======
+                
+=======
+DHT11_15
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: []
+Analog_pins: []
+=======
+                

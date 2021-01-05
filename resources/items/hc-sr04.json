@@ -19,20 +19,18 @@
 "#include <HCSR04.h>"
             ],
     "header2":[ 
-"DHT dht11_sensor_id(dht11pin_custom_input, DHT11);"
+"hc-sr04_sensor_id(hc-sr04pin_custom_input, hc-sr04);"
     ],
-    "custom pin key":["dht11pin_custom_input", null],
-    "custom id key":"dht11_sensor_id",
+    "custom pin key":["hc-sr04pin_custom_input", null],
+    "custom id key":"hc-sr04_sensor_id",
     "code_in_setup": [
-"dht11_sensor_id.begin();"
+"hc-sr04_sensor_id.begin();"
     ],
     "code_function": [
-"float dht11_readTemperature(DHT dht11_sensor){float t = dht11_sensor.readTemperature(); if(isnan(t)){return;}else{return t;}}",
-"float dht11_readHumidity(DHT dht11_sensor){float h = dht11_sensor.readHumidity(); if(isnan(h)){return;}else{return h;}}"
+"float distanceSensor.measureDistanceCm();"
     ],
     "function_list": {
-        "Temperature": "dht11_readTemperature(dht11_sensor_id);",
-        "Humidity":   "dht11_readHumidity(dht11_sensor_id);"
+        "Temperature": "dht11_readTemperature(dht11_sensor_id);"
     },
     "var type": {
         "Temperature": "float",

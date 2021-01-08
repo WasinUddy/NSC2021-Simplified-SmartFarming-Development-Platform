@@ -30,7 +30,7 @@
 "float distanceSensor.measureDistanceCm();"
     ],
     "function_list": {
-        "distance": "dht11_readTemperature(dht11_sensor_id);"
+        "distance": "hc-sr04readDistance(hc-sr04_sensor_id);"
     },
     "var type": {
         "distance": "float" 

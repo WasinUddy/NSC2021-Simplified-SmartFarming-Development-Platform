@@ -10,8 +10,8 @@
         "Serial": false
     },
     "PINMODE":{
-        "INPUT": 2,
-        "OUTPUT": 0
+        "INPUT": 1,
+        "OUTPUT": 1
     },
     "no PINMODE": true, 
     "Library": ["HCSR04"],

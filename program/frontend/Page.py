@@ -8,7 +8,7 @@ import time
 
 class Tutorial:
     def __init__(self, screen):
-        self.page = 0
+        self.page =1
         self.total = 1
         self.surface = screen
         self.logo = pg.transform.scale(LOGO, (113, 119))
@@ -69,7 +69,7 @@ class Advance:
         # set variables and object
         self.width, self.height = WIDTH, HEIGHT
         # current page
-        self.page = 0
+        self.page = 1
         # total page amount
         self.total = 3
         # surface to draw
@@ -145,7 +145,7 @@ class Advance:
                     self.page += 1
                 else:
                     self.page = self.total
-        elif self.back.isOver(pos) and click:
+        elif self.back.isOver(pos) and click and self.page > 1:
             self.page -= 1
 
     def page1(self, drawtext, pos):
@@ -160,7 +160,7 @@ class Advance:
         self.choice = [self.sensor, self.board]
         self.amount = [self.sensor_amount]
         self.tables = [self.table]
-        self.button = [self.add, self.remove, self.next, self.back]
+        self.button = [self.add, self.remove, self.next]
         item = self.board.result
         item_json_path = f"resources/Boards/{item}.json"
         with open(item_json_path) as json_file:

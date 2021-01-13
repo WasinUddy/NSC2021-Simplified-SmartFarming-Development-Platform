@@ -83,10 +83,10 @@ class Advance:
         # smart farming logo picture
         self.logo = pg.transform.scale(LOGO, (130, 130))
         # next button
-        self.next = Button(self.surface, table_header, 0, 2, 120, 30,
+        self.next = Button(self.surface, table_header, WIDTH/2 + 10, HEIGHT*9/10, 120, 30,
                            "next", txtbrown, None, 20)
-        # back button
-        self.back = Button(self.surface, table_header, 0, 27, 120, 30,
+        # back
+        self.back = Button(self.surface, table_header, WIDTH/2 - 130, self.height*9/10, 120, 30,
                            "back", txtbrown, None, 20)
         # add data to page 1 table, page 2
         self.add = Button(self.surface, table_header, 0, 250, 50, 20,
@@ -119,7 +119,7 @@ class Advance:
                             (100, 150, 90, 60),6)
         self.table_page_3 = Table(self.surface, table_body, 10, 280, 120, 35, PAGE3, txtbrown, (60,20,10), (85, 150, 150,40), 6)
         self.sensor_amount = Counter(self.width - 200, 220, 75, 25)
-        self.number = Counter(485, 165, 30, 25)
+        self.number = Counter(485, 165, 30, 25,'0',True)
         self.row = Counter(480, 165, 50, 25)
         self.insert = Textbox(10, 165, 85, 25)
         self.official_name = None
@@ -133,8 +133,6 @@ class Advance:
 
     def update(self, click, pos, width, height):
         self.width, self.height = width, height
-        self.back.x, self.back.y = self.width / 2 - 130, self.height*9/10
-        self.next.x, self.next.y = self.width / 2 + 10, self.height*9/10
         self.click = click
         if self.next.isOver(pos):
             self.page1_result = pin_management(self.board.result, self.table.list)
@@ -149,7 +147,6 @@ class Advance:
             self.page -= 1
 
     def page1(self, drawtext, pos):
-        drawtext("โหมดผู้เชี่ยวชาญ", 50, white, self.width*3/5, 70)
         self.surface.blit(BOARD_CONTROLLER, (120,110))
         self.surface.blit(SENSOR, (55,220))
         self.add.x, self.add.y = self.width *3/4 - 60, self.height*250/600
@@ -167,16 +164,18 @@ class Advance:
             json_file_dict = json.load(json_file)
         digital_amount = len(json_file_dict['Digital_pins'])
         self.official_name = json_file_dict["official_name"]
-        pg.draw.rect(self.surface, butgreen, (50, self.height - 100, 200, 10), 5)
-        pg.draw.rect(self.surface, butgreen, (50, self.height - 100, 200, 10))
-        pg.draw.rect(self.surface, grey, (50, self.height - 100,
+        pg.draw.rect(self.surface, butgreen, (50, self.height - 125, 200, 10), 5)
+        pg.draw.rect(self.surface, butgreen, (50, self.height - 125, 200, 10))
+        pg.draw.rect(self.surface, grey, (50, self.height - 125,
                                          sum(self.table.table['used_digital_pins']) / digital_amount * 200, 10))
-        pg.draw.rect(self.surface, butgreen, (50, self.height - 80, 200, 10), 5)
-        pg.draw.rect(self.surface, butgreen, (50, self.height - 80, 200, 10))
-        pg.draw.rect(self.surface, grey, (50, self.height - 80,
+        pg.draw.rect(self.surface, butgreen, (50, self.height - 105, 200, 10), 5)
+        pg.draw.rect(self.surface, butgreen, (50, self.height - 105, 200, 10))
+        pg.draw.rect(self.surface, grey, (50, self.height - 105,
                                          sum(self.table.table['used_analog_pins']) / digital_amount * 200, 10))
-        '''drawtext(str(sum(self.table.table['used_digital_pins'])), 20, white, 25, self.height - 100)
-        drawtext(str(sum(self.table.table['used_analog_pins'])), 20, white, 25, self.height - 80)'''
+        drawtext(str(sum(self.table.table['used_digital_pins'])), 20, white, 40, self.height - 120)
+        drawtext(str(sum(self.table.table['used_analog_pins'])), 20, white, 40, self.height - 100)
+        drawtext('analog pin', 20, white, 300, self.height - 100)
+        drawtext('digital pin', 20, white, 300, self.height - 120)
         if sum(self.table.table['used_digital_pins']) + int(self.sensor_amount.result) <= digital_amount:
             if str(self.sensor.result) == '16x2_I2C_LCD':
                 if int(self.sensor_amount.result) > 1:

@@ -176,12 +176,12 @@ class Choice:
                          (self.x - 2, self.y - 2 + self.height, self.width + 4, self.height *
                           min(len(self.WORDS_LIST), len(self.display_text)) + 4))
         # drop down body
-        pg.draw.rect(self.surface, table_body, (self.x, self.y + self.height, self.width*13/10 - 30, self.height *
+        pg.draw.rect(self.surface, table_body, (self.x, self.y + self.height, self.width*13/10 - 29, self.height *
                                                 min(len(self.WORDS_LIST), len(self.display_text))))
         # scroll bar
-        pg.draw.rect(self.surface, table_header, (self.x + self.width*13/10 - 30, self.y + self.height, 10, self.height *
+        pg.draw.rect(self.surface, table_header, (self.x + self.width*13/10 - 29, self.y + self.height, 10, self.height *
                                                   min(len(self.WORDS_LIST), len(self.display_text))))
-        pg.draw.rect(self.surface, grey2, (self.x + self.width*13/10 - 30, self.y + 0.5 + self.height *
+        pg.draw.rect(self.surface, grey2, (self.x + self.width*13/10 - 29, self.y + 0.5 + self.height *
                                            (((self.boxes - self.top) / (
                                                    len(self.WORDS_LIST) - self.boxes + self.top + 1)) * self.top + 1), 10,
                                            0.5 + self.height * ((self.boxes - self.top) / (
@@ -331,7 +331,7 @@ class Textbox:
 
 # counter
 class Counter:
-    def __init__(self, x, y, w, h, text='0'):
+    def __init__(self, x, y, w, h, text='0',positive=False):
         font = pg.font.SysFont(FONTNAME, 20)
 
         # main counter position and size
@@ -354,6 +354,7 @@ class Counter:
         self.txt_surface = font.render(text, True, self.color)
         self.active = False
         self.result = 0
+        self.positive = positive
         
         # load arrow image
         self.down = pg.transform.scale(HEAD, (self.rect.h // 2, self.rect.h // 2))
@@ -379,7 +380,7 @@ class Counter:
             if self.rect_down.collidepoint(event.pos):
 
                 # anti negative integers processor LOL cool name uh?
-                if int(self.text) >= 1:
+                if int(self.text) >= 1 or self.positive:
 
                     # decrease number 
                     self.text = str(int(self.text) - 1)
@@ -394,6 +395,8 @@ class Counter:
                 self.active = not self.active
             else:
                 self.active = False
+                if len(self.text) <= 1 and not self.text.isnumeric():
+                    self.text = '0'
 
         # if pressed keyboard number
         if event.type == pg.KEYDOWN:
@@ -406,13 +409,15 @@ class Counter:
                 # backspace            
                 elif event.key == pg.K_BACKSPACE:
                     self.text = self.text[:-1]
+
                 else:
                     if self.text.isnumeric() and int(self.text) == 0:
-                        self.text = ''
+                        self.text = '0'
                     
                     # if input is number and less than 4 digits
                     if len(self.text) < 4 and event.unicode.isnumeric():
                         self.text += event.unicode
+
 
     # update
     def update(self):
@@ -424,10 +429,13 @@ class Counter:
         self.rect_up.x = self.rect.w + self.rect.x - 0.5
         self.rect_down.x = self.rect.w + self.rect.x - 0.5
         self.color = COLOR_ACTIVE if self.active else black
-        if not self.text.isnumeric():
-            self.text = '0'
-        self.result = int(self.text)
-        
+        if len(self.text) > 0:
+            self.result = int(self.text)
+        else:
+            self.result = 0
+
+
+
     # draw counter on screen
     def draw(self, screen):
         pg.draw.rect(screen, table_header, self.bg, 0)
@@ -601,13 +609,15 @@ class Table:
         pg.draw.rect(self.surface, table_header,
                      (self.x + total_width + total_gap, self.y, 10,
                       self.height * min(1 + len(self.table['items']), self.bottom - self.top + 1)))
-        if len(self.table['items']) <= self.bottom - self.top:
+        if len(self.table['items']) == 0:
+            None
+        elif len(self.table['items']) <= self.bottom - self.top and len(self.table['items']) > 0:
             pg.draw.rect(self.surface, grey2,
                          (self.x + total_width + total_gap,
-                          self.y, 10, self.height * (1 + len(self.table['items']))))
+                          self.y + self.height, 10, self.height * (len(self.table['items']))))
         else:
             pg.draw.rect(self.surface, grey2,
-                         (self.x + total_width + total_gap, self.y + self.height *
-                          ((self.bottom - self.top + 1) / (len(self.table['items']) - self.bottom + self.top + 1))
+                         (self.x + total_width + total_gap, self.y + self.height +  self.height *
+                          ((self.bottom - self.top) / (len(self.table['items']) - self.bottom + self.top + 1))
                           * self.top, 10, 0.5 + self.height *
-                          ((self.bottom - self.top + 1) / (len(self.table['items']) - self.bottom + self.top + 1))))
+                          ((self.bottom - self.top) / (len(self.table['items']) - self.bottom + self.top + 1))))

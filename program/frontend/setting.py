@@ -8,8 +8,8 @@ pg.init()
 TXT_FILE = "pin.txt"
 
 TITLE = "Smart Farming"
-WIDTH = 550
-HEIGHT = 600
+WIDTH = 700
+HEIGHT = 650
 FPS = 120
 FONTNAME =  "LilyUPC"
 

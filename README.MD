@@ -1,44 +1,57 @@
-# รายละเอียดการพัฒนา
+# Simplified SmartFarming Development Platform
+## NSC2021 National Software Contest 2021
 
-## เทคโนโลยีที่ใช้
-1. การดำเนินการกับตัวอักษร (String Operation)   
-ในโค้ดภาษา Arduino เพื่อควบคุม บอร์ด Arduino หรือ Microcontroller ในงานพื้นฐานเช่นในงานการทำเกษตรสมัยใหม่นั้นเเท้จริงเเล้วมีรูปเเบบที่ตายตัวซึ่งก็คือรับค่าจากอุปกรณ์Inputผ่านเงื่อนไขเเล้วทำOutputเช่นเปิดปิดไฟเพราะฉะนั้นหากเรานำโค้ดของอุปกรณ์ที่เก็บไว้มารวมกันเเล้วทำการดัดเเปลง ด้วยการทำ String Operation เช่นต่อ หรือเเทนที่คำ เราก็สามารถสร้างโค้ดที่ทำงานที่เราต้องการได้
+## Project Information
+Project ID / รหัสโครงการ : 23p23c0127
 
-2. การจัดเก็บข้อมูลในรูปเเบบ JSON (JavaScript Object Notation)        
-  เนื่องจากตัวโปรเเกรมออกเเบบมาให้มีความยืดหยุ่นสูงผู้ใช้งานสามารถปรับเเต่งเพิ่มลดอุปกรณ์ให้เข้ากับยุคสมัยได้ เช่น มีอุปกรณ์ เซ็นเซอร์รุ่นใหม่ๆออกมาในอนาคต เเต่สิ่งนึงที่ยากที่จะเปลี่ยนคือในส่วนของโครงสร้างของโค้ดที่ยังเหมือนเดิม ทางผู้พัฒนาจึงทำการ วิเคราะห์เเละได้เเยกองค์ประกอบของอุปกรณ์ออกมาเเละจัดเก็บในรูปเเบบของJSONเพราะJSONเป็ฟอร์เเมทที่เรียกว่า Human-readable Text ก็คือคนทั่วไปสามารถอ่านรู้เรื่องได้ เเละ ยังสามารถเเปลงเป็น Dictionary ในภาษา Python ได้ทางผู้พํฒนาจึงเลือกที่จะเก็บข้อมูลในรูปเเบบ JSON
-
-
-## เครื่องมือในการพัฒนา
-1. ภาษา Python  \
-   เป็นภาษาหลักในการพัฒนาโปรเเกรม
-
-2. ภาษา Arduino \
-   เป็นภาษาที่ถูกสร้างอย่างอัตโนมัติ
-
-3. โปรเเกรม Arduino-CLI \
-   ใช้เพื่อสื่อสารกับ Arduino เเละ Microcontroller
-
-4. Library Pandas \
-   ใช้เพื่อเก็บ User Input อย่างเป็นระเบียบ
-
-5. Library Pygame \
-สำหรับทำGraphic User Interfaceที่สวยงาม
-
-6. โปรเเกรม Visual Studio Code \
-สำหรับการเขียนโปรเเกรม
-
-7. Github \
-สำหรับการจัดการโปรเจคให้สามารถทำงานเป็นทีมได้สะดวก
+Project name / ชื่อโครงการ : เเพลตฟอร์มในการทำเกษตรสมัยใหม่อย่างง่าย \
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Simplified Smart Farming Development Platform
+## Team members
+* Project Master @WasinUddy
+* 1st member     @Qwenty228
+* 2nd member     @Pamika-Cashew
 
 
-## รายละเอียดโปรเเกรมที่ได้พัฒนาในเชิงเทคนิค
-โปรเเกรมที่พัฒนานั้นถูกออกเเบบมาเพื่อสร้างโค้ดภาษา Arduino เพื่อควบคุมการทำงานของบอร์ด Arduino เเละ microcontroller ได้โดยมุ่งเน้นเพื่อประโยชน์ในการช่วยเหลือเกษตรในการทำเกษตรสมัยใหม่ได้อย่างง่ายดายโดยไม่ค้องเขียนโปรเเกรม \
-\
-โปรเเกรมที่พัฒนาจะ สร้างโค้ดเเละอัปโหลดโค้ด โดยมี Input ดังนี้ 
-* อุปกรณ์ที่ใช้
-* งานที่จะทำ บอกเป็นลักษณะเงื่อนไขภาษาไทย
+# Requirement
 
-หลังจากที่โปรเเกรมได้รับข้อมูล Input ครบเเล้วโปรเเกรมจะเข้าไปดึงรายละเอียดของอุปกรณ์ในไฟล์ข้อมูลอุปกรณ์เก็บเป็นjsonเพื่อนำมาสร้างโค้ดให้ตรงตามเงื่อนไขของงาน
+Operating System : **Windows 7, 8, 8.1, 10 64bit**\
+* Arduino-CLI
+  
+**For running from source**
+* Arduino-CLI
+* Python 3.7
+* Pygame
+* Banana-log
+* Numpy
+* Pandas
+
+# Installation
+```
+git clone https://github.com/WasinUddy/NSC2021-SmartFarming-Development-Platform.git
+
+cd NSC2021-SmartFarming-Development-Platform/program
+```
+## For running from the executable
+1. Install Arduino-CLI and add to path
+2. Finish :)
 
 
+## For running with Python
+1. Install Arduino-CLI and add to path
+2. Install required Library
+```
+pip install pygame
+pip install Banana-log
+pip install numpy
+pip install pandas
+```
+3. Finish :)
 
+
+# Run
+## Quick Run
+Run the **main.exe** 
+## Run with Python
+```
+python main.py
+```

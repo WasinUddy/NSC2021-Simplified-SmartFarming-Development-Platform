@@ -21,7 +21,8 @@ class Gui:
         self.TUTORIAL = False
 
         self.width, self.height = WIDTH, HEIGHT
-        self.surface = pg.display.set_mode((self.width, self.height), pg.RESIZABLE)
+        # self.surface = pg.display.set_mode((self.width, self.height), pg.RESIZABLE)
+        self.surface = pg.display.set_mode((self.width, self.height))
         pg.display.set_icon(ICON)
         self.clock = pg.time.Clock()
         self.font_name = pg.font.match_font(FONTNAME)
@@ -235,9 +236,9 @@ class Gui:
                     self.running = False
             
             # screen size
-            if event.type == pg.VIDEORESIZE:
+            '''if event.type == pg.VIDEORESIZE:
                 self.width, self.height = event.w, event.h
-                self.surface = pg.display.set_mode((self.width, self.height), pg.RESIZABLE)
+                self.surface = pg.display.set_mode((self.width, self.height), pg.RESIZABLE)'''
             # pass event variable to sprite handle event function 
             if self.choices is not None:
                 for choice in self.choices:

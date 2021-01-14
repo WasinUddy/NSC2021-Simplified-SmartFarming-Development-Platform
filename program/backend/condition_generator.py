@@ -61,6 +61,6 @@ digitalWrite({pin_index[row["OUTPUT"]]}, LOW);
         condition_code += f"""
 //End of Condition : {index}
 """
-
+        print(condition_code)
     return condition_code
 

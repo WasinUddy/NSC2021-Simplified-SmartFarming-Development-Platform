@@ -1,0 +1,21 @@
+
+
+            
+=======
+DHT11_0
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: [0]
+Analog_pins: []
+=======
+                
+=======
+relay_0
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: [1]
+Analog_pins: []
+=======
+                

@@ -27,8 +27,8 @@
 "dht11_sensor_id.begin();"
     ],
     "code_function": [
-"float dht11_readTemperature(DHT dht11_sensor){float t = dht11_sensor.readTemperature(); if(isnan(t)){return;}else{return t;}}",
-"float dht11_readHumidity(DHT dht11_sensor){float h = dht11_sensor.readHumidity(); if(isnan(h)){return;}else{return h;}}"
+"float dht11_readTemperature(DHT dht11_sensor){float t = dht11_sensor.readTemperature(); if(isnan(t)){return;}else{return t;}}\n",
+"float dht11_readHumidity(DHT dht11_sensor){float h = dht11_sensor.readHumidity(); if(isnan(h)){return;}else{return h;}}\n"
     ],
     "function_list": {
         "Temperature": "dht11_readTemperature(dht11_sensor_id);",

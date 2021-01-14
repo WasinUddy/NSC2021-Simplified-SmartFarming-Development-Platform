@@ -48,9 +48,7 @@ void setup()
             try:
                 if item_dictionary["no PINMODE"] is not True:
                     initial_setup += '\n'
-                    initial_setup += f"""
-pinMode({input_pins}, INPUT);
-"""
+
 
             except:
                 pass

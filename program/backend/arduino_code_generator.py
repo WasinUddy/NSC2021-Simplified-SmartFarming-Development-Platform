@@ -26,12 +26,13 @@ def generate_and_upload(items_dict, condition_dict, board, port, name="example")
 
         # -------------------------------------------create seperate file --------------------------------------------
     condition_code = """
-    void loop(){
+void loop(){
     """
     condition_code += value_listener
+    print(condition_dict)
     condition_code += conditional_digital_output_codegenerator(pd.DataFrame.from_dict(condition_dict), items_dict)
     condition_code += """
-    }
+}
     """
     # -----------------------------------------------------------------------------------------------------------
     

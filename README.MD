@@ -10,7 +10,7 @@ Project name / ชื่อโครงการ : เเพลตฟอร์�
 * Project Master @WasinUddy
 * 1st member     @Qwenty228
 * 2nd member     @Pamika-Cashew
-
+* Advisor        @Sawit-We
 
 # Requirement
 

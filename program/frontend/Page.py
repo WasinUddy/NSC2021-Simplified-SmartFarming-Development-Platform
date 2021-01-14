@@ -219,14 +219,14 @@ class Advance:
         if self.add.isOver(pos) and self.click:
             self.table_page_2.add_data_2(
                 (self.relay.result, self.Sensor2.result, self.operator.result, self.number.result))
+                self.page2_result = self.table_page_2.table.copy()
+                self.page2_result['OUTPUT'] = self.page2_result.pop('items')
+                self.page2_result['INPUT'] = self.page2_result.pop('amount')
+                self.page2_result['CONDITION'] = self.page2_result.pop('used_digital_pins')
+                self.page2_result['VALUE'] = self.page2_result.pop('used_analog_pins')
         if self.remove.isOver(pos) and self.click:
             self.table_page_2.clear()
-        ''''if self.upload.isOver(pos) and self.click:
-            self.page2_result = self.table_page_2.table.copy()
-            self.page2_result['OUTPUT'] = self.page2_result.pop('items')
-            self.page2_result['INPUT'] = self.page2_result.pop('amount')
-            self.page2_result['CONDITION'] = self.page2_result.pop('used_digital_pins')
-            self.page2_result['VALUE'] = self.page2_result.pop('used_analog_pins')'''
+            
 
 
     def page3(self, drawtext, pos):

@@ -11,7 +11,56 @@ Analog_pins: []
 =======
                 
 =======
+<<<<<<< HEAD
 DHT11_1
+=======
+16x2-I2C-LCD_1
+I2C: True
+SPI: None
+Serial: None
+Digital_pins: []
+Analog_pins: []
+=======
+                
+=======
+16x2-I2C-LCD_2
+I2C: True
+SPI: None
+Serial: None
+Digital_pins: []
+Analog_pins: []
+=======
+                
+=======
+16x2-I2C-LCD_3
+I2C: True
+SPI: None
+Serial: None
+Digital_pins: []
+Analog_pins: []
+=======
+                
+=======
+16x2-I2C-LCD_4
+I2C: True
+SPI: None
+Serial: None
+Digital_pins: []
+Analog_pins: []
+=======
+                
+=======
+16x2-I2C-LCD_5
+I2C: True
+SPI: None
+Serial: None
+Digital_pins: []
+Analog_pins: []
+=======
+                
+=======
+hc-sr04_0
+>>>>>>> b463f2fa3ec536db2214c62b17b6035e93d7e59b
 I2C: False
 SPI: None
 Serial: None
@@ -29,11 +78,42 @@ Analog_pins: []
 =======
                 
 =======
+<<<<<<< HEAD
 relay_1
+=======
+DS18B20_0
+>>>>>>> b463f2fa3ec536db2214c62b17b6035e93d7e59b
 I2C: False
 SPI: None
 Serial: None
 Digital_pins: [3]
+Analog_pins: []
+=======
+                
+=======
+DS18B20_1
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: [7]
+Analog_pins: []
+=======
+                
+=======
+DS18B20_2
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: [8]
+Analog_pins: []
+=======
+                
+=======
+DS18B20_3
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: [9]
 Analog_pins: []
 =======
                 

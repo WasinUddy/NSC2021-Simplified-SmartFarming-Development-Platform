@@ -11,6 +11,51 @@ Analog_pins: []
 =======
                 
 =======
+16x2-I2C-LCD_1
+I2C: True
+SPI: None
+Serial: None
+Digital_pins: []
+Analog_pins: []
+=======
+                
+=======
+16x2-I2C-LCD_2
+I2C: True
+SPI: None
+Serial: None
+Digital_pins: []
+Analog_pins: []
+=======
+                
+=======
+16x2-I2C-LCD_3
+I2C: True
+SPI: None
+Serial: None
+Digital_pins: []
+Analog_pins: []
+=======
+                
+=======
+16x2-I2C-LCD_4
+I2C: True
+SPI: None
+Serial: None
+Digital_pins: []
+Analog_pins: []
+=======
+                
+=======
+16x2-I2C-LCD_5
+I2C: True
+SPI: None
+Serial: None
+Digital_pins: []
+Analog_pins: []
+=======
+                
+=======
 hc-sr04_0
 I2C: False
 SPI: None
@@ -29,11 +74,38 @@ Analog_pins: []
 =======
                 
 =======
-DHT11_0
+DS18B20_0
 I2C: False
 SPI: None
 Serial: None
 Digital_pins: [6]
+Analog_pins: []
+=======
+                
+=======
+DS18B20_1
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: [7]
+Analog_pins: []
+=======
+                
+=======
+DS18B20_2
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: [8]
+Analog_pins: []
+=======
+                
+=======
+DS18B20_3
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: [9]
 Analog_pins: []
 =======
                 

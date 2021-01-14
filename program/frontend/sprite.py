@@ -415,7 +415,7 @@ class Counter:
                         self.text = '0'
                     
                     # if input is number and less than 4 digits
-                    if len(self.text) < 4 and event.unicode.isnumeric():
+                    if (len(self.text) < 4 and event.unicode.isnumeric()) or (len(self.text) < 1 and event.unicode == '-' and self.positive):
                         self.text += event.unicode
 
 
@@ -429,7 +429,9 @@ class Counter:
         self.rect_up.x = self.rect.w + self.rect.x - 0.5
         self.rect_down.x = self.rect.w + self.rect.x - 0.5
         self.color = COLOR_ACTIVE if self.active else black
-        if len(self.text) > 0:
+        if len(self.text) == 1 and self.text == '-':
+            self.result = 0
+        elif len(self.text) > 0:
             self.result = int(self.text)
         else:
             self.result = 0
@@ -442,7 +444,7 @@ class Counter:
         pg.draw.rect(screen, butgreen, (self.rect_up.x, self.rect_up.y, self.rect_up.w, self.rect.h), 0)
         screen.blit(self.txt_surface, (self.rect.x + 5, self.rect.y + (self.rect.h - self.txt_surface.get_height())/2))
         screen.blit(self.up, (self.rect_up.x + (self.rect_up.w - self.up.get_width())/2 + 1, self.rect.y))
-        screen.blit(self.down, (self.rect_down.x + (self.rect_down.w - self.down.get_width())/2, self.rect.y + self.rect.h // 2 + 1))
+        screen.blit(self.down, (self.rect_down.x + (self.rect_down.w - self.down.get_width())/2, self.rect.y + self.rect.h // 2))
        
         if self.increase:
             self.draw_shade(screen, self.rect.y)
@@ -533,7 +535,7 @@ class Table:
                 self.surface.blit(text,
                                       (self.x + sum(self.gap[:col]) + (
                                     self.box_width[col] - text.get_width()) / 2 + sum(self.box_width[:col]),
-                                    self.y + self.height * (row + 1) + 2))
+                                    self.y + self.height * (row + 1) + (self.height - text.get_height()) / 2))
 
 
     # add data for first table

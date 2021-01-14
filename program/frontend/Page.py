@@ -95,7 +95,7 @@ class Advance:
         self.remove = Button(self.surface, table_header, 0, 275, 50, 20,
                              "ลบ", txtbrown, None, 20)
         # upload buttom
-        self.upload = Button(self.surface, table_header, 470, 250, 70, 20,
+        self.upload = Button(self.surface, table_header, 590, 250, 70, 20,
                              "ลงโปรดดกรม", txtbrown, None, 20)
         # arduino board dropdown menu
         self.board = Choice(self.surface, table_header, WIDTH - 250, 90, 250, 30, get_board_list()[0],
@@ -231,9 +231,9 @@ class Advance:
         if self.table.table['items']:
             self.page3_object.WORDS_LIST = input_output_seperator(self.page1_result)[0]
             self.Sensor3.WORDS_LIST = input_output_seperator(self.page1_result)[2]
-        self.relay.x, self.Sensor2.x = 110, 280
-        self.add.x, self.add.y = 480, 200
-        self.remove.x, self.remove.y = 480, 225
+        self.page3_object.x, self.Sensor3.x = 250, 400
+        self.add.x, self.add.y = 600, 200
+        self.remove.x, self.remove.y = 600, 225
         '''drawtext("analog output", 25, white, 20, 125)
         drawtext("display", 20, white, 20, 160)
         drawtext("display", 20, white, 20, 400)

@@ -2,20 +2,38 @@
 
             
 =======
-DHT11_0
-I2C: False
+16x2-I2C-LCD_0
+I2C: True
 SPI: None
 Serial: None
-Digital_pins: [0]
+Digital_pins: []
 Analog_pins: []
 =======
                 
 =======
-relay_0
+hc-sr04_0
 I2C: False
 SPI: None
 Serial: None
-Digital_pins: [1]
+Digital_pins: [0, 1]
+Analog_pins: []
+=======
+                
+=======
+hc-sr04_1
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: [4, 5]
+Analog_pins: []
+=======
+                
+=======
+DHT11_0
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: [6]
 Analog_pins: []
 =======
                 

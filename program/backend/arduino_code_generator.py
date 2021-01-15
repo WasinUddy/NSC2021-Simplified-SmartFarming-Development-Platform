@@ -6,7 +6,7 @@ Generate Final Arduino Code Verify and Upload
 from backend.setup_function_generator import setup_and_header_generator
 from backend.value_listener_variable_generator import value_listener_variable_generator
 from backend.condition_generator import conditional_digital_output_codegenerator
-from backend.analog_output_codegenerator prototype import analog_output_codegenerator
+from backend.analog_output_codegenerator import analog_output_codegenerator
 from backend import command
 import pandas as pd
 

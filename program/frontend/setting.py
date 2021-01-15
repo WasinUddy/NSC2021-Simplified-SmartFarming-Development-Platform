@@ -60,4 +60,4 @@ OUTPUT_TAG = pg.transform.scale(pg.image.load("frontend/pictures/3.png"),(287, 4
 OPERATE = pg.transform.scale(pg.image.load("frontend/pictures/4.png"),(64, 40))
 ARE = pg.transform.scale(pg.image.load("frontend/pictures/5.png"),(33, 25))
 DISPLAY_OUTPUT_TAG = pg.transform.scale(pg.image.load("frontend/pictures/6.png"),(269, 40))
-DISPLAY = pg.transform.scale(pg.image.load("frontend/pictures/7.png"),(97, 30))
+DISPLAY = pg.transform.scale(pg.image.load("frontend/pictures/7.png"),(60, 19))

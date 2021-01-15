@@ -81,7 +81,7 @@ class Advance:
         # page 2 result
         self.page2_result = None
         # smart farming logo picture
-        self.logo = pg.transform.scale(LOGO, (130, 130))
+        self.logo = pg.transform.scale(LOGO, (200, 200))
         # next button
         self.next = Button(self.surface, table_header, WIDTH/2 + 10, HEIGHT*9/10, 120, 40,
                            "next", txtbrown, None, 30)
@@ -147,11 +147,11 @@ class Advance:
             self.page -= 1
 
     def page1(self, drawtext, pos):
-        self.surface.blit(BOARD_CONTROLLER, (150,110))
-        self.surface.blit(SENSOR, (150 ,250))
+        self.surface.blit(BOARD_CONTROLLER, (50,110))
+        self.surface.blit(SENSOR, (50 ,250))
         self.add.x, self.add.y = self.width *545/WIDTH, self.height*300/HEIGHT
         self.remove.x, self.remove.y = self.width *605/WIDTH, self.height*300/HEIGHT
-        self.sensor.x, self.board.x = self.width *352/WIDTH, self.width*252/500
+        self.sensor.x, self.board.x = self.width*280/WIDTH, self.width*252/500
         self.sensor.y, self.board.y = self.height*250/HEIGHT, self.height*110/HEIGHT
         self.table.x, self.table.y = 45, self.height*330/600
         self.choice = [self.sensor, self.board]
@@ -174,8 +174,8 @@ class Advance:
                                          sum(self.table.table['used_analog_pins']) / digital_amount * 200, 10))
         drawtext(str(sum(self.table.table['used_digital_pins'])), 20, white, 40, self.height - 110)
         drawtext(str(sum(self.table.table['used_analog_pins'])), 20, white, 40, self.height - 90)
-        drawtext('analog pin', 20, white, 300, self.height - 90)
-        drawtext('digital pin', 20, white, 300, self.height - 110)
+        drawtext("ช่องอนาล็อก", 25, white, 300, self.height - 90)
+        drawtext('ช่องดิจิตอล', 25, white, 300, self.height - 110)
         if sum(self.table.table['used_digital_pins']) + int(self.sensor_amount.result) <= digital_amount:
             if str(self.sensor.result) == '16x2_I2C_LCD':
                 if int(self.sensor_amount.result) > 1:
@@ -196,7 +196,7 @@ class Advance:
 
 
     def page2(self, drawtext, pos):
-        self.surface.blit(OUTPUT_TAG, (270, 100))
+        self.surface.blit(OUTPUT_TAG, (250, 100))
         self.surface.blit(ARE, (535, 165))
         self.surface.blit(OPERATE, (175, 160))
         self.surface.blit(OPERATE, (175, 295))
@@ -226,7 +226,7 @@ class Advance:
 
     def page3(self, drawtext, pos):
         self.surface.blit(DISPLAY_OUTPUT_TAG, (250, 100))
-        self.surface.blit(DISPLAY, (150, 100))
+        self.surface.blit(DISPLAY, (150, 150))
         if self.table.table['items']:
             self.page3_object.WORDS_LIST = input_output_seperator(self.page1_result)[0]
             self.Sensor3.WORDS_LIST = input_output_seperator(self.page1_result)[2]
@@ -279,16 +279,14 @@ Analog_pins: {item_dict[key]['Analog_pins']}
 
             # Fetal BUG
             print("=======================Fetal BUG Investigate===========================")
-            print(item_dict)
-            print("====================")
-            print(condition_dict)
+            print(self.page3_result)
             print("=========================End of Investigation==========================")
             generate_and_upload(item_dict, condition_dict, self.official_name, "Test")
 
 
     def draw(self, drawtext, pos):
         pg.draw.rect(self.surface, butgreen, (0, 25, self.width, 25))
-        self.surface.blit(self.logo, (10, 5))
+        self.surface.blit(self.logo, (0, 0))
         drawtext(str(self.page), 20, white, self.width - 20, self.height - 26)
         if self.page == 1:
             self.page1(drawtext, pos)

@@ -31,7 +31,7 @@
         "void lcd16X2_print(LiquidCrystal lcd, String header, float value, int row){lcd.setCursor(0, row);lcd.print(header);lcd.setCursor(0, length(header)+1);lcd.print(value);lcd.clear();}"
     ],
     
-    "function_list":["lcd16X2_print(lcd_id, header, value, row);"]
+    "function_list":"lcd16X2_print(lcd_id, header, value, row);"
 
 
 }

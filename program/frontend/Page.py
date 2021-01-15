@@ -277,7 +277,7 @@ Analog_pins: {item_dict[key]['Analog_pins']}
                 f.write(polymer)
             condition_dict = self.page2_result
             noncondition_dict = self.page3_result
-            if noncondition_dict["INPUT"][0] is None:
+            if noncondition_dict["INPUT"][0] is 'None':
                 noncondition_dict = None
             
             generate_and_upload(item_dict, condition_dict, noncondition_dict,self.official_name, "Test")

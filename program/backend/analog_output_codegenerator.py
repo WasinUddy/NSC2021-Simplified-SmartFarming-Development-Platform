@@ -19,7 +19,7 @@ def analog_output_codegenerator(input_dataframe):
 
     # Iterate through row of DataFrame
     for index, row in input_dataframe_pd.iterrows():
-        OUTPUT_DEVICE = row["INPUT"].split("_")[0]
+        OUTPUT_DEVICE = row["OUTPUT"].split("_")[0]
 
         # Loading used item dictionary from json file
         with open(f"resources/items/{OUTPUT_DEVICE}.json") as json_file:
@@ -28,7 +28,8 @@ def analog_output_codegenerator(input_dataframe):
         del json_file
 
         # creating Starting Unmodified Function
-        unmodified_function = item_dictionary["function_list"][0]
+        unmodified_function = item_dictionary["function_list"]
+        print(unmodified_function)
 
         # modified unmodified function
         unmodified_function = unmodified_function.replace(item_dictionary["custom id key"], row["INPUT"])

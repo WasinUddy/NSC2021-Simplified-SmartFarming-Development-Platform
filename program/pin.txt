@@ -2,7 +2,16 @@
 
             
 =======
-DHT11_0
+16x2-I2C-LCD_0
+I2C: True
+SPI: None
+Serial: None
+Digital_pins: []
+Analog_pins: []
+=======
+                
+=======
+DS18B20_0
 I2C: False
 SPI: None
 Serial: None
@@ -11,11 +20,47 @@ Analog_pins: []
 =======
                 
 =======
-relay_0
+DHT11_0
 I2C: False
 SPI: None
 Serial: None
 Digital_pins: [1]
+Analog_pins: []
+=======
+                
+=======
+DHT22_0
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: [2]
+Analog_pins: []
+=======
+                
+=======
+relay_0
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: [3]
+Analog_pins: []
+=======
+                
+=======
+relay_1
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: [4]
+Analog_pins: []
+=======
+                
+=======
+relay_2
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: [5]
 Analog_pins: []
 =======
                 

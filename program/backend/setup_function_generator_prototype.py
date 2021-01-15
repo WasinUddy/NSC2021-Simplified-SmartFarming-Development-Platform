@@ -33,7 +33,7 @@ void setup()
         with open(f"resources/items/{item_name}.json") as json_file:
             item_dictionary = json.load(json_file)
 
-        # adding static code for item into the code
+        # adding static code for item into the code1
         if used_item is not True:
             # add header 1 static header
             if item_dictionary["header1"] is not None:
@@ -48,16 +48,21 @@ void setup()
 
         # PinMode Setting in void setup(){}
         if item_dictionary["PINMODE"]["INPUT"] != 0:
-            for input_pins in items_dict[f"{item_name}_{item_ID}"]["Digital_pins"]:
+            input_pins = items_dict[f"{item_name}_{item_ID}"]["Digital_pins"]
+            for input_pin in input_pins:
                 initial_setup += f"""
-pinMode({input_pins}, INPUT);
+pinMode({input_pin}, INPUT);
 """
         if item_dictionary["PINMODE"]["OUTPUT"] != 0:
-            for output_pins in item_dict[f"{item_name}_{item_ID}"]["Digital_pins"]:
+            output_pins = items_dict[f"{item_name}_{item_ID}"]["Digital_pins"]
+            for output_pin in :output_pins
                 initial_setup += f"""
-pinMode({output_pins}, OUTPUT);
+pinMode({output_pin}, OUTPUT);
 """
 
+        for code_in_setup in item_dictionary["code_in_setup"]:
+            code_in_setup = code_in_setup.replace(item_dictionary["custom id key"], item_name_and_ID)
+            
 
 
                 

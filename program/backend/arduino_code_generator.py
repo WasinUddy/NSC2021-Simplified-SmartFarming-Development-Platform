@@ -6,18 +6,21 @@ Generate Final Arduino Code Verify and Upload
 from backend.setup_function_generator import setup_and_header_generator
 from backend.value_listener_variable_generator import value_listener_variable_generator
 from backend.condition_generator import conditional_digital_output_codegenerator
+from backend.analog_output_codegenerator prototype import analog_output_codegenerator
 from backend import command
 import pandas as pd
 
 
-def generate_and_upload(items_dict, condition_dict, board, port, name="example"):
+def generate_and_upload(items_dict, condition_dict, noncondition_code, board, port, name="example"):
     # generate setup function and header required
     initial_header, initial_setup, initial_function, usable_function = setup_and_header_generator(items_dict)
     # initial_header : import required library and special starting variable declaration on file header
     # initial_setup  : code in setup function of arduino code
     # initial_function : create function for each item in items_dict
     # usable_function : list of usable_function
-    
+    if noncondition_code is not None:
+        noncondition_code = analog_output_codegenerator(noncondition_code)
+
     # declare value listening variable ( listen value from the function )
     variable_declaration, value_listener = value_listener_variable_generator(items_dict)
         # variable_declaration : code to declare used variable
@@ -29,7 +32,7 @@ def generate_and_upload(items_dict, condition_dict, board, port, name="example")
 void loop(){
     """
     condition_code += value_listener
-    print(condition_dict)
+    
     condition_code += conditional_digital_output_codegenerator(pd.DataFrame.from_dict(condition_dict), items_dict)
     condition_code += """
 }

@@ -1,0 +1,37 @@
+{
+    "name": "16X2_I2C_LCD",
+    "Description": "Display",
+    "TYPE": "Analog Output",
+    "PIN":{
+        "Digital": 0,
+        "Analog": 0,
+        "I2C": true,
+        "SPI": false,
+        "Serial": false
+    },
+    "PINMODE":{
+        "INPUT": 0,
+        "OUTPUT": 0
+    },
+    "no PINMODE": true,
+    "Library": ["LiquidCrystal I2C"],
+    "header1":[
+"#include <LiquidCrystal_I2C.h>"
+],
+    "header2":[
+"LiquidCrystal_I2C lcd_id(0x27, 16, 2);"
+    ],
+    "custom id key":"lcd_id",
+    "custom pin key":[null, null],
+    "code_in_setup":[
+ "lcd_id.init();",
+ "lcd_id.blacklight();"
+    ],
+    "code_function":[
+        "void lcd16X2_print(LiquidCrystal lcd, String header, float value, int row){lcd.setCursor(0, row);lcd.print(header);lcd.setCursor(0, length(header)+1);lcd.print(value);lcd.clear();}"
+    ],
+    
+    "function_list":["lcd16X2_print(lcd_id, header, value, row);"]
+
+
+}

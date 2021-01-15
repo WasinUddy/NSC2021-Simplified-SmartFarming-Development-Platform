@@ -66,7 +66,7 @@ class Button:
 
 # drop down menu
 class Choice:
-    def __init__(self, Surface, color, x, y, width, height, default, text=None, textcol=(0, 0, 0)):
+    def __init__(self, Surface, color, x, y, width, height, default, text=None, textcol=(0, 0, 0), a=3):
         # check for word use in list
         if text is None:
             text = []
@@ -103,11 +103,11 @@ class Choice:
         self.image = pg.transform.scale(Down, (15, 15)) 
         self.top = 0
         # maximum word window and positon when scrolling
-        self.boxes = min(3, len(self.WORDS_LIST))
+        self.boxes = min(a, len(self.WORDS_LIST))
         # word use to display for the menu
         self.display_text = self.WORDS_LIST[self.top:self.boxes]
         # word original size
-        self.size = 20
+        self.size = 30
         # change size if it is too big for the box when initialize
         if len(self.WORDS_LIST) is not 0:
             font = pg.font.SysFont(FONTNAME, 20)

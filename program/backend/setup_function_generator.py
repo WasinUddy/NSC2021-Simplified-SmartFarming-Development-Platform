@@ -103,7 +103,7 @@ void setup()
                 initial_setup += f"""
 pinMode({digital_pins[0]}, INPUT);
 """
-            print("xxx", item_dictionary["PINMODE"]["OUTPUT"])
+            
             if item_dictionary["PINMODE"]["OUTPUT"] != 0:
                 initial_setup += f"""
 pinMode({digital_pins[0]}, OUTPUT);

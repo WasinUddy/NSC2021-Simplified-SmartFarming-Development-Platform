@@ -416,6 +416,8 @@ class Counter:
                     
                     # if input is number and less than 4 digits
                     if (len(self.text) < 4 and event.unicode.isnumeric()) or (len(self.text) < 1 and event.unicode == '-' and self.positive):
+                        if len(self.text) == 1 and self.text == '0' and event.unicode.isnumeric():
+                            self.text = ''
                         self.text += event.unicode
 
 

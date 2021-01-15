@@ -488,7 +488,7 @@ class Table:
 
     # draw
     def draw(self, outline=None):
-        font = pg.font.SysFont(FONTNAME, min(20, self.height * 4 // 5))
+        font = pg.font.SysFont(FONTNAME, min(25, self.height * 4 // 5))
         for word in range(len(self.default)):
             text = font.render(self.default[word], 1, self.text_color)
             if outline:
@@ -513,7 +513,7 @@ class Table:
     # value table
     def word_list(self, outline):
         self.list = []
-        font = pg.font.SysFont(FONTNAME, min(20, self.height * 4 // 5))
+        font = pg.font.SysFont(FONTNAME, min(22, self.height * 4 // 5))
         for item in self.table:
             self.list.append(self.table[item])
         self.list = np.transpose(np.array(self.list[:len(self.default)])).tolist()

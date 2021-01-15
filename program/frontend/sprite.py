@@ -472,7 +472,8 @@ class Table:
         self.width, self.height = width, height
         self.text_color = text_col
         self.list = []
-        self.top, self.bottom = 0, a
+        self.a = a
+        self.top, self.bottom = 0, self.a
         self.use_list = []
         if gap is None:
             gap = []
@@ -599,11 +600,15 @@ class Table:
                         if self.bottom < len(self.table['items']):
                             self.top += 1
                             self.bottom += 1
+                            
 
     # create scrollbar on table
     def scrollbar(self, outline):
         total_width = sum(self.box_width)
         total_gap = sum(self.gap)
+        if self.bottom > len(self.table['items']) and self.bottom > self.a: 
+            self.bottom = len(self.table['items'])
+            self.top = len(self.table['items']) - self.a
         if outline:
             pg.draw.rect(self.surface, outline,
                              (self.x + total_width + total_gap-2, self.y-2, 14,

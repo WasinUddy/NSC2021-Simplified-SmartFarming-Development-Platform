@@ -95,7 +95,7 @@ class Advance:
         self.remove = Button(self.surface, table_header, 0, 275, 50, 20,
                              "ลบ", txtbrown, None, 20)
         # upload buttom
-        self.upload = Button(self.surface, table_header, 590, 250, 70, 20,
+        self.upload = Button(self.surface, table_header, 590, 265, 70, 20,
                              "ลงโปรดดกรม", txtbrown, None, 20)
         # arduino board dropdown menu
         self.board = Choice(self.surface, table_header, WIDTH - 250, 90, 250, 30, get_board_list()[0],
@@ -104,9 +104,9 @@ class Advance:
         self.sensor = Choice(self.surface, table_header, WIDTH - 400, 220, 125, 25, get_item_list()[0],
                              get_item_list()[1:], txtbrown)
         # arduino sensor drop down menu page 3
-        self.Sensor3 = Choice(self.surface, table_header, 290, 165, 150, 25, None,
+        self.Sensor3 = Choice(self.surface, table_header, 290, 165, 150, 30, None,
                               None, txtbrown)
-        self.page3_object = Choice(self.surface, table_header, 105, 165, 150, 25, None,
+        self.page3_object = Choice(self.surface, table_header, 105, 165, 150, 30, None,
                             None, txtbrown)
         self.relay = Choice(self.surface, table_header, 10, 165, 100, 30, None,
                             None, txtbrown)
@@ -117,10 +117,10 @@ class Advance:
         self.table = Table(self.surface, table_body, WIDTH*1/10, HEIGHT*330/600, 150, 40, PAGE1, txtbrown)
         self.table_page_2 = Table(self.surface, table_body, 50, 300, 80, 40, PAGE2, txtbrown, (80, 25,10),
                             (120, 180, 75, 100),6)
-        self.table_page_3 = Table(self.surface, table_body, 50, 280, 120, 35, PAGE3, txtbrown, (60,20,50), (85, 170, 170, 40), 6)
+        self.table_page_3 = Table(self.surface, table_body, 50, 300, 120, 40, PAGE3, txtbrown, (60,20,50), (85, 170, 170, 40), 6)
         self.sensor_amount = Counter(self.width - 158, 250, 75, 25)
         self.number = Counter(575, 165, 50, 30,'0',True)
-        self.row = Counter(480, 165, 50, 25)
+        self.row = Counter(600, 165, 50, 30)
         self.insert = Textbox(50, 165, 100, 30)
         self.official_name = None
 
@@ -221,19 +221,20 @@ class Advance:
             self.page2_result['VALUE'] = self.page2_result.pop('used_analog_pins')
         if self.remove.isOver(pos) and self.click:
             self.table_page_2.clear()
-            
+        print("table pos: " + str(self.table_page_2.bottom) + ' , amount: ' + str(len(self.table_page_2.table['items'])))
+
 
 
 
     def page3(self, drawtext, pos):
-        self.surface.blit(DISPLAY_OUTPUT_TAG, (150, 100))
+        self.surface.blit(DISPLAY_OUTPUT_TAG, (250, 100))
         self.surface.blit(DISPLAY, (150, 100))
         if self.table.table['items']:
             self.page3_object.WORDS_LIST = input_output_seperator(self.page1_result)[0]
             self.Sensor3.WORDS_LIST = input_output_seperator(self.page1_result)[2]
-        self.page3_object.x, self.Sensor3.x = 250, 400
-        self.add.x, self.add.y = 600, 200
-        self.remove.x, self.remove.y = 600, 225
+        self.page3_object.x, self.Sensor3.x = 195, 385
+        self.add.x, self.add.y = 600, 205
+        self.remove.x, self.remove.y = 600, 235
         '''drawtext("analog output", 25, white, 20, 125)
         drawtext("display", 20, white, 20, 160)
         drawtext("display", 20, white, 20, 400)

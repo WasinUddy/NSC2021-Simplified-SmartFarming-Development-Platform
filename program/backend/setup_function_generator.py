@@ -8,13 +8,15 @@ def setup_and_header_generator(items_dict):
     usable_function = {}
 
     initial_header = """
+\n
 """
     initial_setup = """
 void setup()
 {
 """
     initial_function = """
-    """
+
+"""
 
     for item_name_and_ID in list(items_dict.keys()):
 

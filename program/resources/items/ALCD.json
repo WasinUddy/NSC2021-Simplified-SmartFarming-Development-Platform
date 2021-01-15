@@ -1,5 +1,5 @@
 {
-    "name": "16X2_I2C_LCD",
+    "name": "ALCD",
     "Description": "Display",
     "TYPE": "Analog Output",
     "PIN":{
@@ -28,10 +28,10 @@
  "lcd_id.blacklight();"
     ],
     "code_function":[
-        "void lcd16X2_print(LiquidCrystal lcd, String header, float value, int row){lcd.setCursor(0, row);lcd.print(header);lcd.setCursor(0, length(header)+1);lcd.print(value);lcd.clear();}"
+        "void ALCD_print(LiquidCrystal lcd, String header, float value, int row){lcd.setCursor(0, row);lcd.print(header);lcd.setCursor(0, length(header)+1);lcd.print(value);lcd.clear();}"
     ],
     
-    "function_list":"lcd16X2_print(lcd_id, header, value, row);"
+    "function_list":"ALCD_print(lcd_id, header, value, row);"
 
 
 }

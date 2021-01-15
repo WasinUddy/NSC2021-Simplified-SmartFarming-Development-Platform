@@ -284,7 +284,6 @@ Analog_pins: {item_dict[key]['Analog_pins']}
 
 
     def draw(self, drawtext, pos):
-        pg.draw.rect(self.surface, butgreen, (0, 25, self.width, 25))
         self.surface.blit(self.logo, (25, -50))
         drawtext(str(self.page), 20, white, self.width - 20, self.height - 26)
         if self.page == 1:

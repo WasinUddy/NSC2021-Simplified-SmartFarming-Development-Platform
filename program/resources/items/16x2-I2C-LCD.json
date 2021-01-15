@@ -22,6 +22,7 @@
 "LiquidCrystal_I2C lcd_id(0x27, 16, 2);"
     ],
     "custom id key":"lcd_id",
+    "custom pin key":null,
     "code_in_setup":[
  "lcd_id.init();",
  "lcd_id.blacklight();"

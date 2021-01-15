@@ -276,12 +276,11 @@ Analog_pins: {item_dict[key]['Analog_pins']}
             with open(TXT_FILE, 'w') as f:
                 f.write(polymer)
             condition_dict = self.page2_result
-
-            # Fetal BUG
-            print("=======================Fetal BUG Investigate===========================")
-            print(self.page3_result)
-            print("=========================End of Investigation==========================")
-            generate_and_upload(item_dict, condition_dict, self.official_name, "Test")
+            noncondition_dict = self.page3_result
+            if noncondition_dict["INPUT"][0] is None:
+                noncondition_dict = None
+            
+            generate_and_upload(item_dict, condition_dict, noncondition_dict,self.official_name, "Test")
 
 
     def draw(self, drawtext, pos):

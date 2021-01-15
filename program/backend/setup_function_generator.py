@@ -1,8 +1,19 @@
 # import required Library
 import json 
 
+
+
+def pretty(d, indent=0):
+   for key, value in d.items():
+      print('\t' * indent + str(key))
+      if isinstance(value, dict):
+         pretty(value, indent+1)
+      else:
+         print('\t' * (indent+1) + str(value))
+
+
 def setup_and_header_generator(items_dict):
-    used_item = []
+    used_items = []
     usable_function = {}
 
 # -----------------------Create starting String-----------------------
@@ -29,22 +40,24 @@ void setup()
         
 
         # Get Item name and ID
-        item_name = item_name_and_ID('_', 1)[0]
-        item_ID = item_name_and_ID('_', 1)[1]
+        item_name = item_name_and_ID.split('_', 1)[0]
+        
     
         # check weather the item has been used
-        used_item = item_name in used_item
-        if used_item is False:
-            used_item.append(item_name)
+        used_item_bool = item_name in used_items
+        if used_item_bool is False:
+            used_items.append(item_name)
         
         # open item json as python dictionary 
         with open(f"resources/items/{item_name}.json") as json_file:
             item_dictionary = json.load(json_file)
 
-        usable_function[item_name_and_ID] = item_dictionary["function_list"]
+        
+        if item_dictionary["function_list"] is not None:
+            usable_function[item_name_and_ID] = item_dictionary["function_list"]
 
         # adding static code for item into the code1
-        if used_item is not True:
+        if used_item_bool is not True:
             # add header 1 static header
             if item_dictionary["header1"] is not None:
                 for header_1 in item_dictionary["header1"]:
@@ -57,48 +70,65 @@ void setup()
                     initial_function += f"""
 {code_function}
 """
-        input_pins = items_dict[f"{item_name}_{item_ID}"]["Digital_pins"]
-        output_pins = items_dict[f"{item_name}_{item_ID}"]["Digital_pins"]
+        digital_pins = items_dict[item_name_and_ID]["Digital_pins"]
+        
+        
+        
 
         if item_dictionary["header2"] is not None:
             for header2 in item_dictionary["header2"]:
                 header2 = header2.replace(item_dictionary["custom id key"], item_name_and_ID)
+
+                # Dual Input and Output
                 # custom input pins
                 if item_dictionary["custom pin key"][0] is not None:
-                    header2 = header2.replace(item_dictionary["custom pin key"][0], input_pins[0])
-                # custom output pins
+                    header2 = header2.replace(item_dictionary["custom pin key"][0], str(digital_pins[0]))
+                    # custom output pins
+                    if item_dictionary["custom pin key"][1] is not None:
+                        header2 = header2.replace(item_dictionary["custom pin key"][1], str(digital_pins[1]))
+                
+                # Solo pin mode
                 if item_dictionary["custom pin key"][1] is not None:
-                    header2 = header2.replace(item_dictionary["custom pin key"][1], output_pins[0])
+                        header2 = header2.replace(item_dictionary["custom pin key"][1], str(digital_pins[0]))
+
 
                 initial_header_2 += f"""
 {header2}
 """
 
-        if item_dictionary["no PINMODE"] is not False:
+        if item_dictionary["no PINMODE"] is False:
 
             # PinMode Setting in void setup(){}
             if item_dictionary["PINMODE"]["INPUT"] != 0:
-                
-                for input_pin in input_pins:
-                    initial_setup += f"""
-pinMode({input_pin}, INPUT);
+                initial_setup += f"""
+pinMode({digital_pins[0]}, INPUT);
 """
+            print("xxx", item_dictionary["PINMODE"]["OUTPUT"])
             if item_dictionary["PINMODE"]["OUTPUT"] != 0:
-                
-                for output_pin in output_pins:
-                    initial_setup += f"""
-pinMode({output_pin}, OUTPUT);
+                initial_setup += f"""
+pinMode({digital_pins[0]}, OUTPUT);
 """
         # Extra stuff in void setup(){}
-        for code_in_setup in item_dictionary["code_in_setup"]:
-            code_in_setup = code_in_setup.replace(item_dictionary["custom id key"], item_name_and_ID)
-            if item_dictionary["PINMODE"]["INPUT"] != 0:
-                code_in_setup = code_in_setup.replace(item_dictionary["custom pin key"][0], input_pins[0])
-            if item_dictionary["PINMODE"]["OUTPUT"] != 0:
-                code_in_setup = code_in_setup.replace(item_dictionary["custom pin key"][1], output_pins[0])
+        if item_dictionary["code_in_setup"] is not None:
+            for code_in_setup in item_dictionary["code_in_setup"]:
+                code_in_setup = code_in_setup.replace(item_dictionary["custom id key"], item_name_and_ID)
 
-            initial_setup += f"""
+                # Dual Input and Output
+                if item_dictionary["PINMODE"]["INPUT"] != 0:
+                    code_in_setup = code_in_setup.replace(item_dictionary["custom pin key"][0], str(digital_pins[0]))
+                    if item_dictionary["PINMODE"]["OUTPUT"] != 0:
+                        code_in_setup = code_in_setup.replace(item_dictionary["custom pin key"][1], str(digital_pins[1]))
+
+                # Solo pin
+                if item_dictionary["PINMODE"]["OUTPUT"] != 0:
+                        code_in_setup = code_in_setup.replace(item_dictionary["custom pin key"][1], str(digital_pins[0]))
+
+                initial_setup += f"""
 {code_in_setup}
+"""
+
+    initial_setup += """
+}
 """
     
     header = f"""
@@ -106,6 +136,8 @@ pinMode({output_pin}, OUTPUT);
 
 {initial_header_2}
 """
+
+
     return header, initial_setup, initial_function, usable_function
 
 

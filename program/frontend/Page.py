@@ -221,9 +221,7 @@ class Advance:
             self.page2_result['VALUE'] = self.page2_result.pop('used_analog_pins')
         if self.remove.isOver(pos) and self.click:
             self.table_page_2.clear()
-        print("table pos: " + str(self.table_page_2.bottom) + ' , amount: ' + str(len(self.table_page_2.table['items'])))
-
-
+       
 
 
     def page3(self, drawtext, pos):

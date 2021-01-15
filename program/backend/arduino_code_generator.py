@@ -11,16 +11,17 @@ from backend import command
 import pandas as pd
 
 
-def generate_and_upload(items_dict, condition_dict, noncondition_code, board, port, name="example"):
+def generate_and_upload(items_dict, condition_dict, noncondition_dict, board, port, name="example"):
     # generate setup function and header required
     initial_header, initial_setup, initial_function, usable_function = setup_and_header_generator(items_dict)
     # initial_header : import required library and special starting variable declaration on file header
     # initial_setup  : code in setup function of arduino code
     # initial_function : create function for each item in items_dict
     # usable_function : list of usable_function
-    if noncondition_code is not None:
-        noncondition_code = analog_output_codegenerator(noncondition_code)
-
+    if noncondition_dict is not None:
+        noncondition_code = analog_output_codegenerator(noncondition_dict)
+    else:
+        noncondition_code = None
     # declare value listening variable ( listen value from the function )
     variable_declaration, value_listener = value_listener_variable_generator(items_dict)
         # variable_declaration : code to declare used variable
@@ -28,37 +29,40 @@ def generate_and_upload(items_dict, condition_dict, noncondition_code, board, po
 
 
         # -------------------------------------------create seperate file --------------------------------------------
-    condition_code = """
-void loop(){
-    """
-    condition_code += value_listener
-    
-    condition_code += conditional_digital_output_codegenerator(pd.DataFrame.from_dict(condition_dict), items_dict)
-    condition_code += """
-}
-    """
+    condition_code = f"""
+{value_listener}
+
+{conditional_digital_output_codegenerator(pd.DataFrame.from_dict(condition_dict), items_dict)}
+"""
+    if noncondition_code is None:
+        loopcode = f"""
+void loop() {'{'}
+{condition_code}
+{'}'}
+""" 
+
+    else:
+        loopcode = f"""
+void loop() {'{'}
+{condition_code}
+
+{noncondition_code}
+{'}'}
+"""
     # -----------------------------------------------------------------------------------------------------------
     
     # final Arduino Code starting empty string
-    text = """
+    text = f"""
+{initial_header}
+
+{variable_declaration}
+
+{initial_function}
+
+{initial_setup}
+
+{loopcode}
     """
-    
-    # adding code header to final Arduino code
-    text += initial_header
-
-        # declare required variable data type and name
-    text += variable_declaration
-
-        # adding void setup(){} to arduino code
-    text += initial_setup
-
-        # adding require function for each item to the code
-    text += initial_function
-
-        # adding void loop(){}
-    text += condition_code
-    
-        # declare used board and filename
     arduino_code = command.Sketch(board, name)
     
     # create sketch -> compile -> upload 
@@ -66,3 +70,4 @@ void loop(){
     arduino_code.write_sketch(text)
     arduino_code.verify_sketch()
     arduino_code.upload_sketch()
+

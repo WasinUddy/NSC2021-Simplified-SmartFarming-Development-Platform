@@ -1,6 +1,18 @@
 # All functioning object
 from frontend.setting import *
 from backend.quick_sort import quick_sort
+from frontend.banana import Banana
+
+
+logger = Banana()
+logger.type_color = {
+        "Error": 'Red',
+        "Warning": 'Yellow',
+        "Assert": 'Magenta',
+        "Success": 'Green'
+        }
+logger.datetime_format = 'format_3'
+
 # Button Class
 class Button:
 
@@ -167,6 +179,7 @@ class Choice:
                             self.default = self.display_text[word - 1]
                             self.result = self.display_text[word - 1]
                             self.toggle = False
+                            logger.log("Selected " + str(self.result), "Success")
                         return True
         return False
 
@@ -269,7 +282,7 @@ class Choice:
 class Textbox:
     def __init__(self, x, y, w, h, text=''):
         # font
-        font = pg.font.SysFont(FONTNAME, 35)
+        font = pg.font.SysFont(FONTNAME, 30)
         # box 's position and size
         self.rect = pg.Rect(x, y, w, h)
         # text color

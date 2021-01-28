@@ -36,9 +36,7 @@ class Gui:
     # loaddata
     def loaddata(self):
         self.logo = pg.transform.scale(LOGO, (240, 240))
-        self.Normal_page = Normal(self.surface)
         self.Advance_page = Advance(self.surface)
-        self.Tutorial_page = Tutorial(self.surface)
         self.buttons = []
         self.choices = []
         self.tables = []

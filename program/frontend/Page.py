@@ -4,65 +4,8 @@ from backend.pin_management import pin_management
 from backend.arduino_code_generator import generate_and_upload
 from backend.get_list import get_board_list, get_item_list
 from backend.input_output_seperator import input_output_seperator
+
 import time
-
-class Tutorial:
-    def __init__(self, screen):
-        self.page =1
-        self.total = 1
-        self.surface = screen
-        self.logo = pg.transform.scale(LOGO, (113, 119))
-        self.next = Button(self.surface, table_header, WIDTH - 102, 2, 100, 25,
-                           "next", txtbrown, None, 20)
-        self.back = Button(self.surface, table_header, WIDTH - 102, 27, 100, 25,
-                           "back", txtbrown, None, 20)
-        self.button = [self.next, self.back]
-
-    def update(self, click, pos):
-        if self.next.isOver(pos) and click:
-            if self.page < self.total:
-                self.page += 1
-            else:
-                self.page = self.total
-        elif self.back.isOver(pos) and click:
-            self.page -= 1
-
-    def draw(self, drawtext):
-        self.surface.fill(bgcolor)
-        pg.draw.rect(self.surface, table_header, (0, 25, WIDTH, 25))
-        self.surface.blit(self.logo, (10, 5))
-        drawtext("Tutorial", 35, white, WIDTH * 2 / 5, 75)
-        drawtext(str(self.page), 20, white, WIDTH - 20, HEIGHT - 26)
-
-
-class Normal:
-    def __init__(self, screen):
-        self.page = 0
-        self.total = 2
-        self.surface = screen
-        self.logo = pg.transform.scale(LOGO, (113, 119))
-        self.next = Button(self.surface, table_header, WIDTH - 102, 2, 100, 25,
-                           "next", txtbrown, None, 20)
-        self.back = Button(self.surface, table_header, WIDTH - 102, 27, 100, 25,
-                           "back", txtbrown, None, 20)
-        self.button = [self.next, self.back]
-
-    def update(self, click, pos):
-        if self.next.isOver(pos) and click:
-            if self.page < self.total:
-                self.page += 1
-            else:
-                self.page = self.total
-        elif self.back.isOver(pos) and click:
-            self.page -= 1
-
-    def draw(self, drawtext):
-        self.surface.fill(bgcolor)
-        pg.draw.rect(self.surface, table_header, (0, 25, WIDTH, 25))
-        self.surface.blit(self.logo, (10, 5))
-        drawtext("โหมดใช้งานง่าย", 35, white, WIDTH * 2 / 5, 75)
-        drawtext(str(self.page), 20, white, WIDTH - 20, HEIGHT - 26)
-
 
 class Advance:
     def __init__(self, screen):
@@ -104,9 +47,9 @@ class Advance:
         self.sensor = Choice(self.surface, table_header, WIDTH - 400, 220, 125, 40, get_item_list()[0],
                              get_item_list()[1:], txtbrown)
         # arduino sensor drop down menu page 3
-        self.Sensor3 = Choice(self.surface, table_header, 30, 115, 200, 30, None,
+        self.Sensor3 = Choice(self.surface, table_header, 30, 115, 120, 30, None,
                               None, txtbrown)
-        self.page3_object = Choice(self.surface, table_header, 105, 115, 200, 30, None,
+        self.page3_object = Choice(self.surface, table_header, 105, 115, 250, 30, None,
                             None, txtbrown)
         self.relay = Choice(self.surface, table_header, -20, 115, 100, 30, None,
                             None, txtbrown)
@@ -117,7 +60,7 @@ class Advance:
         self.table = Table(self.surface, table_body, WIDTH*1/10, HEIGHT*330/600, 150, 40, PAGE1, txtbrown, None, None, 4)
         self.table_page_2 = Table(self.surface, table_body, 10, 250, 80, 40, PAGE2, txtbrown, (75, 30,30),
                             (140, 264, 60, 67),6)
-        self.table_page_3 = Table(self.surface, table_body, 10, 250, 120, 40, PAGE3, txtbrown, (60,20,50), (85, 204, 204, 40), 6)
+        self.table_page_3 = Table(self.surface, table_body, 10, 250, 120, 40, PAGE3, txtbrown, (60,20,50), (85, 204, 204, 40), 7)
         self.sensor_amount = Counter(self.width - 197, 140, 100, 40)
         self.number = Counter(610, 115, 50, 30,'0',True)
         self.row = Counter(610, 115, 50, 30)
@@ -131,6 +74,9 @@ class Advance:
         self.text = []
 
 
+
+
+
     def update(self, click, pos, width, height):
         self.width, self.height = width, height
         self.click = click
@@ -141,10 +87,13 @@ class Advance:
             if click:
                 if self.page < self.total:
                     self.page += 1
+                    logger.log("excuting update function, collecting data from current page and progressing to the next page", "Success")
                 else:
                     self.page = self.total
         elif self.back.isOver(pos) and click and self.page > 1:
             self.page -= 1
+            logger.log("excuting update function, saving current page and returning to previous page", "Success")
+
 
     def page1(self, drawtext, pos):
         self.surface.blit(BOARD_CONTROLLER, (50,50))
@@ -186,11 +135,14 @@ class Advance:
                 else:
                     if self.add.isOver(pos) and self.click:
                         self.table.add_data_1((str(self.sensor.result), int(self.sensor_amount.result)))
+                        
             else:
                 if self.add.isOver(pos) and self.click:
                     self.table.add_data_1((str(self.sensor.result), int(self.sensor_amount.result)))
+                    logger.log("Sucessfully added data to the table", "Success")
         elif sum(self.table.table['used_digital_pins']) > digital_amount:
             self.table.clear()
+            logger.log("Successfully remove data")
         if self.remove.isOver(pos) and self.click:
             self.table.add_data_1((str(self.sensor.result), -int(self.sensor_amount.result)))
 
@@ -226,11 +178,11 @@ class Advance:
 
     def page3(self, drawtext, pos):
         self.surface.blit(DISPLAY_OUTPUT_TAG, (250, 50))
-        self.surface.blit(DISPLAY, (150, 100))
+        #self.surface.blit(DISPLAY, (150, 100))
         if self.table.table['items']:
             self.page3_object.WORDS_LIST = input_output_seperator(self.page1_result)[0]
             self.Sensor3.WORDS_LIST = input_output_seperator(self.page1_result)[2]
-        self.page3_object.x, self.Sensor3.x = 150, 350
+        self.page3_object.x, self.Sensor3.x = 130, 465
         '''drawtext("analog output", 25, white, 20, 125)
         drawtext("display", 20, white, 20, 160)
         drawtext("display", 20, white, 20, 400)

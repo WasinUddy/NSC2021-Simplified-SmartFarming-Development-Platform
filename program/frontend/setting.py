@@ -54,8 +54,8 @@ PAGE1 = ['อุปกรณ์', 'จํานวน', 'ช่องดิจ�
 
 #cut corner (It has better performance than using drawtext also Itim-Regular font can't be used for some reason)
 
-BOARD_CONTROLLER = pg.transform.scale(pg.image.load("frontend/pictures/1.png"),(170, 81))
-SENSOR = pg.transform.scale(pg.image.load("frontend/pictures/2.png"),(100, 62))
+BOARD_CONTROLLER = pg.transform.scale(pg.image.load("frontend/pictures/1.png"),(167, 40))
+SENSOR = pg.transform.scale(pg.image.load("frontend/pictures/2.png"),(167, 40))
 OUTPUT_TAG = pg.transform.scale(pg.image.load("frontend/pictures/3.png"),(287, 40))
 OPERATE = pg.transform.scale(pg.image.load("frontend/pictures/4.png"),(64, 40))
 ARE = pg.transform.scale(pg.image.load("frontend/pictures/5.png"),(33, 25))

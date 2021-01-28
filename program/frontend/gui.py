@@ -103,9 +103,7 @@ class Gui:
             button.draw(self.clicked)
 
         # draw dropdown menu
-        if self.choices is not None:
-            for choice in self.choices:
-                choice.draw()
+        
 
         # draw all amount
         if self.amounts is not None:
@@ -116,6 +114,10 @@ class Gui:
         if self.tables is not None:
             for table in self.tables:
                 table.draw()
+
+        if self.choices is not None:
+            for choice in self.choices:
+                choice.draw()
 
         # update flip display
         pg.display.flip()

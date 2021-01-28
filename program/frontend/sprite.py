@@ -66,7 +66,7 @@ class Button:
 
 # drop down menu
 class Choice:
-    def __init__(self, Surface, color, x, y, width, height, default, text=None, textcol=(0, 0, 0)):
+    def __init__(self, Surface, color, x, y, width, height, default, text=None, textcol=(0, 0, 0), a=3):
         # check for word use in list
         if text is None:
             text = []
@@ -103,11 +103,11 @@ class Choice:
         self.image = pg.transform.scale(Down, (15, 15)) 
         self.top = 0
         # maximum word window and positon when scrolling
-        self.boxes = min(3, len(self.WORDS_LIST))
+        self.boxes = min(a, len(self.WORDS_LIST))
         # word use to display for the menu
         self.display_text = self.WORDS_LIST[self.top:self.boxes]
         # word original size
-        self.size = 20
+        self.size = 30
         # change size if it is too big for the box when initialize
         if len(self.WORDS_LIST) is not 0:
             font = pg.font.SysFont(FONTNAME, 20)
@@ -269,7 +269,7 @@ class Choice:
 class Textbox:
     def __init__(self, x, y, w, h, text=''):
         # font
-        font = pg.font.SysFont(FONTNAME, 20)
+        font = pg.font.SysFont(FONTNAME, 35)
         # box 's position and size
         self.rect = pg.Rect(x, y, w, h)
         # text color
@@ -308,7 +308,7 @@ class Textbox:
     def update(self):
 
         # get font
-        font = pg.font.SysFont(FONTNAME, 20)
+        font = pg.font.SysFont(FONTNAME, 35)
 
         # check width
         width = self.rect.width
@@ -325,14 +325,14 @@ class Textbox:
     def draw(self, screen):
         pg.draw.rect(screen, table_body, self.rect, 0)
         if not self.First:
-            screen.blit(self.ftxt, (self.rect.x + 5, self.rect.y + 5))
-        screen.blit(self.txt_surface, (self.rect.x + 5, self.rect.y + 5))
+            screen.blit(self.ftxt, (self.rect.x + 5, self.rect.y + (self.rect.h - self.ftxt.get_height())/2))
+        screen.blit(self.txt_surface, (self.rect.x + 5, self.rect.y + (self.rect.h - self.ftxt.get_height())/2))
         #pg.draw.rect(screen, self.color, self.rect, 2)
 
 # counter
 class Counter:
     def __init__(self, x, y, w, h, text='0',positive=False):
-        font = pg.font.SysFont(FONTNAME, 20)
+        font = pg.font.SysFont(FONTNAME, 32)
 
         # main counter position and size
         self.rect = pg.Rect(x, y, w, h)
@@ -363,10 +363,11 @@ class Counter:
 
     # analyze pg event for counter object
     def handle_event(self, event):
-
+        
         # when perform left click
         if event.type == pg.MOUSEBUTTONDOWN:
-
+            if not self.text.isnumeric()  and len(str(self.text)) <= 1:
+                    self.text = '0'
             # click on increase arrow button
             if self.rect_up.collidepoint(event.pos):
                 
@@ -381,7 +382,6 @@ class Counter:
 
                 # anti negative integers processor LOL cool name uh?
                 if int(self.text) >= 1 or self.positive:
-
                     # decrease number 
                     self.text = str(int(self.text) - 1)
                 
@@ -423,7 +423,7 @@ class Counter:
 
     # update
     def update(self):
-        font = pg.font.SysFont(FONTNAME, 20)
+        font = pg.font.SysFont(FONTNAME, 32)
         self.txt_surface = font.render(str(self.text), True, self.color)
         width = max(self.rect.w, self.txt_surface.get_width() + 10)
         self.rect.w = width
@@ -515,7 +515,7 @@ class Table:
     # value table
     def word_list(self, outline):
         self.list = []
-        font = pg.font.SysFont(FONTNAME, min(22, self.height * 4 // 5))
+        font = pg.font.SysFont(FONTNAME, min(25, self.height * 4 // 5))
         for item in self.table:
             self.list.append(self.table[item])
         self.list = np.transpose(np.array(self.list[:len(self.default)])).tolist()

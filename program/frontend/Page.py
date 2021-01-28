@@ -89,39 +89,39 @@ class Advance:
         self.back = Button(self.surface, table_header, WIDTH/2 - 130, self.height*9/10, 120, 40,
                            "back", txtbrown, None, 30)
         # add data to page 1 table, page 2
-        self.add = Button(self.surface, table_header, 0, 250, 50, 20,
-                          "เพิ่ม", txtbrown, None, 20)
+        self.add = Button(self.surface, table_header, 0, 250, 75, 40,
+                          "เพิ่ม", txtbrown, None, 30)
         # remove data from page 1 table, page 2
-        self.remove = Button(self.surface, table_header, 0, 275, 50, 20,
-                             "ลบ", txtbrown, None, 20)
+        self.remove = Button(self.surface, table_header, 0, 275, 75, 40,
+                             "ลบ", txtbrown, None, 30)
         # upload buttom
-        self.upload = Button(self.surface, table_header, 590, 265, 70, 20,
-                             "ลงโปรดดกรม", txtbrown, None, 20)
+        self.upload = Button(self.surface, table_header, 480, 155, 120, 40,
+                             "ลงโปรเเกรม", txtbrown, None, 35)
         # arduino board dropdown menu
-        self.board = Choice(self.surface, table_header, WIDTH - 250, 90, 250, 30, get_board_list()[0],
-                            get_board_list()[1:], txtbrown)
+        self.board = Choice(self.surface, table_header, WIDTH - 420, 90, 320, 40, get_board_list()[0],
+                            get_board_list()[1:], txtbrown, 6)
         # arduino sensor drop down menu page 1
-        self.sensor = Choice(self.surface, table_header, WIDTH - 400, 220, 125, 25, get_item_list()[0],
+        self.sensor = Choice(self.surface, table_header, WIDTH - 400, 220, 125, 40, get_item_list()[0],
                              get_item_list()[1:], txtbrown)
         # arduino sensor drop down menu page 3
-        self.Sensor3 = Choice(self.surface, table_header, 290, 165, 150, 30, None,
+        self.Sensor3 = Choice(self.surface, table_header, 30, 115, 200, 30, None,
                               None, txtbrown)
-        self.page3_object = Choice(self.surface, table_header, 105, 165, 150, 30, None,
+        self.page3_object = Choice(self.surface, table_header, 105, 115, 200, 30, None,
                             None, txtbrown)
-        self.relay = Choice(self.surface, table_header, 10, 165, 100, 30, None,
+        self.relay = Choice(self.surface, table_header, -20, 115, 100, 30, None,
                             None, txtbrown)
-        self.Sensor2 = Choice(self.surface, table_header, 180, 165, 180, 30, None,
+        self.Sensor2 = Choice(self.surface, table_header, 130, 115, 250, 30, None,
                               None, txtbrown)
-        self.operator = Choice(self.surface, table_header, 480, 165, 55, 30, '>',
+        self.operator = Choice(self.surface, table_header, 525, 115, 55, 30, '>',
                                ['<', '='], txtbrown)
-        self.table = Table(self.surface, table_body, WIDTH*1/10, HEIGHT*330/600, 150, 40, PAGE1, txtbrown)
-        self.table_page_2 = Table(self.surface, table_body, 50, 300, 80, 40, PAGE2, txtbrown, (80, 25,10),
-                            (120, 180, 75, 100),6)
-        self.table_page_3 = Table(self.surface, table_body, 50, 300, 120, 40, PAGE3, txtbrown, (60,20,50), (85, 170, 170, 40), 6)
-        self.sensor_amount = Counter(self.width - 158, 250, 75, 25)
-        self.number = Counter(575, 165, 50, 30,'0',True)
-        self.row = Counter(600, 165, 50, 30)
-        self.insert = Textbox(50, 165, 100, 30)
+        self.table = Table(self.surface, table_body, WIDTH*1/10, HEIGHT*330/600, 150, 40, PAGE1, txtbrown, None, None, 4)
+        self.table_page_2 = Table(self.surface, table_body, 10, 250, 80, 40, PAGE2, txtbrown, (75, 30,30),
+                            (140, 264, 60, 67),6)
+        self.table_page_3 = Table(self.surface, table_body, 10, 250, 120, 40, PAGE3, txtbrown, (60,20,50), (85, 204, 204, 40), 6)
+        self.sensor_amount = Counter(self.width - 197, 140, 100, 40)
+        self.number = Counter(610, 115, 50, 30,'0',True)
+        self.row = Counter(610, 115, 50, 30)
+        self.insert = Textbox(10, 115, 100, 30)
         self.official_name = None
 
         self.button = [self.next, self.back]
@@ -147,12 +147,12 @@ class Advance:
             self.page -= 1
 
     def page1(self, drawtext, pos):
-        self.surface.blit(BOARD_CONTROLLER, (50,110))
-        self.surface.blit(SENSOR, (50 ,250))
-        self.add.x, self.add.y = self.width *545/WIDTH, self.height*300/HEIGHT
-        self.remove.x, self.remove.y = self.width *605/WIDTH, self.height*300/HEIGHT
-        self.sensor.x, self.board.x = self.width*280/WIDTH, self.width*252/500
-        self.sensor.y, self.board.y = self.height*250/HEIGHT, self.height*110/HEIGHT
+        self.surface.blit(BOARD_CONTROLLER, (50,50))
+        self.surface.blit(SENSOR, (50 ,190))
+        self.add.x, self.add.y = self.width *502/WIDTH, self.height*270/HEIGHT
+        self.remove.x, self.remove.y = self.width *580/WIDTH, self.height*270/HEIGHT
+        self.sensor.x, self.board.x = self.width*265/WIDTH, self.width*185/500
+        self.sensor.y, self.board.y = self.height*190/HEIGHT, self.height*50/HEIGHT
         self.table.x, self.table.y = 45, self.height*330/600
         self.choice = [self.sensor, self.board]
         self.amount = [self.sensor_amount]
@@ -164,18 +164,18 @@ class Advance:
             json_file_dict = json.load(json_file)
         digital_amount = len(json_file_dict['Digital_pins'])
         self.official_name = json_file_dict["official_name"]
-        pg.draw.rect(self.surface, butgreen, (55, self.height - 115, 200, 10), 5)
-        pg.draw.rect(self.surface, butgreen, (55, self.height - 115, 200, 10))
-        pg.draw.rect(self.surface, grey, (55, self.height - 115,
+        pg.draw.rect(self.surface, butgreen, (55, self.height - 60, 200, 10), 5)
+        pg.draw.rect(self.surface, butgreen, (55, self.height - 60, 200, 10))
+        pg.draw.rect(self.surface, grey, (55, self.height - 60,
                                          sum(self.table.table['used_digital_pins']) / digital_amount * 200, 10))
-        pg.draw.rect(self.surface, butgreen, (55, self.height - 95, 200, 10), 5)
-        pg.draw.rect(self.surface, butgreen, (55, self.height - 95, 200, 10))
-        pg.draw.rect(self.surface, grey, (55, self.height - 95,
+        pg.draw.rect(self.surface, butgreen, (55, self.height - 40, 200, 10), 5)
+        pg.draw.rect(self.surface, butgreen, (55, self.height - 40, 200, 10))
+        pg.draw.rect(self.surface, grey, (55, self.height - 40,
                                          sum(self.table.table['used_analog_pins']) / digital_amount * 200, 10))
-        drawtext(str(sum(self.table.table['used_digital_pins'])), 20, white, 40, self.height - 110)
-        drawtext(str(sum(self.table.table['used_analog_pins'])), 20, white, 40, self.height - 90)
-        drawtext("ช่องอนาล็อก", 25, white, 300, self.height - 90)
-        drawtext('ช่องดิจิตอล', 25, white, 300, self.height - 110)
+        drawtext(str(sum(self.table.table['used_digital_pins'])), 20, white, 40, self.height - 55)
+        drawtext(str(sum(self.table.table['used_analog_pins'])), 20, white, 40, self.height - 35)
+        drawtext("ช่องอนาล็อก", 25, white, 300, self.height - 35)
+        drawtext('ช่องดิจิตอล', 25, white, 300, self.height - 55)
         if sum(self.table.table['used_digital_pins']) + int(self.sensor_amount.result) <= digital_amount:
             if str(self.sensor.result) == '16x2_I2C_LCD':
                 if int(self.sensor_amount.result) > 1:
@@ -196,17 +196,17 @@ class Advance:
 
 
     def page2(self, drawtext, pos):
-        self.surface.blit(OUTPUT_TAG, (250, 100))
-        self.surface.blit(ARE, (535, 165))
-        self.surface.blit(OPERATE, (175, 160))
-        self.surface.blit(OPERATE, (175, 295))
-        self.relay.x, self.Sensor2.x = 50, 250
+        self.surface.blit(OUTPUT_TAG, (250, 50))
+        self.surface.blit(ARE, (535, 115))
+        self.surface.blit(OPERATE, (125, 110))
+        self.surface.blit(OPERATE, (155, 245))
+        self.relay.x, self.Sensor2.x = 10,200
         self.choice = [self.relay, self.Sensor2, self.operator]
         self.amount = [self.number]
         self.tables = [self.table_page_2]
         self.text = []
-        self.add.x, self.add.y = 600, 215
-        self.remove.x, self.remove.y = 600, 245
+        self.add.x, self.add.y = 610, 155
+        self.remove.x, self.remove.y = 610, 198
         self.button = [self.next, self.back, self.add, self.remove]
         if self.table.table['items'] and self.click:
             self.relay.WORDS_LIST = input_output_seperator(self.page1_result)[1]
@@ -225,14 +225,12 @@ class Advance:
 
 
     def page3(self, drawtext, pos):
-        self.surface.blit(DISPLAY_OUTPUT_TAG, (250, 100))
-        self.surface.blit(DISPLAY, (150, 150))
+        self.surface.blit(DISPLAY_OUTPUT_TAG, (250, 50))
+        self.surface.blit(DISPLAY, (150, 100))
         if self.table.table['items']:
             self.page3_object.WORDS_LIST = input_output_seperator(self.page1_result)[0]
             self.Sensor3.WORDS_LIST = input_output_seperator(self.page1_result)[2]
-        self.page3_object.x, self.Sensor3.x = 195, 385
-        self.add.x, self.add.y = 600, 205
-        self.remove.x, self.remove.y = 600, 235
+        self.page3_object.x, self.Sensor3.x = 150, 350
         '''drawtext("analog output", 25, white, 20, 125)
         drawtext("display", 20, white, 20, 160)
         drawtext("display", 20, white, 20, 400)
@@ -243,7 +241,7 @@ class Advance:
         self.text = [self.insert]
         self.table.default = PAGE2
         self.tables = [self.table_page_3]
-        self.button = [self.next, self.back, self.add, self.remove, self.upload]
+        self.button = [self.back, self.add, self.remove, self.upload]
         if self.add.isOver(pos) and self.click:
             self.table_page_3.add_data_2(
                 (self.insert.result,self.page3_object.result, self.Sensor3.result, self.row.result))
@@ -284,7 +282,7 @@ Analog_pins: {item_dict[key]['Analog_pins']}
 
 
     def draw(self, drawtext, pos):
-        self.surface.blit(self.logo, (25, -50))
+        #self.surface.blit(self.logo, (25, -50))
         drawtext(str(self.page), 20, white, self.width - 20, self.height - 26)
         if self.page == 1:
             self.page1(drawtext, pos)

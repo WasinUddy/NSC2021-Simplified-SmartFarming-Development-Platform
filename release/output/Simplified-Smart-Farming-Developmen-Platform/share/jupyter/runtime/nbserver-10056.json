@@ -1,0 +1,11 @@
+{
+  "base_url": "/",
+  "hostname": "localhost",
+  "notebook_dir": "C:\\Users\\wasin\\Desktop\\covid",
+  "password": false,
+  "pid": 10056,
+  "port": 8888,
+  "secure": false,
+  "token": "974116624a38d70112845fcca755bdec593e92e43b277d42",
+  "url": "http://localhost:8888/"
+}

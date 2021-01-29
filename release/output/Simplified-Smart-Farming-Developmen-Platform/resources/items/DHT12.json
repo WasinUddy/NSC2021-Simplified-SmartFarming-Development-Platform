@@ -1,0 +1,42 @@
+{
+    "name": "DHT12",
+    "Description": "Measure Temperature and Humidity",
+    "TYPE": "Sensor Input",
+    "PIN":{
+        "Digital": 1,
+        "Analog": 0,
+        "I2C": false,
+        "SPI": false,
+        "Serial": false
+    },
+    "PINMODE":{
+        "INPUT": 1,
+        "OUTPUT": 0
+    },
+    "no PINMODE": true, 
+    "Library": ["DHT sensor library"],
+    "header1": [
+        "#include <DHT.h>"
+            ],
+    "header2": [
+        "DHT dht12_sensor_id(dht12pin_custom_input, DHT12);"
+    ],
+    "custom pin key":["dht12pin_custom_input", null],
+    "custom id key":"dht12_sensor_id",
+    "code_in_setup": [
+"dht12_sensor_id.begin();"
+    ],
+    "code_function": [
+"float dht12_readTemperature(DHT dht12_sensor){float t = dht12_sensor.readTemperature(); if(isnan(t)){return;}else{return t;}}",
+"float dht12_readHumidity(DHT dht12_sensor){float h = dht12_sensor.readHumidity(); if(isnan(h)){return;}else{return h;}}"
+    ],
+    "function_list": {
+        "Temperature": "dht12_readTemperature(dht12_sensor_id);",
+        "Humidity":   "dht12_readHumidity(dht12_sensor_id);"
+    },
+    "var type": {
+        "Temperature": "float",
+        "Humidity": "float"  
+    }
+
+}

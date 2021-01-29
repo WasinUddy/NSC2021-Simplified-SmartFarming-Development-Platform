@@ -1,0 +1,11 @@
+{
+  "base_url": "/",
+  "hostname": "localhost",
+  "notebook_dir": "C:\\Users\\wasin\\Desktop\\kaggle_bee_vs_wasp",
+  "password": false,
+  "pid": 3432,
+  "port": 8888,
+  "secure": false,
+  "token": "d82140ec2fec9db74894a1e823e6f61109ba697a9ab24bdb",
+  "url": "http://localhost:8888/"
+}

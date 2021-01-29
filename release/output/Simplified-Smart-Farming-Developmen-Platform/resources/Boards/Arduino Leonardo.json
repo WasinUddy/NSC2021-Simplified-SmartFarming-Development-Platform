@@ -1,0 +1,24 @@
+{
+    "Name": "Arduino Leonardo",
+    "official_name": "avr:leonardo",
+    "Microcontroller": ["ATmega32U4"],
+    "Operating Voltage": "5 V",
+    "Input Voltage": "7-12 V",
+    "Flash Memory": "32 KB",
+    "Bootloader memory": "4 KB",
+    "Total memory": "28 KB",
+    "SRAM": "2.5 KB",
+    "Clock Speed": "16 MHz",
+    "Analog IN Pins": 5,
+    "EEPROM": "1 KB",
+    "DC Current per I/O Pins": "40 mA",
+    "Digital I/O Pins": 20,
+    "PWM": 7,
+    "PCB Size": "53.3x68.6 mm",
+    "Weight": "13 g",
+    "Product Code": "Unknown",
+
+    "Communication_pins": {"TX": [1], "RX": [0], "SS": [10], "MOSI": [11], "MISO": [12], "SCL":[3], "SDA":[2], "SCK":[13]},
+    "Digital_pins": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
+    "Analog_pins": [14, 15, 16, 17, 18, 19]
+}

@@ -52,7 +52,7 @@ PAGE2 = ['อุปกรณ์เเสดงค่า', 'อุปกรณ์
 PAGE1 = ['อุปกรณ์', 'จํานวน', 'ช่องดิจิตอล', "ช่องอนาล็อก"]
 
 
-#cut corner (It has better performance than using drawtext also Itim-Regular font can't be used for some reason)
+#cut corner (It has better performance than using drawtext also some font cannot be rendered)
 
 BOARD_CONTROLLER = pg.transform.scale(pg.image.load("frontend/pictures/1.png"),(167, 40))
 SENSOR = pg.transform.scale(pg.image.load("frontend/pictures/2.png"),(167, 40))

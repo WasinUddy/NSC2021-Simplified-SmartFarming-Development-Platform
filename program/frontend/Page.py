@@ -61,7 +61,7 @@ class Advance:
         self.table_page_2 = Table(self.surface, table_body, 10, 250, 80, 40, PAGE2, txtbrown, (75, 30,30),
                             (140, 264, 60, 67),6)
         self.table_page_3 = Table(self.surface, table_body, 10, 250, 120, 40, PAGE3, txtbrown, (60,20,50), (85, 204, 204, 40), 7)
-        self.sensor_amount = Counter(self.width - 197, 140, 100, 40)
+        self.sensor_amount = Counter(self.width - 197, 190, 100, 40)
         self.number = Counter(610, 115, 50, 30,'0',True)
         self.row = Counter(610, 115, 50, 30)
         self.insert = Textbox(10, 115, 100, 30)
@@ -227,7 +227,9 @@ Analog_pins: {item_dict[key]['Analog_pins']}
                 f.write(polymer)
             condition_dict = self.page2_result
             noncondition_dict = self.page3_result
-            if noncondition_dict["INPUT"][0] is 'None':
+#/////////////////////////////////////////////////////////////////////////////////////////////////////////
+            #if noncondition_dict["INPUT"][0] is 'None':
+            if noncondition_dict["INPUT"] is 'None':
                 noncondition_dict = None
             
             generate_and_upload(item_dict, condition_dict, noncondition_dict,self.official_name, "Test")

@@ -157,7 +157,7 @@ class Choice:
         if self.toggle and len(self.WORDS_LIST) is not 0:
             self.word_list(outline)
             if self.active:
-                self.Infobox(self.x + self.width, self.y +  self.y_box, 100, 50,['dfsdfsdfsdssf'])
+                self.Infobox(self.x + self.width, self.y +  self.y_box, 100, 50,['dfsdfsdfsdssf','fdsffasfsa','asfasfaf','pussy','sfasfasfsa'])
 
 
     def isOver(self, pos, clicked):
@@ -179,8 +179,9 @@ class Choice:
         if self.toggle:
             if self.x < pos[0] < self.x + self.width*13/10 - 30:
                 for word in range(len(self.display_text) + 1):
-                    if self.y + word * self.height - 1 < pos[1] < self.y + self.height + word * self.height + 1:
+                    if self.y + word * self.height< pos[1] < self.y + self.height + word * self.height:
                         self.current_item_mouse_hover = self.display_text[word - 1]
+                        print(self.current_item_mouse_hover)
                         self.active = self.right_click
                         self.y_box = word * self.height
                         if word > 0 and clicked:

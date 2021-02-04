@@ -104,6 +104,7 @@ class Choice:
         self.width, self.height = width, height
         # click variable
         self.clicked = False
+        self.right_click = False
         # text color
         self.text_color = textcol
         # check if menu drop down or not
@@ -131,6 +132,8 @@ class Choice:
         self.search = False
         # clear the display box to search
         self.clear = False
+        self.active = False
+        self.y_box = self.height
 
 
     def draw(self, outline=None):
@@ -153,6 +156,8 @@ class Choice:
         # if open drop down and there is text draw drop down
         if self.toggle and len(self.WORDS_LIST) is not 0:
             self.word_list(outline)
+            if self.active:
+                self.Infobox(self.x + self.width, self.y +  self.y_box, 100, 50,['dfsdfsdfsdssf'])
 
 
     def isOver(self, pos, clicked):
@@ -175,17 +180,9 @@ class Choice:
             if self.x < pos[0] < self.x + self.width*13/10 - 30:
                 for word in range(len(self.display_text) + 1):
                     if self.y + word * self.height - 1 < pos[1] < self.y + self.height + word * self.height + 1:
-                        
                         self.current_item_mouse_hover = self.display_text[word - 1]
-                        self.temp_mouse_hover.append(self.current_item_mouse_hover)
-                        if len(self.temp_mouse_hover) >= 1:
-                            if self.temp_mouse_hover[-1] == self.temp_mouse_hover[-2]:
-                                self.temp_mouse_hover.append(self.current_item_mouse_hover)
-                                if len(self.temp_mouse_hover) == self.waiting_time_n_var:
-                                    "Draw Description"
-                                    
-                            else:
-                                self.temp_mouse_hover = []
+                        self.active = self.right_click
+                        self.y_box = word * self.height
                         if word > 0 and clicked:
                             # get the result
                             self.default = self.display_text[word - 1]
@@ -222,6 +219,8 @@ class Choice:
             self.surface.blit(text, (
                 self.x + ((self.width*13/10 - 30 - text.get_width()) / 2),
                 self.y + self.height * (word + 1) + (self.height / 2 - text.get_height() / 2)))
+            
+        
 
     def update(self, clicked, pos):
         #drop down
@@ -264,11 +263,14 @@ class Choice:
         # keyboard and mouse function
         if self.toggle:
             if event.type == pg.MOUSEBUTTONDOWN:
+                if event.button == 3:
+                    self.right_click = not self.right_click
                 # mouse wheel scroll down
                 if event.button == 4:
                     if self.top > 0:
                         self.top -= 1
                         self.boxes -= 1
+                        
                 # mouse wheel scroll up
                 elif event.button == 5:
                     if self.boxes < len(self.WORDS_LIST):
@@ -289,7 +291,24 @@ class Choice:
                         self.default += event.unicode
                         self.top = 0
                         self.boxes = min(3, len(self.WORDS_LIST))
-
+    
+    def Infobox(self,x,y,w,h,text):
+        limit = (h-10)// 20
+        top, bottom = 0, limit
+        font = pg.font.SysFont(FONTNAME, 20)
+        use_list = text[top:bottom]
+        pg.draw.rect(self.surface, grey,(x,y,w,h))
+        for row in range(len(use_list)):
+            render_text = font.render(str(use_list[row]), 1, black)
+            self.surface.blit(render_text,(x + (w - render_text.get_width()) / 2,
+                                    y + 3 + row * (h/(bottom - top) + render_text.get_height())/2))
+        if bottom > len(text) and bottom > limit: 
+            bottom = len(text)
+            top = 0
+        pg.draw.rect(self.surface, table_header, (x + w*13/10 - 29, y, 10, h))
+        pg.draw.rect(self.surface, grey2, (x + w*13/10 - 29, y + h/(len(text) - len(use_list) + 1)*top,
+                                            10, h/(len(text) - len(use_list) + 1)))
+          
 # text box
 class Textbox:
     def __init__(self, x, y, w, h, text=''):
@@ -670,8 +689,9 @@ class Infobox:
         self.use_list = []
         self.font_size = 20
         # default text
-        self.active = True
-        self.top, self.bottom = 0, (h-10)// self.font_size
+        self.active = False
+        self.a = (h-10)// self.font_size
+        self.top, self.bottom = 0, self.a
         self.surface = None
 
 
@@ -685,23 +705,14 @@ class Infobox:
             for row in range(len(self.use_list)):
                 text = font.render(str(self.use_list[row]), 1, self.color)
                 self.surface.blit(text,(self.rect.x + (self.rect.w - text.get_width()) / 2,
-                                        self.rect.y + 20 *row + (self.rect.h/self.bottom - text.get_height()) / 2))
-            self.scrollbar(None)
-            #pg.draw.rect(screen, self.color, self.rect, 2)
-
-     # create scrollbar on table
-    def scrollbar(self, outline):
-        if outline:
-            pg.draw.rect(self.surface, outline,
-                             (self.x + total_width + total_gap-2, self.y-2, 14,
-                              4 + self.rect.h * min(1 + len(self.table['items']), self.bottom - self.top + 1)))
-        pg.draw.rect(self.surface, table_header, (self.rect.x + self.rect.w*13/10 - 29, self.rect.y, 10, self.rect.h ))
-        pg.draw.rect(self.surface, grey2, (self.rect.x + self.rect.w*13/10 - 29, self.rect.y + 20 *
-                                           (((self.bottom - self.top) / (
-                                                   len(self.text) - self.bottom + self.top)) * self.top), 10,
-                                           20 * ((self.bottom - self.top) / (
-                                                   len(self.text) - self.bottom + self.top + 1))))
-                                
+                                        self.rect.y + 3 + row * (self.rect.h/(self.bottom - self.top) + text.get_height())/2))
+            if self.bottom > len(self.text) and self.bottom > self.a: 
+                self.bottom = len(self.text)
+                self.top = 0
+            pg.draw.rect(self.surface, table_header, (self.rect.x + self.rect.w*13/10 - 29, self.rect.y, 10, self.rect.h))
+            pg.draw.rect(self.surface, grey2, (self.rect.x + self.rect.w*13/10 - 29, self.rect.y + self.rect.h/(len(self.text) - len(self.use_list) + 1)*self.top,
+                                                10, self.rect.h/(len(self.text) - len(self.use_list) + 1)))
+                                    
     def handle_event(self, event):
         if self.active:
             # mouse function

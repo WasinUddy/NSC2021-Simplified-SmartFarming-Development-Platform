@@ -1,11 +1,104 @@
 import random
-'''import pygame
+import pygame as pg
 import string
+FONTNAME = 'arial'
 
-pygame.init()
+TXT_FILE = "pin.txt"
 
-screen = pygame.display.set_mode((300, 300))
-intermediate = pygame.surface.Surface((300, 300))
+TITLE = "Smart Farming"
+WIDTH = 700
+HEIGHT = 650
+FPS = 120
+FONTNAME =  "LilyUPC"
+
+black = (0, 0, 0)
+white = (255, 255, 255)
+red = (255, 0, 0)
+purple = (190, 0, 190)
+blue = (0, 0, 255)
+green = (0, 255, 0)
+whiteblue = (130, 150, 255)
+darkpurple = (25, 6, 47)
+grey = (170, 170, 170)
+grey2 = (100, 100, 100)
+darkgrey = (70, 70, 70)
+txtblue = (0, 102, 204)
+txtbrown = (89, 61, 30)
+butgreen = (177,216,183)
+bgcolor = (47,82,51)
+donecolor = (207,167,112)
+COLOR_INACTIVE = white
+#COLOR_ACTIVE = pg.Color('dodgerblue2')
+COLOR_ACTIVE = blue
+table_header = (148, 201, 115)
+table_body = (79, 146, 115)
+
+class Infobox:
+    def __init__(self, x, y, w, h, text):
+        # font
+        font = pg.font.SysFont(FONTNAME, 30)
+        # box 's position and size
+        self.rect = pg.Rect(x, y, w, h)
+        # text color
+        self.color = black
+        # word
+        self.text = text
+        self.use_list = []
+        self.font_size = 20
+        # default text
+        self.active = True
+        self.top, self.bottom = 0, (h-10)// self.font_size
+        self.surface = None
+
+
+    # draw object on screen
+    def draw(self, screen):
+        self.surface = screen
+        if self.active:
+            font = pg.font.SysFont(FONTNAME, self.font_size)
+            self.use_list = self.text[self.top:self.bottom]
+            pg.draw.rect(self.surface, grey,self.rect)
+            for row in range(len(self.use_list)):
+                text = font.render(str(self.use_list[row]), 1, self.color)
+                self.surface.blit(text,(self.rect.x + (self.rect.w - text.get_width()) / 2,
+                                        self.rect.y + 20 *row + (self.rect.h/self.bottom - text.get_height()) / 2))
+            self.scrollbar(None)
+            #pg.draw.rect(screen, self.color, self.rect, 2)
+
+     # create scrollbar on table
+    def scrollbar(self, outline):
+        if outline:
+            pg.draw.rect(self.surface, outline,
+                             (self.x + total_width + total_gap-2, self.y-2, 14,
+                              4 + self.rect.h * min(1 + len(self.table['items']), self.bottom - self.top + 1)))
+        pg.draw.rect(self.surface, table_header, (self.rect.x + self.rect.w*13/10 - 29, self.rect.y, 10, self.rect.h ))
+        pg.draw.rect(self.surface, grey2, (self.rect.x + self.rect.w*13/10 - 29, self.rect.y + 20 *
+                                           (((self.bottom - self.top) / (
+                                                   len(self.text) - self.bottom + self.top)) * self.top), 10,
+                                           20 * ((self.bottom - self.top) / (
+                                                   len(self.text) - self.bottom + self.top + 1))))
+                                
+    def handle_event(self, event):
+        if self.active:
+            # mouse function
+            if event.type == pg.MOUSEBUTTONDOWN:
+                # mouse wheel scroll down
+                if event.button == 4:
+                    if self.top > 0:
+                        self.top -= 1
+                        self.bottom -= 1
+                # mouse wheel scroll up
+                elif event.button == 5:
+                    if self.bottom < len(self.text):
+                        self.top += 1
+                        self.bottom += 1
+                
+
+
+pg.init()
+information = Infobox(100,50,100,100,['dsf','sdffsdfsdfsdf','dsf','sdffsdfsdfsdf','dsf','sdffsdfsdfsdf'])
+screen = pg.display.set_mode((300, 300))
+intermediate = pg.surface.Surface((300, 300))
 i_a = intermediate.get_rect()
 x1 = i_a[0]
 x2 = x1 + i_a[2]
@@ -22,52 +115,25 @@ for line in range(h):
              min(max(a[1] + (rate[1] * line), 0), 255),
              min(max(a[2] + (rate[2] * line), 0), 255)
              )
-    pygame.draw.line(intermediate, color, (x1, line), (x2, line))
+    pg.draw.line(intermediate, color, (x1, line), (x2, line))
 
-clock = pygame.time.Clock()
+clock = pg.time.Clock()
 quit = False
-word = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n']
-u = 0
-d = 3
+
 while not quit:
-    quit = pygame.event.get(pygame.QUIT)
-    for e in pygame.event.get():
-        if e.type == pygame.MOUSEBUTTONDOWN:
-            if e.button == 4:
-                if u > 0:
-                    u -= 1
-                    d -= 1
-                else:
-                    pass
-            if e.button == 5:
-                if d < len(word):
-                    u += 1
-                    d += 1
-                else:
-                    pass
+    information.active = True
+    quit = pg.event.get(pg.QUIT)
+    for e in pg.event.get():
+        information.handle_event(e)
 
     screen.blit(intermediate, (0, 0))
-    test = word[u:d]
-    pygame.draw.rect(screen, (100, 100, 100), (280, 20 * u, 20, 300 - 20 * (len(word) - len(test))))
-    font = pygame.font.SysFont('arial', 20)
-    for w in range(len(test)):
-        text = font.render(test[w], 1, (0, 0, 0))
-        screen.blit(text, (0, 20 * (w + 1)))
+    information.draw(screen)
 
-    pygame.display.flip()
+    
+    pg.display.flip()
     clock.tick(60)
-'''
 
-'''mylist = ['1']
-y = [len(x) for i, x in enumerate(mylist)]
-prmylist[y.index(max(y))])
-'''
-'''
-L = ['asdasddas', 'amsfeu', 'meushgo', 'mugo0', 'george is found']
-pr'type here: ')
-prlist.index(input()))
-'''
-def quick_sort(sequence, start=0):
+'''def quick_sort(sequence, start=0):
     if start == '':
         start = 0
     number_list = [x for x in sequence if isinstance(x, int)]
@@ -113,15 +179,15 @@ def quick_sort(sequence, start=0):
     return sorted(special_alphabets) + sorted(secondary_special_alphabets) + quick_sort(special) + alphabets_list + quick_sort(item_lower) + [pivot] + quick_sort(item_greater)
 
 
-'''print(quick_sort(['text0','text1','text2','text3','text10','text20','text11']))
-'''
-'''s = '12abcd405'
+print(quick_sort(['text0','text1','text2','text3','text10','text20','text11']))
+
+s = '12abcd405'
 result = ''.join([i for i in s if not i.isdigit()])
-'''
+
 list_name = ['text0','text1','text2','text3','text10','text20','text11']
 
 #lambda x: float(x[4:]
-'''def intinstr(L):
+def intinstr(L):
     for x in L:
         for i, c in enumerate(x):
             if c.isdigit():
@@ -131,11 +197,10 @@ list_name = ['text0','text1','text2','text3','text10','text20','text11']
 
 list_name.sort(key=intinstr)
 print(list_name)
-'''
 
 l = [1,2,3,4]
 w = []
 for amount in l:
     w.append(50)
 
-print(w)
+print(w)'''

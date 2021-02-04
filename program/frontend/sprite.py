@@ -132,6 +132,7 @@ class Choice:
         # clear the display box to search
         self.clear = False
 
+
     def draw(self, outline=None):
         # draw box outline
         if outline:
@@ -174,6 +175,17 @@ class Choice:
             if self.x < pos[0] < self.x + self.width*13/10 - 30:
                 for word in range(len(self.display_text) + 1):
                     if self.y + word * self.height - 1 < pos[1] < self.y + self.height + word * self.height + 1:
+                        
+                        self.current_item_mouse_hover = self.display_text[word - 1]
+                        self.temp_mouse_hover.append(self.current_item_mouse_hover)
+                        if len(self.temp_mouse_hover) >= 1:
+                            if self.temp_mouse_hover[-1] == self.temp_mouse_hover[-2]:
+                                self.temp_mouse_hover.append(self.current_item_mouse_hover)
+                                if len(self.temp_mouse_hover) == self.waiting_time_n_var:
+                                    "Draw Description"
+                                    
+                            else:
+                                self.temp_mouse_hover = []
                         if word > 0 and clicked:
                             # get the result
                             self.default = self.display_text[word - 1]
@@ -643,3 +655,65 @@ class Table:
                           ((self.bottom - self.top) / (len(self.table['items']) - self.bottom + self.top + 1))
                           * self.top, 10, 0.5 + self.height *
                           ((self.bottom - self.top) / (len(self.table['items']) - self.bottom + self.top + 1))))
+
+
+class Infobox:
+    def __init__(self, x, y, w, h, text):
+        # font
+        font = pg.font.SysFont(FONTNAME, 30)
+        # box 's position and size
+        self.rect = pg.Rect(x, y, w, h)
+        # text color
+        self.color = black
+        # word
+        self.text = text
+        self.use_list = []
+        self.font_size = 20
+        # default text
+        self.active = True
+        self.top, self.bottom = 0, (h-10)// self.font_size
+        self.surface = None
+
+
+    # draw object on screen
+    def draw(self, screen):
+        self.surface = screen
+        if self.active:
+            font = pg.font.SysFont(FONTNAME, self.font_size)
+            self.use_list = self.text[self.top:self.bottom]
+            pg.draw.rect(self.surface, grey,self.rect)
+            for row in range(len(self.use_list)):
+                text = font.render(str(self.use_list[row]), 1, self.color)
+                self.surface.blit(text,(self.rect.x + (self.rect.w - text.get_width()) / 2,
+                                        self.rect.y + 20 *row + (self.rect.h/self.bottom - text.get_height()) / 2))
+            self.scrollbar(None)
+            #pg.draw.rect(screen, self.color, self.rect, 2)
+
+     # create scrollbar on table
+    def scrollbar(self, outline):
+        if outline:
+            pg.draw.rect(self.surface, outline,
+                             (self.x + total_width + total_gap-2, self.y-2, 14,
+                              4 + self.rect.h * min(1 + len(self.table['items']), self.bottom - self.top + 1)))
+        pg.draw.rect(self.surface, table_header, (self.rect.x + self.rect.w*13/10 - 29, self.rect.y, 10, self.rect.h ))
+        pg.draw.rect(self.surface, grey2, (self.rect.x + self.rect.w*13/10 - 29, self.rect.y + 20 *
+                                           (((self.bottom - self.top) / (
+                                                   len(self.text) - self.bottom + self.top)) * self.top), 10,
+                                           20 * ((self.bottom - self.top) / (
+                                                   len(self.text) - self.bottom + self.top + 1))))
+                                
+    def handle_event(self, event):
+        if self.active:
+            # mouse function
+            if event.type == pg.MOUSEBUTTONDOWN:
+                # mouse wheel scroll down
+                if event.button == 4:
+                    if self.top > 0:
+                        self.top -= 1
+                        self.bottom -= 1
+                # mouse wheel scroll up
+                elif event.button == 5:
+                    if self.bottom < len(self.text):
+                        self.top += 1
+                        self.bottom += 1
+                

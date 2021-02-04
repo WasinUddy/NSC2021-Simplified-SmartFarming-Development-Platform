@@ -38,7 +38,7 @@ class Advance:
         self.remove = Button(self.surface, table_header, 0, 275, 75, 40,
                              "ลบ", txtbrown, None, 30)
         # upload buttom
-        self.upload = Button(self.surface, table_header, 480, 155, 120, 40,
+        self.upload = Button(self.surface, table_header, WIDTH/2 + 10, self.height*9/10, 120, 40,
                              "ลงโปรเเกรม", txtbrown, None, 35)
         # arduino board dropdown menu
         self.board = Choice(self.surface, table_header, WIDTH - 420, 90, 320, 40, get_board_list()[0],
@@ -177,6 +177,7 @@ class Advance:
 
 
     def page3(self, drawtext, pos):
+        self.click = False
         self.surface.blit(DISPLAY_OUTPUT_TAG, (250, 50))
         #self.surface.blit(DISPLAY, (150, 100))
         if self.table.table['items']:

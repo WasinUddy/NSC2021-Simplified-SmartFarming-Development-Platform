@@ -134,6 +134,9 @@ class Choice:
         self.clear = False
         self.active = False
         self.y_box = self.height
+        self.in_info = False
+        self.info_text = ['']
+        self.info_top, self.info_bottom = 0, 2
 
 
     def draw(self, outline=None):
@@ -157,11 +160,12 @@ class Choice:
         if self.toggle and len(self.WORDS_LIST) is not 0:
             self.word_list(outline)
             if self.active:
-                self.Infobox(self.x + self.width, self.y +  self.y_box, 100, 50,['dfsdfsdfsdssf','fdsffasfsa','asfasfaf','pussy','sfasfasfsa'])
+                self.Infobox(self.x + self.width, self.y +  self.y_box, self.width, self.height,[str(self.current_item_mouse_hover),str(self.current_item_mouse_hover), str(self.current_item_mouse_hover) ])
 
 
     def isOver(self, pos, clicked):
         # if mouse is on the box
+
         if self.y < pos[1] < self.y + self.height:
             if self.x < pos[0] < self.x + self.width - 20:
                 if clicked:
@@ -180,8 +184,8 @@ class Choice:
             if self.x < pos[0] < self.x + self.width*13/10 - 30:
                 for word in range(len(self.display_text) + 1):
                     if self.y + word * self.height< pos[1] < self.y + self.height + word * self.height:
-                        self.current_item_mouse_hover = self.display_text[word - 1]
-                        print(self.current_item_mouse_hover)
+                        if len(self.display_text) > 0:
+                            self.current_item_mouse_hover = self.display_text[word - 1]
                         self.active = self.right_click
                         self.y_box = word * self.height
                         if word > 0 and clicked:
@@ -191,7 +195,14 @@ class Choice:
                             self.toggle = False
                             logger.log("Selected " + str(self.result), "Success")
                         return True
+            if self.active:
+                if self.y + self.y_box < pos[1] < self.y + self.y_box + 50:
+                    if self.x + self.width < pos[0] < self.x + self.width + 100:
+                        self.in_info = True
+                else:
+                    self.in_info = False
         return False
+
 
     def word_list(self, outline):
         if outline:
@@ -268,15 +279,25 @@ class Choice:
                     self.right_click = not self.right_click
                 # mouse wheel scroll down
                 if event.button == 4:
-                    if self.top > 0:
-                        self.top -= 1
-                        self.boxes -= 1
+                    if self.in_info:
+                        if self.info_top > 0:
+                            self.info_top -= 1
+                            self.info_bottom -= 1
+                    else:
+                        if self.top > 0:
+                            self.top -= 1
+                            self.boxes -= 1
                         
                 # mouse wheel scroll up
                 elif event.button == 5:
-                    if self.boxes < len(self.WORDS_LIST):
-                        self.top += 1
-                        self.boxes += 1
+                    if self.in_info:
+                        if self.info_bottom < len(self.info_text):
+                            self.info_top += 1
+                            self.info_bottom +=1
+                    else:
+                        if self.boxes < len(self.WORDS_LIST):
+                            self.top += 1
+                            self.boxes += 1
             elif event.type == pg.KEYDOWN:
                 # typing
                 if self.search:
@@ -294,20 +315,20 @@ class Choice:
                         self.boxes = min(3, len(self.WORDS_LIST))
     
     def Infobox(self,x,y,w,h,text):
+        self.info_text = text
         limit = (h-10)// 20
-        top, bottom = 0, limit
         font = pg.font.SysFont(FONTNAME, 20)
-        use_list = text[top:bottom]
+        use_list = text[self.info_top:self.info_bottom]
         pg.draw.rect(self.surface, grey,(x,y,w,h))
         for row in range(len(use_list)):
             render_text = font.render(str(use_list[row]), 1, black)
             self.surface.blit(render_text,(x + (w - render_text.get_width()) / 2,
-                                    y + 3 + row * (h/(bottom - top) + render_text.get_height())/2))
-        if bottom > len(text) and bottom > limit: 
-            bottom = len(text)
-            top = 0
-        pg.draw.rect(self.surface, table_header, (x + w*13/10 - 29, y, 10, h))
-        pg.draw.rect(self.surface, grey2, (x + w*13/10 - 29, y + h/(len(text) - len(use_list) + 1)*top,
+                                    y + 3 + row * (h/(self.info_bottom - self.info_top) + render_text.get_height())/2))
+        if self.info_bottom > len(text) and self.info_bottom > limit: 
+            self.info_bottom = len(text)
+            self.info_top = 0
+        pg.draw.rect(self.surface, table_header, (x + w, y, 10, h))
+        pg.draw.rect(self.surface, grey2, (x + w, y + h/(len(text) - len(use_list) + 1)*self.info_top,
                                             10, h/(len(text) - len(use_list) + 1)))
           
 # text box

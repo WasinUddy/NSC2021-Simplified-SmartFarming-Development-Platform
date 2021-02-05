@@ -106,6 +106,7 @@ def pin_management(board, item_sets):
 
                         # Using Analog pins
             if item_info_dictionary["PIN"]["Analog"] != 0:
+                analog_pins = list(analog_pins)
                 try:
                     item_items_dict["Analog_pins"] = analog_pins[0:item_info_dictionary["PIN"]["Analog"]]
                 except IndexError:

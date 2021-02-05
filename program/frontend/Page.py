@@ -87,6 +87,7 @@ class Advance:
             if click:
                 if self.page < self.total:
                     self.page += 1
+                    self.click = False
                     logger.log("excuting update function, collecting data from current page and progressing to the next page", "Success")
                 else:
                     self.page = self.total
@@ -177,7 +178,6 @@ class Advance:
 
 
     def page3(self, drawtext, pos):
-        self.click = False
         self.surface.blit(DISPLAY_OUTPUT_TAG, (250, 50))
         #self.surface.blit(DISPLAY, (150, 100))
         if self.table.table['items']:

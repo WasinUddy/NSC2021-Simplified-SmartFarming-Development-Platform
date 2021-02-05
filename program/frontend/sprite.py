@@ -109,7 +109,7 @@ class Choice:
         # text color
         self.text_color = textcol
         # check if menu drop down or not
-        self.toggle = False
+        self.toggle = None
         self.held = False
         # if the menu is not overlapp one another
         self.allow = True
@@ -165,11 +165,16 @@ class Choice:
             if self.active:
                 self.info_text = word2vec(str(self.current_item_mouse_hover) + 'sdasdasdsadasdasdasdasdadasfvdasguasfrkwevfiasdfiwrbwekufgsuifwektf' , self.width//10)
                 self.Infobox(self.x + self.width, self.y +  self.y_box, self.width, self.height*self.info_height,self.info_text)
-
+                
 
     def isOver(self, pos, clicked):
         # if mouse is on the box
-
+        if self.active:
+            if self.y + self.height < pos[1] < self.y + self.height + self.y_box:
+                if self.x + self.width < pos[0] < self.x + self.width*2:
+                    self.in_info = True
+        else:
+            self.in_info = False
         if self.y < pos[1] < self.y + self.height:
             if self.x < pos[0] < self.x + self.width - 20:
                 if clicked:
@@ -199,12 +204,6 @@ class Choice:
                             self.toggle = False
                             logger.log("Selected " + str(self.result), "Success")
                         return True
-            if self.active:
-                if self.y + self.y_box < pos[1] < self.y + self.y_box + 50:
-                    if self.x + self.width < pos[0] < self.x + self.width + 100:
-                        self.in_info = True
-                else:
-                    self.in_info = False
         return False
 
 
@@ -239,6 +238,7 @@ class Choice:
         
 
     def update(self, clicked, pos):
+        print(self.in_info, self.active)
         #drop down
         if self.toggle is not True:
             self.search = False
@@ -326,7 +326,6 @@ class Choice:
             self.info_onc = False
         font = pg.font.SysFont(FONTNAME, 20)
         use_list = text[self.info_top:self.info_bottom]
-        print(use_list)
         pg.draw.rect(self.surface, grey,(x,y,w,h))
         for row in range(len(use_list)):
             render_text = font.render(str(use_list[row]), 1, black)
@@ -706,55 +705,3 @@ class Table:
                           ((self.bottom - self.top) / (len(self.table['items']) - self.bottom + self.top + 1))))
 
 
-class Infobox:
-    def __init__(self, x, y, w, h, text):
-        # font
-        font = pg.font.SysFont(FONTNAME, 30)
-        # box 's position and size
-        self.rect = pg.Rect(x, y, w, h)
-        # text color
-        self.color = black
-        # word
-        self.text = text
-        self.use_list = []
-        self.font_size = 20
-        # default text
-        self.active = False
-        self.a = (h-10)// self.font_size
-        self.top, self.bottom = 0, self.a
-        self.surface = None
-
-
-    # draw object on screen
-    def draw(self, screen):
-        self.surface = screen
-        if self.active:
-            font = pg.font.SysFont(FONTNAME, self.font_size)
-            self.use_list = self.text[self.top:self.bottom]
-            pg.draw.rect(self.surface, grey,self.rect)
-            for row in range(len(self.use_list)):
-                text = font.render(str(self.use_list[row]), 1, self.color)
-                self.surface.blit(text,(self.rect.x + (self.rect.w - text.get_width()) / 2,
-                                        self.rect.y + 3 + row * (self.rect.h/(self.bottom - self.top) + text.get_height())/2))
-            if self.bottom > len(self.text) and self.bottom > self.a: 
-                self.bottom = len(self.text)
-                self.top = 0
-            pg.draw.rect(self.surface, table_header, (self.rect.x + self.rect.w*13/10 - 29, self.rect.y, 10, self.rect.h))
-            pg.draw.rect(self.surface, grey2, (self.rect.x + self.rect.w*13/10 - 29, self.rect.y + self.rect.h/(len(self.text) - len(self.use_list) + 1)*self.top,
-                                                10, self.rect.h/(len(self.text) - len(self.use_list) + 1)))
-                                    
-    def handle_event(self, event):
-        if self.active:
-            # mouse function
-            if event.type == pg.MOUSEBUTTONDOWN:
-                # mouse wheel scroll down
-                if event.button == 4:
-                    if self.top > 0:
-                        self.top -= 1
-                        self.bottom -= 1
-                # mouse wheel scroll up
-                elif event.button == 5:
-                    if self.bottom < len(self.text):
-                        self.top += 1
-                        self.bottom += 1
-                

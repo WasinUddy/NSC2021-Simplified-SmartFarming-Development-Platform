@@ -1,0 +1,32 @@
+{
+    "name": "MH-RD",
+    "Description": "Detecting Rain Drop",
+    "TYPE": "Sensor Input",
+    "PIN":{
+        "Digital": 0,
+        "Analog": 1,
+        "I2C": false,
+        "SPI": false,
+        "Serial": false
+    },
+    "PINMODE":{
+        "INPUT": 1,
+        "OUTPUT": 0
+    },
+    "no PINMODE": false,
+    "Library": [],
+    "header1":[],
+    "header2":[],
+    "custom pin key":["dht11pin_custom_input", null],
+    "custom id key":"dht11_sensor_id",
+    "code_in_setup": [],
+    "code_function": [
+"int MHRD(int analog_pin){int range = map(analogRead(analog_pin), 0, 1024, 0, 3); switch (range) {case 0: return 3; case 1: return 2; case 2: return 1;}"
+    ],
+    "function_list": {
+        "Rain": "MHRD(int analog_pin);"
+    },
+    "var type": {
+        "MHRD": "int"
+    }
+}

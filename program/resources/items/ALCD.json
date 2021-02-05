@@ -24,11 +24,11 @@
     "custom id key":"lcd_id",
     "custom pin key":[null, null],
     "code_in_setup":[
- "lcd_id.init();",
- "lcd_id.blacklight();"
+ "lcd_id.begin();",
+ "lcd_id.backlight();"
     ],
     "code_function":[
-        "void ALCD_print(LiquidCrystal lcd, String header, float value, int row){lcd.setCursor(0, row);lcd.print(header);lcd.setCursor(0, length(header)+1);lcd.print(value);lcd.clear();}"
+        "int ALCD_print(LiquidCrystal lcd, String header, float value, int row){lcd.setCursor(0, row);lcd.print(header);lcd.setCursor(0, length(header)+1);lcd.print(value);}"
     ],
     
     "function_list":"ALCD_print(lcd_id, header, value, row);"

@@ -137,7 +137,9 @@ class Choice:
         self.in_info = False
         self.info_text = ['']
         self.info_top, self.info_bottom = 0, 2
-
+        self.info_onc = True
+        self.info_height = a/2
+        self.info_text = []
 
     def draw(self, outline=None):
         # draw box outline
@@ -160,7 +162,7 @@ class Choice:
         if self.toggle and len(self.WORDS_LIST) is not 0:
             self.word_list(outline)
             if self.active:
-                self.Infobox(self.x + self.width, self.y +  self.y_box, self.width, self.height,[str(self.current_item_mouse_hover),str(self.current_item_mouse_hover), str(self.current_item_mouse_hover) ])
+                self.Infobox(self.x + self.width, self.y +  self.y_box, self.width, self.height*self.info_height,self.info_text)
 
 
     def isOver(self, pos, clicked):
@@ -316,9 +318,13 @@ class Choice:
     
     def Infobox(self,x,y,w,h,text):
         self.info_text = text
-        limit = (h-10)// 20
+        limit = int((h-10)// 20)
+        if self.info_onc:
+            self.info_bottom = limit
+            self.info_onc = False
         font = pg.font.SysFont(FONTNAME, 20)
         use_list = text[self.info_top:self.info_bottom]
+        print(use_list)
         pg.draw.rect(self.surface, grey,(x,y,w,h))
         for row in range(len(use_list)):
             render_text = font.render(str(use_list[row]), 1, black)

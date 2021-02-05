@@ -1,14 +1,18 @@
-
-def word2vec(sentence, max_length):
+import json
+def word2vec(item_name, max_length):
+    SENSORNAME = ['ALCD','DHT11','DHT12','DHT22','DS1B820','hc-sr04','MH-RD','relay']
+    item_name = [x for x in SENSORNAME if str(x) in item_name][0]
+    with open(f"resources/items/{item_name}.json") as json_file:
+            sentence = json.load(json_file)["Description"]
     word_length = len(sentence)
     word_list = []
     for i in range(0, word_length, max_length):
         word_list.append(sentence[i:i+max_length])
 
     return word_list
+
+
 '''
-
-
 def word2vec(sentence, max_length):
     word_list = sentence.split(' ')
     vector = []

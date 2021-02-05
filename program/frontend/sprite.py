@@ -79,7 +79,7 @@ class Button:
 
 # drop down menu
 class Choice:
-    def __init__(self, Surface, color, x, y, width, height, default, text=None, textcol=(0, 0, 0), a=3):
+    def __init__(self, Surface, color, x, y, width, height, default, text=None, textcol=(0, 0, 0), a=3,allow = False):
         # check for word use in list
         if text is None:
             text = []
@@ -113,6 +113,7 @@ class Choice:
         self.held = False
         # if the menu is not overlapp one another
         self.allow = True
+        self.information = allow
         # arrow image
         self.image = pg.transform.scale(Down, (15, 15)) 
         self.top = 0
@@ -163,8 +164,11 @@ class Choice:
         if self.toggle and len(self.WORDS_LIST) is not 0:
             self.word_list(outline)
             if self.active:
-                self.info_text = word2vec(str(self.current_item_mouse_hover) + 'sdasdasdsadasdasdasdasdadasfvdasguasfrkwevfiasdfiwrbwekufgsuifwektf' , self.width//10)
-                self.Infobox(self.x + self.width, self.y +  self.y_box, self.width, self.height*self.info_height,self.info_text)
+                diff = 0
+                if self.x + 2*self.width + 20 > WIDTH:
+                    diff = self.x + 2*self.width + 20 - WIDTH
+                self.info_text = word2vec(self.current_item_mouse_hover, self.width//10)
+                self.Infobox(self.x + self.width - diff, self.y +  self.y_box, self.width, self.height*self.info_height,self.info_text)
                 
 
     def isOver(self, pos, clicked):
@@ -238,9 +242,10 @@ class Choice:
         
 
     def update(self, clicked, pos):
-        print(self.in_info, self.active)
         #drop down
         if self.toggle is not True:
+            self.right_click = False
+            self.active = False
             self.search = False
             self.clear = False
         # set drop down limit
@@ -279,7 +284,7 @@ class Choice:
         # keyboard and mouse function
         if self.toggle:
             if event.type == pg.MOUSEBUTTONDOWN:
-                if event.button == 3:
+                if event.button == 3 and self.information:
                     self.right_click = not self.right_click
                 # mouse wheel scroll down
                 if event.button == 4:

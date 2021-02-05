@@ -45,16 +45,16 @@ class Advance:
                             get_board_list()[1:], txtbrown, 6)
         # arduino sensor drop down menu page 1
         self.sensor = Choice(self.surface, table_header, WIDTH - 400, 220, 125, 40, get_item_list()[0],
-                             get_item_list()[1:], txtbrown)
+                             get_item_list()[1:], txtbrown, 3,True)
         # arduino sensor drop down menu page 3
         self.Sensor3 = Choice(self.surface, table_header, 30, 115, 120, 30, None,
-                              None, txtbrown)
+                              None, txtbrown, 3, True)
         self.page3_object = Choice(self.surface, table_header, 105, 115, 250, 30, None,
-                            None, txtbrown)
+                            None, txtbrown, 3, True)
         self.relay = Choice(self.surface, table_header, -20, 115, 100, 30, None,
-                            None, txtbrown)
+                            None, txtbrown, 3, True)
         self.Sensor2 = Choice(self.surface, table_header, 130, 115, 250, 30, None,
-                              None, txtbrown)
+                              None, txtbrown, 3, True)
         self.operator = Choice(self.surface, table_header, 525, 115, 55, 30, '>',
                                ['<', '='], txtbrown)
         self.table = Table(self.surface, table_body, WIDTH*1/10, HEIGHT*330/600, 150, 40, PAGE1, txtbrown, None, None, 4)

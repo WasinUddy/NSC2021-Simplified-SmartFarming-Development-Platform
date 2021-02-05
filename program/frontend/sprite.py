@@ -1,6 +1,7 @@
 # All functioning object
 from frontend.setting import *
 from backend.quick_sort import quick_sort
+from backend.word2vec import word2vec
 from frontend.banana import Banana
 
 
@@ -162,6 +163,7 @@ class Choice:
         if self.toggle and len(self.WORDS_LIST) is not 0:
             self.word_list(outline)
             if self.active:
+                self.info_text = word2vec(str(self.current_item_mouse_hover) + 'sdasdasdsadasdasdasdasdadasfvdasguasfrkwevfiasdfiwrbwekufgsuifwektf' , self.width//10)
                 self.Infobox(self.x + self.width, self.y +  self.y_box, self.width, self.height*self.info_height,self.info_text)
 
 
@@ -263,7 +265,7 @@ class Choice:
             # display the top name in list
             self.display_text = self.WORDS_LIST[self.top:self.boxes]
             self.default = self.result
-
+       
     def size_check(self):
         # get size for text
         if len(self.WORDS_LIST) is not 0:

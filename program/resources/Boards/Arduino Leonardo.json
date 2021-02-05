@@ -1,6 +1,6 @@
 {
     "Name": "Arduino Leonardo",
-    "official_name": "avr:leonardo",
+    "official_name": "arduino:avr:leonardo",
     "Microcontroller": ["ATmega32U4"],
     "Operating Voltage": "5 V",
     "Input Voltage": "7-12 V",

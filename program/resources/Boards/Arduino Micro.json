@@ -1,5 +1,6 @@
 {
     "Name": "Arduino Micro",
+    "official_name": "arduino:avr:micro",
     "Microcontroller": ["ATmega32U4"],
     "Architecture": "AVR",
     "Operating Voltage": "5 V",

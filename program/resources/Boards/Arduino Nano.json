@@ -1,6 +1,7 @@
 {
     "Name": "Arduino Nano",
-    "Microcontroller": ["Atmega328P"],
+    "official_name": "avr:nano",
+    "Microcontroller": ["ATmega328P"],
     "Operating Voltage": "5V",
     "Input Voltage": "7-12 V",
     "Flash Memory": "32 KB",

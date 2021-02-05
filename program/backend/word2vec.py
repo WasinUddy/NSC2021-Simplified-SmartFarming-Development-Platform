@@ -36,7 +36,4 @@ def word2vec(sentence, max_length):
                 
         #print(this_line)
 
-
-
-
-word2vec("Hello I am a man from Thailand I hate my Prime minister Prayut", 10)
+'''

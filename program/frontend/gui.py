@@ -59,8 +59,8 @@ class Gui:
     # update current status of the program
     def update(self):
         # display fps
-        pg.display.set_caption(TITLE + " fps:{: .2f}".format(self.clock.get_fps()))
-
+        pg.display.set_caption(TITLE)
+        # + " fps:{: .2f}".format(self.clock.get_fps())
         # calling Advance class in Page.py
         self.Advance_page.update(self.clicked, self.cursor_current_position, self.width, self.height)
         # set what need to be done in to these variable (type is list) for input of method in def run

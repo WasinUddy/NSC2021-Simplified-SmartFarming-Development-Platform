@@ -4,7 +4,7 @@ from backend.pin_management import pin_management
 from backend.arduino_code_generator import generate_and_upload
 from backend.get_list import get_board_list, get_item_list
 from backend.input_output_seperator import input_output_seperator
-
+import tkinter.filedialog
 import time
 
 class Advance:
@@ -226,6 +226,9 @@ Analog_pins: {item_dict[key]['Analog_pins']}
                 polymer += monomer
             with open(TXT_FILE, 'w') as f:
                 f.write(polymer)
+            file_path = tkinter.filedialog.asksaveasfile(defaultextension=".ino")
+            # Create Folder
+            print(file_path)
             condition_dict = self.page2_result
             noncondition_dict = self.page3_result
 #/////////////////////////////////////////////////////////////////////////////////////////////////////////

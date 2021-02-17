@@ -145,7 +145,10 @@ class Advance:
             self.table.clear()
             logger.log("Successfully remove data")
         if self.remove.isOver(pos) and self.click:
-            self.table.add_data_1((str(self.sensor.result), -int(self.sensor_amount.result)))
+            if sum(self.table.table['used_digital_pins']) == int(self.sensor_amount.result):
+                self.table.add_data_1((str(self.sensor.result), -int(self.sensor_amount.result) - 1))
+            else:
+                self.table.add_data_1((str(self.sensor.result), -int(self.sensor_amount.result)))
 
 
     def page2(self, drawtext, pos):
@@ -228,12 +231,12 @@ Analog_pins: {item_dict[key]['Analog_pins']}
                 f.write(polymer)
             file_path = tkinter.filedialog.asksaveasfile(defaultextension=".ino")
             # Create Folder
-            print(file_path)
+            #print(file_path)
             condition_dict = self.page2_result
             noncondition_dict = self.page3_result
 #/////////////////////////////////////////////////////////////////////////////////////////////////////////
             #if noncondition_dict["INPUT"][0] is 'None':
-            if noncondition_dict["INPUT"] is 'None':
+            if noncondition_dict["INPUT"] == 'None':
                 noncondition_dict = None
             
             generate_and_upload(item_dict, condition_dict, noncondition_dict,self.official_name, "Test")

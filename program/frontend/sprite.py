@@ -655,6 +655,7 @@ class Table:
         self.table['amount'].append(str(Input))
         self.table['used_digital_pins'].append(str(Condition))
         self.table['used_analog_pins'].append(str(Value))
+    
 
     # clear table
     def clear(self, index=-1):
@@ -663,6 +664,7 @@ class Table:
             self.table['amount'].pop(index)
             self.table['used_digital_pins'].pop(index)
             self.table['used_analog_pins'].pop(index)
+        
 
     # analyze pg event
     def handle_event(self, e):

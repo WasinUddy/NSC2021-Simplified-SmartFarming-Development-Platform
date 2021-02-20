@@ -3,12 +3,12 @@ from setting import *
 
 class Nano:
     def __init__(self, screen, WIDTH, HEIGHT,r):
-        # ratio 68:53
         self.r = r
         self.board_img = pg.transform.scale(pg.transform.rotate(pg.image.load("board/NANO.png"), 270),(int(32*r),int(52*r)))
         self.board_rect = self.board_img.get_rect()
         self.board_rect.center = (int(WIDTH/2), int(HEIGHT/2))
         self.screen = screen
+        self.board = [self.board_rect[0], self.board_rect.y + 8*r, self.board_rect[2], self.board_rect.y + 42*r]
         self.pin_pos_dict = {
             "0": (self.board_rect.x + 21.2*r, self.board_rect.y + 39.3*r),
             "1": (self.board_rect.x + 21.2*r, self.board_rect.y + 37.9*r),

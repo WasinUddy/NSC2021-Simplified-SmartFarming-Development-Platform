@@ -5,8 +5,8 @@ def line_generator(screen, pos1, pos2, color, board, item, ratio):
     b_right_pins = 0
     i_left_pins = 0
     i_right_pins = 0
-    Y_top = 0
-    Y_bottom = 0
+    pin_wires_top = 0
+    pin_wires_bottom = 0
     for index, start in enumerate(pos1):
         case = [0,0]
         end = pos2[index]
@@ -45,11 +45,11 @@ def line_generator(screen, pos1, pos2, color, board, item, ratio):
             # right board to left item or left board to right item
             elif case == [0, 1] or case == [1, 0]:
                 if item.center[1] < board.board_rect.center[1]:
-                    Y_top += 1
-                    y1 = min(board.board[1] , item[1]) - Y_top*2*ratio
+                    pin_wires_top += 1
+                    y1 = min(board.board[1] , item[1]) - pin_wires_top*2*ratio
                 else:
-                    Y_bottom += 1
-                    y1 = max(board.board[3], item[3]) + Y_bottom*2*ratio
+                    pin_wires_bottom += 1
+                    y1 = max(board.board[3], item[3]) + pin_wires_bottom*2*ratio
             # right board to right item
             else:
                 if case == [1, 1]:
@@ -58,14 +58,14 @@ def line_generator(screen, pos1, pos2, color, board, item, ratio):
                     if end[1] < board.board_rect.center[1]:
                         y1 = end[1]
                     elif end[1] >= board.board_rect.center[1]:
-                        Y_top += 1
-                        y1 = board.board[1] - Y_top*2*ratio
+                        pin_wires_top += 1
+                        y1 = board.board[1] - pin_wires_top*2*ratio
                 else:
                     if end[1] < board.board_rect.center[1]:
                         y1 = end[1]                         
                     elif end[1] >= board.board_rect.center[1]:
-                        Y_bottom += 1
-                        y1 = board.board[3] + Y_bottom*2*ratio
+                        pin_wires_bottom += 1
+                        y1 = board.board[3] + pin_wires_bottom*2*ratio
         # item right side
         else:
             # facing each other
@@ -74,11 +74,11 @@ def line_generator(screen, pos1, pos2, color, board, item, ratio):
             # right board to left item or left board to right item
             elif case == [0, 1] or case == [1, 0]:
                 if item.center[1] < board.board_rect.center[1]:
-                    Y_top += 1
-                    y1 = min(board.board[1] , item[1]) - Y_top*2*ratio
+                    pin_wires_top += 1
+                    y1 = min(board.board[1] , item[1]) - pin_wires_top*2*ratio
                 else:
-                    Y_bottom += 1
-                    y1 = max(board.board[3], item[3]) + Y_bottom*2*ratio
+                    pin_wires_bottom += 1
+                    y1 = max(board.board[3], item[3]) + pin_wires_bottom*2*ratio
             else:
                 if case == [0, 0]:
                     x1 = x2
@@ -86,14 +86,14 @@ def line_generator(screen, pos1, pos2, color, board, item, ratio):
                     if end[1] < board.board_rect.center[1]:
                         y1 = end[1]
                     elif end[1] >= board.board_rect.center[1]:
-                        Y_top += 1
-                        y1 = board.board[1] - Y_top*2*ratio
+                        pin_wires_top += 1
+                        y1 = board.board[1] - pin_wires_top*2*ratio
                 else:
                     if end[1] < board.board_rect.center[1]:
                         y1 = end[1]                         
                     elif end[1] >= board.board_rect.center[1]:
-                        Y_bottom += 1
-                        y1 = board.board[3] + Y_bottom*2*ratio
+                        pin_wires_bottom += 1
+                        y1 = board.board[3] + pin_wires_bottom*2*ratio
         
 
         start_finish += (start,)
@@ -105,6 +105,3 @@ def line_generator(screen, pos1, pos2, color, board, item, ratio):
         
         
         pg.draw.lines(screen, color, False, start_finish, ratio)
-    
-
-

@@ -9,35 +9,36 @@ class Uno:
         self.board_rect = self.board_img.get_rect()
         self.board_rect.center = (int(WIDTH/2), int(HEIGHT/2))
         self.screen = screen
+        self.board = [self.board_rect[0], self.board_rect.y + 8*r, self.board_rect[2], self.board_rect.y + 47*r]
         self.pin_pos_dict = {
-            "0": (28.3, 43.4),
-            "1": (28.3, 41.9),
-            "2": (28.3, 40.6),
-            "3": (28.3, 39.2),
-            "4": (28.3, 37.8),
-            "5": (28.3, 36.6),
-            "6": (28.3, 35.1),
-            "7": (28.3, 33.7),
-            "8": (28.3, 31.7),
-            "9": (28.3, 30.2),
-            "10": (28.3, 28.8),
-            "11": (28.3, 27.6),
-            "12": (28.3, 26.1),
-            "13": (28.3, 24.6),
-            "14": (3.2, 36.5),
-            "15": (3.2, 37.8),
-            "16": (3.2, 39.2),
-            "17": (3.2, 40.4),
-            "18": (3.2, 42),
-            "19": (3.2, 43.3)
+            "0": (self.board_rect.x + 28.3*r, self.board_rect.y + 43.4*r),
+            "1": (self.board_rect.x + 28.3*r, self.board_rect.y + 41.9*r),
+            "2": (self.board_rect.x + 28.3*r, self.board_rect.y + 40.6*r),
+            "3": (self.board_rect.x + 28.3*r, self.board_rect.y + 39.2*r),
+            "4": (self.board_rect.x + 28.3*r, self.board_rect.y + 37.8*r),
+            "5": (self.board_rect.x + 28.3*r, self.board_rect.y + 36.6*r),
+            "6": (self.board_rect.x + 28.3*r, self.board_rect.y + 35.1*r),
+            "7": (self.board_rect.x + 28.3*r, self.board_rect.y + 33.7*r),
+            "8": (self.board_rect.x + 28.3*r, self.board_rect.y + 31.7*r),
+            "9": (self.board_rect.x + 28.3*r, self.board_rect.y + 30.2*r),
+            "10": (self.board_rect.x + 28.3*r, self.board_rect.y + 28.8*r),
+            "11": (self.board_rect.x + 28.3*r, self.board_rect.y + 27.6*r),
+            "12": (self.board_rect.x + 28.3*r, self.board_rect.y + 26.1*r),
+            "13": (self.board_rect.x + 28.3*r, self.board_rect.y + 24.6*r),
+            "14": (self.board_rect.x + 3.2*r, self.board_rect.y + 36.5*r),
+            "15": (self.board_rect.x + 3.2*r, self.board_rect.y + 37.8*r),
+            "16": (self.board_rect.x + 3.2*r, self.board_rect.y + 39.2*r),
+            "17": (self.board_rect.x + 3.2*r, self.board_rect.y + 40.4*r),
+            "18": (self.board_rect.x + 3.2*r, self.board_rect.y + 42*r),
+            "19": (self.board_rect.x + 3.2*r, self.board_rect.y + 43.3*r)
         }
         self.power_pos_dict = {
-            "3.3V": (3.2, 28.3),
-            "5V": (3.2, 29.6),
-            "GND0": (3.2, 31.1),
-            "GND1": (3.2, 32.4),
-            "Vin": (3.2, 33.7),
-            "GND2": (28.3, 23.5),
+            "3.3V": (self.board_rect.x + 3.2*r, self.board_rect.y + 28.3*r),
+            "5V": (self.board_rect.x + 3.2*r, self.board_rect.y +  29.6*r),
+            "GND0": (self.board_rect.x + 3.2*r, self.board_rect.y + 31.1*r),
+            "GND1": (self.board_rect.x + 3.2*r, self.board_rect.y + 32.4*r),
+            "Vin": (self.board_rect.x + 3.2*r, self.board_rect.y + 33.7*r),
+            "GND2": (self.board_rect.x + 28.3*r, self.board_rect.y + 23.5*r),
         }
 
 
@@ -49,8 +50,8 @@ class Uno:
             pg.draw.rect(
                 self.screen,
                 (255,0,0),
-                (self.board_rect.x + int(self.pin_pos_dict[pin][0]*self.r),
-                self.board_rect.y + int(self.pin_pos_dict[pin][1]*self.r) ,
+                (int(self.pin_pos_dict[pin][0]),
+                int(self.pin_pos_dict[pin][1]) ,
                 self.r, self.r)
                 )
 
@@ -59,7 +60,7 @@ class Uno:
             pg.draw.rect(
                 self.screen,
                 (255,0,0),
-                (self.board_rect.x + int(self.power_pos_dict[power][0]*self.r),
-                self.board_rect.y + int(self.power_pos_dict[power][1]*self.r) ,
+                (int(self.power_pos_dict[power][0]),
+                int(self.power_pos_dict[power][1]) ,
                 self.r, self.r)
                 )

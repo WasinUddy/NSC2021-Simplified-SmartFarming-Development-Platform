@@ -1,0 +1,37 @@
+{
+    "name": "ALCD",
+    "Description": "Display",
+    "TYPE": "Analog Output",
+    "PIN":{
+        "Digital": 0,
+        "Analog": 0,
+        "I2C": true,
+        "SPI": false,
+        "Serial": false
+    },
+    "PINMODE":{
+        "INPUT": 0,
+        "OUTPUT": 0
+    },
+    "no PINMODE": true,
+    "Library": ["LiquidCrystal I2C"],
+    "header1":[
+"#include <LiquidCrystal_I2C.h>"
+],
+    "header2":[
+"LiquidCrystal_I2C lcd_id(0x27, 16, 4);"
+    ],
+    "custom id key":"lcd_id",
+    "custom pin key":[null, null],
+    "code_in_setup":[
+ "lcd_id.begin();",
+ "lcd_id.backlight();"
+    ],
+    "code_function":[
+        "int ALCD_print(LiquidCrystal_I2C lcd, String header, float value, int row){lcd.setCursor(0, row);lcd.print(header);lcd.setCursor(header.length()+1, row+1);lcd.print(value);}"
+    ],
+    
+    "function_list":"ALCD_print(lcd_id, header, value, row);"
+
+
+}

@@ -20,13 +20,13 @@ def pin_management(board, item_sets):
     serial_used = 0
     SPI_used = 0
 
-        # iterate through item_sets
+    # iterate through item_sets
     for item_set in item_sets:
 
-            # unpack item_set
+        # unpack item_set
         item, quantity = item_set[0], int(item_set[1])
 
-                # load json of the item
+        # load json of the item
         item_json_path = f"resources/items/{item}.json"
         with open(item_json_path) as json_file:
             item_info_dictionary = json.load(json_file)
@@ -52,10 +52,10 @@ def pin_management(board, item_sets):
                 analog_pins -= set(communication_pins["SDA"])
                 analog_pins -= set(communication_pins["SCL"])
 
-                                # Changing Boolean of I2C to True
+                # Changing Boolean of I2C to True
                 item_items_dict["I2C"] = True
 
-                        # Using SPI pin
+            # Using SPI pin
             if item_info_dictionary["PIN"]["SPI"] is True:
                 SPI_used += 1
                 assert SPI_used > board_dictionary["SPI"], "Nathan MAX SPI ERROR"
@@ -74,7 +74,7 @@ def pin_management(board, item_sets):
                 # defined SS pin
                 item_items_dict["SPI"] = ss
 
-                        # Using Serial pins
+            # Using Serial pins
             if item_info_dictionary["PIN"]["Serial"] is True:
                 serial_used += 1
                 assert serial_used > board_dictionary["Serial"], "Nathan MAX SERIAL ERROR"
@@ -93,7 +93,7 @@ def pin_management(board, item_sets):
                 # defined Serial pin
                 item_items_dict["Serial"] = f"{TX_name}, {RX_name}"
 
-                        # Using Digital pins
+            # Using Digital pins
             if item_info_dictionary["PIN"]["Digital"] != 0:
                 digital_pins = list(digital_pins)
                 try:
@@ -104,7 +104,7 @@ def pin_management(board, item_sets):
                 # decrease avalible digital pins
                 digital_pins = set(digital_pins) - set(digital_pins[0:item_info_dictionary["PIN"]["Digital"]])
 
-                        # Using Analog pins
+            # Using Analog pins
             if item_info_dictionary["PIN"]["Analog"] != 0:
                 analog_pins = list(analog_pins)
                 try:
@@ -115,7 +115,7 @@ def pin_management(board, item_sets):
                 # decreade avaliabe Analog pins
                 analog_pins = set(analog_pins) - set(analog_pins[0:item_info_dictionary["PIN"]["Analog"]])
 
-                        # Generate Item ID
+            # Generate Item ID
             item_id = f"{item}_{i}"
             # Adding modfied element to items_dict
             items_dict[item_id] = item_items_dict

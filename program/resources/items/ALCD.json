@@ -28,7 +28,7 @@
  "lcd_id.backlight();"
     ],
     "code_function":[
-        "int ALCD_print(LiquidCrystal lcd, String header, float value, int row){lcd.setCursor(0, row);lcd.print(header);lcd.setCursor(0, length(header)+1);lcd.print(value);}"
+        "int ALCD_print(LiquidCrystal_I2C lcd, String header, float value, int row){lcd.setCursor(0, row);lcd.print(header);lcd.setCursor(header.length()+1, row+1);lcd.print(value);}"
     ],
     
     "function_list":"ALCD_print(lcd_id, header, value, row);"

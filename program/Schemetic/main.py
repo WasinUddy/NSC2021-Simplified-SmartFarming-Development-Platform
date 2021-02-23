@@ -1,22 +1,24 @@
-from Nano import *
-from line_generator import line_generator
-
-pg.init()
-WIDTH , HEIGHT = 500,500
-screen = pg.display.set_mode((WIDTH, HEIGHT))
-uno = Nano(screen, WIDTH, HEIGHT, 6)
-sen = pg.Rect(30,350,50,50)
-pos2 = (350,50)
-clock = pg.time.Clock()
-quit = False
-while not quit:
-    quit = pg.event.get(pg.QUIT)
+from frontend.setting import *
+def generate_schemetics(BOARD='UNO', SENSOR=['DHT11_0', 'DHT11_1']):
+    from PIL import Image
+    from Schemetic.line_generator import line_generator
+    exec(f'from Schemetic.board.{BOARD} import {BOARD}')    
+    size = width, height = (3000, 4000)
+    screen = pg.Surface(size)
+    board = eval(f"{BOARD}(screen, width, height, 20)")
     screen.fill((255,255,255))
-    #pg.draw.rect(screen, red, (50,50,100,200))
-    uno.draw()
-    pg.draw.rect(screen, blue,sen)
-    line_generator(screen,[uno.pin_pos_dict["9"],uno.pin_pos_dict["7"],uno.pin_pos_dict["13"], uno.pin_pos_dict["15"]],[(30,360),(80,360), (80, 370),(80, 380)], grey, uno,sen, 3)
-    #for pos1 in uno.pin_pos_dict.keys():
-    #   pg.draw.lines(screen,(0,0,255),False,(uno.pin_pos_dict[pos1],(pos2[0] - int(pos1)*10,uno.pin_pos_dict[pos1][1]),(pos2[0] - int(pos1)*10,pos2[1]),pos2), 5)
-    pg.display.flip()
-    clock.tick(60)
+    board.draw()
+    
+    for index, item_ID in enumerate(SENSOR):
+        item_name = item_ID.split('_')[0]
+        exec(f'from Schemetic.items.{item_name} import {item_name}')
+        width, height = Image.open(f'Schemetic/items/{item_name}.png').size
+        sen = eval(f"{item_name}(screen, 50, 100 + index*(height/10)*(board.r)/2, board.r)")
+        sen.draw()
+        line_generator(screen,[board.pin_pos_dict[str(index + 1)],board.power_pos_dict["GND1"], board.power_pos_dict["5V"]],
+                                    [sen.pin_pos_dict['0'], sen.pin_pos_dict["1"], sen.pin_pos_dict["2"]],[blue, black, red], board,sen, board.r)
+    pg.image.save(screen,"test_subject.png")
+
+
+
+#generate_schematics('NANO')

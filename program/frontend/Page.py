@@ -4,6 +4,7 @@ from backend.pin_management import pin_management
 from backend.arduino_code_generator import generate_and_upload
 from backend.get_list import get_board_list, get_item_list
 from backend.input_output_seperator import input_output_seperator
+from Schemetic.main import *
 import tkinter.filedialog
 import time
 
@@ -229,7 +230,7 @@ Analog_pins: {item_dict[key]['Analog_pins']}
                 polymer += monomer
             with open(TXT_FILE, 'w') as f:
                 f.write(polymer)
-            file_path = tkinter.filedialog.asksaveasfile(defaultextension=".ino")
+            #file_path = tkinter.filedialog.asksaveasfile(defaultextension=".ino")
             # Create Folder
             #print(file_path)
             condition_dict = self.page2_result
@@ -240,8 +241,9 @@ Analog_pins: {item_dict[key]['Analog_pins']}
                 noncondition_dict = None
             
             generate_and_upload(item_dict, condition_dict, noncondition_dict,self.official_name, "Test")
-
-
+            item_name = self.board.result.split(' ')[1]
+            generate_schemetics(item_name.upper(), list(self.page1_result.keys()))
+          
     def draw(self, drawtext, pos):
         #self.surface.blit(self.logo, (25, -50))
         drawtext(str(self.page), 20, white, self.width - 20, self.height - 26)

@@ -142,6 +142,7 @@ class Choice:
         self.info_onc = True
         self.info_height = a/2
         self.info_text = []
+        self.a = a
 
     def draw(self, outline=None):
         # draw box outline
@@ -249,8 +250,8 @@ class Choice:
             self.search = False
             self.clear = False
         # set drop down limit
-        if self.boxes <= 3:
-            self.boxes = min(3, len(self.WORDS_LIST))
+        if self.boxes <= self.a:
+            self.boxes = min(self.a, len(self.WORDS_LIST))
         # if drop down is not overlap
         if self.allow:
             # mouse in side the box and clicked and has drop down box

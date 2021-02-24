@@ -13,6 +13,7 @@ def pretty(d, indent=0):
 
 
 def setup_and_header_generator(items_dict):
+
     used_items = []
     usable_function = {}
 
@@ -36,7 +37,8 @@ void setup()
 # -------------------------------------------------------------------
 
     for item_name_and_ID in list(items_dict.keys()):
-
+        if items_dict[item_name_and_ID]["Analog_pins"] != []:
+            continue
         
 
         # Get Item name and ID

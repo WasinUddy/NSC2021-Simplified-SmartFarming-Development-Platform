@@ -19,12 +19,17 @@ def generate_schemetics(BOARD='UNO', SENSOR=['DHT11_0', 'DHT11_1']):
         elif index > 4:
             sen = eval(f"{item_name}(screen, board.board_rect.center[0] + 1000, (index-6)*(height/10)*(board.r)/2, board.r/2, 180)")
         sen.draw()
-        if item_name != "ALCD":
-            line_generator(screen,[board.pin_pos_dict[str(index + 1)],board.power_pos_dict["GND1"], board.power_pos_dict["5V"]],
-                                    [sen.pin_pos_dict['0'], sen.pin_pos_dict["1"], sen.pin_pos_dict["2"]],[blue, black, red], board,sen, board.r)
-        else:
+        if item_name == "ALCD":
             line_generator(screen,[board.pin_pos_dict[str(18)],board.pin_pos_dict[str(19)],board.power_pos_dict["GND1"], board.power_pos_dict["5V"]],
                                     [sen.pin_pos_dict['0'], sen.pin_pos_dict["1"], sen.pin_pos_dict["2"], sen.pin_pos_dict["3"]],[whiteblue, purple, black, red], board,sen, board.r)
+        elif item_name == "SOILMOISTURE":
+            line_generator(screen,[board.pin_pos_dict[str(14)],board.power_pos_dict["GND1"], board.power_pos_dict["5V"]],
+                                    [sen.pin_pos_dict['0'], sen.pin_pos_dict["1"], sen.pin_pos_dict["2"]],[blue, black, red], board,sen, board.r)
+
+        else:
+            line_generator(screen,[board.pin_pos_dict[str(index + 1)],board.power_pos_dict["GND1"], board.power_pos_dict["5V"]],
+                                    [sen.pin_pos_dict['0'], sen.pin_pos_dict["1"], sen.pin_pos_dict["2"]],[blue, black, red], board,sen, board.r)
+            
     pg.image.save(screen,"test_subject.png")
 
 

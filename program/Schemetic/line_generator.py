@@ -29,12 +29,12 @@ def line_generator(screen, pos1, pos2, color, board, item, ratio ):
         if start[0] > board.board_rect.center[0]:
             b_right_pins += 1
             start = (start[0] + ratio, start[1]) 
-            x1 = start[0] + b_right_pins*2*ratio
+            x1 = start[0] + b_right_pins*ratio*2
             case[0] = 0
         #left
         elif start[0] <= board.board_rect.center[0]:
             b_left_pins += 1
-            x1 = start[0] - b_left_pins*ratio
+            x1 = start[0] - b_left_pins*ratio*2
             case[0] = 1 
         # side for ending position
         # right
@@ -53,7 +53,7 @@ def line_generator(screen, pos1, pos2, color, board, item, ratio ):
         if item.item_rect.center[0] < board.board_rect.center[0]:
             # facing each other
             if case == [1, 0]:
-                y1 = start[1]
+                y1 = end[1]
             # right board to left item or left board to right item
             elif case == [0, 1] or case == [1, 0]:
                 if item.item_rect.center[1] <= board.board_rect.center[1]:

@@ -1,9 +1,9 @@
 from frontend.setting import *
 
-class DHT11:
+class ALCD:
     def __init__(self, screen, x, y,r, rotation = 360):
         self.r = r
-        self.item_img = pg.transform.scale(pg.transform.rotate(pg.image.load("Schemetic/items/DHT11.png"), rotation),(int(55*r),int(55*r)))
+        self.item_img = pg.transform.scale(pg.transform.rotate(pg.image.load("Schemetic/items/ALCD.png"), rotation),(int(55*r),int(55*r)))
         self.item_rect = self.item_img.get_rect()
         self.item_rect.center = (int(x), int(y))
         self.screen = screen

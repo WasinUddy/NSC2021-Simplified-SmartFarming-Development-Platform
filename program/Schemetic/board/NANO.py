@@ -8,7 +8,7 @@ class NANO:
         self.board_rect = self.board_img.get_rect()
         self.board_rect.center = (int(WIDTH/2), int(HEIGHT/2))
         self.screen = screen
-        self.board = [self.board_rect[0], self.board_rect.y + 8*r, self.board_rect[2], self.board_rect.y + 42*r]
+        self.board = [self.board_rect[0], self.board_rect.y, self.board_rect[2], self.board_rect.y + 42*r]
         self.pin_pos_dict = {
             "0": (int(self.board_rect.x + 21.2*r), int(self.board_rect.y + 39.3*r)),
             "1": (int(self.board_rect.x + 21.2*r), int(self.board_rect.y + 37.9*r)),

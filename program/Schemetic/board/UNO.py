@@ -8,7 +8,7 @@ class UNO:
         self.board_rect = self.board_img.get_rect()
         self.board_rect.center = (int(WIDTH/2), int(HEIGHT/2))
         self.screen = screen
-        self.board = [self.board_rect[0], self.board_rect.y, self.board_rect[2], self.board_rect.y + 47*r]
+        self.board = [self.board_rect[0], self.board_rect.y + r, self.board_rect[2], self.board_rect.y + 47*r]
         self.pin_pos_dict = {
             "0": (self.board_rect.x + 30*r, self.board_rect.y + 42.2*r),
             "1": (self.board_rect.x + 30*r, self.board_rect.y + 41*r),

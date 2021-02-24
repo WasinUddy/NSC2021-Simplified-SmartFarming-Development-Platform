@@ -1,0 +1,32 @@
+{
+    "name": "Soil Moisture",
+    "Description": "Soil_moisture",
+    "TYPE": "Sensor Input",
+    "PIN":{
+        "Digital": 0,
+        "Analog": 1,
+        "I2C": false,
+        "SPI": false,
+        "Serial": false
+    },
+    "PINMODE":{
+        "INPUT": 1,
+        "OUTPUT": 0
+    },
+    "no PINMODE": false,
+    "Library": [],
+    "header1":[],
+    "header2":[],
+    "custom pin key":["sm_custom_input", null],
+    "custom id key":"sm_sensor_id",
+    "code_in_setup": [],
+    "code_function": [
+"int SM(int analog_pin){int range = map(analogRead(analog_pin), 0, 1024, 0, 100); return range"
+    ],
+    "function_list": {
+        "Rain": "SM(sm_custom_input);"
+    },
+    "var type": {
+        "SM": "int"
+    }
+}

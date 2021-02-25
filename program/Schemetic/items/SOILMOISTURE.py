@@ -9,9 +9,9 @@ class SOILMOISTURE:
         self.screen = screen
         self.item = [self.item_rect[0], self.item_rect.y, self.item_rect[2], self.item_rect.y + 42*r]
         self.pin_pos_dict = {
-            "0": (self.item_rect.center[0] + 18*r*(-1)**(rotation/20), self.item_rect.center[1]  +  2*r),
-            "1": (self.item_rect.center[0] + 18*r*(-1)**(rotation/20), self.item_rect.center[1] - 3*r),
-            "2": (self.item_rect.center[0] + 18*r*(-1)**(rotation/20), self.item_rect.center[1] - 5*r),        
+            "0": (self.item_rect.center[0] + 18*r*(-1)**(rotation/20), self.item_rect.center[1]  +  int(4.5*r)),
+            "1": (self.item_rect.center[0] + 18*r*(-1)**(rotation/20), self.item_rect.center[1] - int(2.5*r)),
+            "2": (self.item_rect.center[0] + 18*r*(-1)**(rotation/20), self.item_rect.center[1] - int(5.25*r)),        
         }
         
 

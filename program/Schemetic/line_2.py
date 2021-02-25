@@ -7,7 +7,8 @@ i_left_pins = 0
 i_right_pins = 0
 pin_wires_top = 0
 pin_wires_bottom = 0
-
+same_pos = []
+no_dup = []
 
 def line_generator(screen, pos1, pos2, color, board, item, ratio ):
     if type(color) != list:
@@ -19,6 +20,8 @@ def line_generator(screen, pos1, pos2, color, board, item, ratio ):
     global i_right_pins 
     global pin_wires_top 
     global pin_wires_bottom 
+    global same_pos
+    global no_dup
 
     for index, start in enumerate(pos1):
         case = [0,0]
@@ -34,7 +37,9 @@ def line_generator(screen, pos1, pos2, color, board, item, ratio ):
             case[0] = 0
         #left
         elif start[0] <= board.board_rect.center[0]:
-            b_left_pins += 1
+            same_pos.append(start)
+            [no_dup.append(item) for item in same_pos if item not in no_dup]
+            b_left_pins = no_dup.index(start)
             x1 = start[0] - b_left_pins*ratio*2
             case[0] = 1 
         # side for ending position

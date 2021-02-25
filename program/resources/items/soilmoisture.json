@@ -1,5 +1,5 @@
 {
-    "name": "Soil Moisture",
+    "name": "soil_moisture",
     "Description": "Soil_moisture",
     "TYPE": "Sensor Input",
     "PIN":{
@@ -24,7 +24,7 @@
 "int SM(int analog_pin){int range = map(analogRead(analog_pin), 0, 1024, 0, 100); return range"
     ],
     "function_list": {
-        "Rain": "SM(sm_custom_input);"
+        "SM": "SM(sm_custom_input);"
     },
     "var type": {
         "SM": "int"

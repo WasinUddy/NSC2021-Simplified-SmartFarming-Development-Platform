@@ -29,6 +29,7 @@ txtbrown = (89, 61, 30)
 butgreen = (177,216,183)
 bgcolor = (47,82,51)
 donecolor = (207,167,112)
+yellow = (255, 255, 0)
 COLOR_INACTIVE = white
 #COLOR_ACTIVE = pg.Color('dodgerblue2')
 COLOR_ACTIVE = blue

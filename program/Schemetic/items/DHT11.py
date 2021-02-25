@@ -7,7 +7,7 @@ class DHT11:
         self.item_rect = self.item_img.get_rect()
         self.item_rect.center = (int(x), int(y))
         self.screen = screen
-        self.item = [self.item_rect[0], self.item_rect.y, self.item_rect[2], self.item_rect.y + 42*r]
+        self.item = [self.item_rect[0], self.item_rect.center[1] - 8*r , self.item_rect[2], self.item_rect.y + 42*r]
         self.pin_pos_dict = {
             "0": (self.item_rect.center[0] + 17*r*(-1)**(rotation/20), self.item_rect.center[1] - 2*r),
             "1": (self.item_rect.center[0] + 17*r*(-1)**(rotation/20), self.item_rect.center[1]),

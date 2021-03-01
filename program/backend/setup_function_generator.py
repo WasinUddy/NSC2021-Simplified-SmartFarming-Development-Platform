@@ -26,7 +26,7 @@ void setup()
     for item_ID in list(items_dict.keys()):
         
         # get item name 
-        item_name = item_ID.split('-', 1)[0]
+        item_name = item_ID.split('_', 1)[0]
 
         # check weather the item has been used or not
         used_item_boolean = item_name in used_items
@@ -152,7 +152,7 @@ pinMode({digital_pins[0]}, OUTPUT);
 {initial_header_2}
 """
 
-        return header, initial_setup, initial_function, usable_function
+    return header, initial_setup, initial_function, usable_function
 
 
         

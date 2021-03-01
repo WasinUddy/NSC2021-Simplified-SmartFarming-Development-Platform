@@ -24,7 +24,7 @@
 "int SM(int analog_pin){int range = map(analogRead(analog_pin), 0, 1024, 0, 100); return range"
     ],
     "function_list": {
-        "SM": "SM(sm_custom_input);"
+        "SM": "SM(sm_sensor_id);"
     },
     "var type": {
         "SM": "int"

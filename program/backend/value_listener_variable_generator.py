@@ -45,6 +45,7 @@ def value_listener_variable_generator(item_dict):
             all_value_listener_variable.append(f"{item}_{function}")
             
             # listener to value used in void loop(){}
+            
             value_listener_variable += f"""
 {item}_{function} = {name_dict["function_list"][function].replace(name_dict["custom id key"], item)}
             """

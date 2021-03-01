@@ -119,23 +119,24 @@ pinMode({digital_pins[0]}, OUTPUT);
                 if item_info_dictionary["code_in_setup"] is not None:
                     for code_in_setup in item_info_dictionary["code_in_setup"]:
                         code_in_setup = code_in_setup.replace(item_info_dictionary["custom id key"], item_ID)
-                        if digital_pins != []:
-                            code_in_setup = code_in_setup.replace(item_info_dictionary["custom pin key"][0], str(digital_pins[0]))
-                            if item_info_dictionary["custom pin key"][1] is not None:
-                                code_in_setup = code_in_setup.replace(item_info_dictionary["custom pin key"][1], str(digital_pins[1]))
+                        if item_info_dictionary["custom pin key"][0] is not None:
+                            if digital_pins != []:
+                                code_in_setup = code_in_setup.replace(item_info_dictionary["custom pin key"][0], str(digital_pins[0]))
+                                if item_info_dictionary["custom pin key"][1] is not None:
+                                    code_in_setup = code_in_setup.replace(item_info_dictionary["custom pin key"][1], str(digital_pins[1]))
 
-                        if analog_pins != []:
-                            code_in_setup = code_in_setup.replace(item_info_dictionary["custom pin key"][0], str(analog_pins[0]))
-                            if item_info_dictionary["custom pin key"][1] is not None:
-                                code_in_setup = code_in_setup.replace(item_info_dictionary["custom pin key"][1], str(analog_pins[1]))
-                
-                         # Single pin system
-                         if item_info_dictionary["custom pin key"][1] is not None:
+                            if analog_pins != []:
+                                code_in_setup = code_in_setup.replace(item_info_dictionary["custom pin key"][0], str(analog_pins[0]))
+                                if item_info_dictionary["custom pin key"][1] is not None:
+                                    code_in_setup = code_in_setup.replace(item_info_dictionary["custom pin key"][1], str(analog_pins[1]))
+                        
+                        # Single pin system
+                        if item_info_dictionary["custom pin key"][1] is not None:
                             if digital_pins != []:
                                 code_in_setup = code_in_setup.replace(item_info_dictionary["custom pin key"][1], str(digital_pins[0]))
                             if analog_pins != []:
                                 code_in_setup = code_in_setup.replace(item_info_dictionary["custom pin key"][1], str(analog_pins[0]))
-                        
+
 
                         initial_setup += f"""
 {code_in_setup}

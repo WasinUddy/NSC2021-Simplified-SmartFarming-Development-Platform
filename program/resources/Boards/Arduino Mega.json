@@ -1,6 +1,7 @@
 {
     "Name": "Arduino Mega",
     "official_name": "avr:mega",
+    "Library":["arduino:avr"],
     "Microcontroller": ["ATmega2560"],
     "Architecture": "AVR",
     "Operating Voltage": "5 V",

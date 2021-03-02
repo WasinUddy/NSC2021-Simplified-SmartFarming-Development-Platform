@@ -1,6 +1,7 @@
 {
     "Name": "Arduino Uno",
     "official_name": "arduino:avr:uno",
+    "Library":["arduino:avr"],
     "Microcontroller": ["ATmega328P"],
     "Architecture": "AVR",
     "Operating Voltage": "5 V",

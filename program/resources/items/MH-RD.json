@@ -13,7 +13,7 @@
         "INPUT": 1,
         "OUTPUT": 0
     },
-    "no PINMODE": false,
+    "no PINMODE": true,
     "Library": [],
     "header1":[],
     "header2":[],

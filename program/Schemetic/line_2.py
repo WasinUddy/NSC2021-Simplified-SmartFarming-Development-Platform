@@ -40,7 +40,7 @@ def line_generator(screen, pos1, pos2, color, board, item, ratio ):
             same_pos.append(start)
             [no_dup.append(item) for item in same_pos if item not in no_dup]
             b_left_pins = no_dup.index(start)
-            x1 = start[0] - b_left_pins*ratio*2
+            x1 = start[0] - (b_left_pins + 1)*ratio*2 
             case[0] = 1 
         # side for ending position
         # right

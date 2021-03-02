@@ -9,10 +9,10 @@ class ALCD:
         self.screen = screen
         self.item = [self.item_rect[0], self.item_rect.y, self.item_rect[2], self.item_rect.y + 42*r]
         self.pin_pos_dict = {
-            "0": (self.item_rect.center[0] + 20*r*(-1)**(rotation/20), self.item_rect.center[1] +19*r),
-            "1": (self.item_rect.center[0] + 20*r*(-1)**(rotation/20), self.item_rect.center[1] +int(21.5*r)),
-            "2": (self.item_rect.center[0] + 20*r*(-1)**(rotation/20), self.item_rect.center[1] + 14*r),
-            "3": (self.item_rect.center[0] + 20*r*(-1)**(rotation/20), self.item_rect.center[1] + int(16.5*r))
+            "SDA": (self.item_rect.center[0] + 20*r*(-1)**(rotation/20), self.item_rect.center[1] +19*r),
+            "SCL": (self.item_rect.center[0] + 20*r*(-1)**(rotation/20), self.item_rect.center[1] +int(21.5*r)),
+            "GND": (self.item_rect.center[0] + 20*r*(-1)**(rotation/20), self.item_rect.center[1] + 14*r),
+            "VCC": (self.item_rect.center[0] + 20*r*(-1)**(rotation/20), self.item_rect.center[1] + int(16.5*r))
         }
         
 

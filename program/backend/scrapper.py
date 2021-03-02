@@ -30,14 +30,15 @@ def check_library():
             board_file.append(os.path.join(directory, filename)) 
         else:
             continue
-
+    items_list = []
     for json_file in items_file:
         with open(json_file) as jsons:
             item_info_dictionary = json.load(jsons)
 
-        for lib in list(set([libs for lib in item_info_dictionary["Library"]]))
-            
-            os.system(f'arduino-cli lib install "{lib}"')
+        
+        for lib in item_info_dictionary["Library"]:
+            items_list.append(f'"{lib}"')
 
-
+    for lib in set(items_list):
+        os.system(f"arduino-cli lib install {lib}")
     

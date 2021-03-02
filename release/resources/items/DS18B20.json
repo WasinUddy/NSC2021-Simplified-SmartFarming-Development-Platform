@@ -1,0 +1,40 @@
+{
+    "name": "DS18B20",
+    "Description": "Measure Temperature",
+    "TYPE": "Sensor Input",
+    "PIN":{
+        "Digital": 1,
+        "Analog": 0,
+        "I2C": false,
+        "SPI": false,
+        "Serial": false
+    },
+    "PINMODE":{
+        "INPUT": 1,
+        "OUTPUT": 0
+    },
+    "no PINMODE": true,
+    "Library": ["OneWire", "DallasTemperature"],
+    "header1":[
+"#include <OneWire.h>",
+"#include <DallasTemperature.h>"
+    ],
+    "header2":[
+"OneWire oneWire(DS18B20_custom_input);",
+"DallasTemperature DS18B20_sensor_id(&oneWire);"
+    ],
+    "custom pin key":["DS18B20_custom_input", null],
+    "custom id key":"DS18B20_sensor_id",
+    "code_in_setup": [
+"DS18B20.begin();"
+    ],
+    "code_function": [
+"float DS1820B_readTemperature(DallasTemperature DS18B20_sensor_id){DS18B20.requestTemperatures();return DS18B20.getTempCByIndex(0);}"
+    ],
+    "function_list":{
+        "Temperature": "DS1820B_readTemperature(DS1820_sensor_id);"
+    },
+    "var type" : {
+        "Temperature": "float"
+    }
+}

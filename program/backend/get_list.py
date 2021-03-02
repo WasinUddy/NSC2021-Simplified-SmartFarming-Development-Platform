@@ -17,3 +17,5 @@ def get_item_list():
         pass
 
     return [filename.replace(".json", "") for filename in filenames]
+
+

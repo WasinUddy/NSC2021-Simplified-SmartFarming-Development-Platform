@@ -1,0 +1,26 @@
+{
+    "Name": "Arduino Nano",
+    "official_name": "avr:nano",
+    "Library":["arduino:avr"],
+    "URL": null,
+    "Microcontroller": ["ATmega328P"],
+    "Operating Voltage": "5V",
+    "Input Voltage": "7-12 V",
+    "Flash Memory": "32 KB",
+    "Bootloader memory": "2 KB",
+    "Usable memory": "30 KB",
+    "SRAM": "2 KB",
+    "Clock Speed": "16 MHz",
+    "Analog IN Pins": 8,
+    "EEPROM": "1 KB",
+    "DC Current per I/O Pins": "40 mA",
+    "Digital I/O Pins": 22,
+    "PWM": 6,
+    "PCB Size": "18x45 mm",
+    "Weight": "7 g",
+    "Product Code": "A000005",
+
+    "Communication_pins": {"TX": [1], "RX": [0], "SS": [10], "MOSI": [11], "MISO": [12], "SCL": [19], "SDA": [18], "SCK": [13]},
+    "Digital_pins": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21],
+    "Analog_pins":  [14, 15, 16, 17, 18, 19, 20, 21]
+}

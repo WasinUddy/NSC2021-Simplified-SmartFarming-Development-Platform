@@ -1,0 +1,42 @@
+{
+    "name": "DHT11",
+    "Description": "Measure Temperature and Humidity",
+    "TYPE": "Sensor Input",
+    "PIN":{
+        "Digital": 1,
+        "Analog": 0,
+        "I2C": false,
+        "SPI": false,
+        "Serial": false
+    },
+    "PINMODE":{
+        "INPUT": 1,
+        "OUTPUT": 0
+    },
+    "no PINMODE": true, 
+    "Library": ["DHT sensor library"],
+    "header1": [
+"#include <DHT.h>"
+            ],
+    "header2":[ 
+"DHT dht11_sensor_id(dht11pin_custom_input, DHT11);"
+    ],
+    "custom pin key":["dht11pin_custom_input", null],
+    "custom id key":"dht11_sensor_id",
+    "code_in_setup": [
+"dht11_sensor_id.begin();"
+    ],
+    "code_function": [
+"float dht11_readTemperature(DHT dht11_sensor){float t = dht11_sensor.readTemperature(); if(isnan(t)){return;}else{return t;}}\n",
+"float dht11_readHumidity(DHT dht11_sensor){float h = dht11_sensor.readHumidity(); if(isnan(h)){return;}else{return h;}}\n"
+    ],
+    "function_list": {
+        "Temperature": "dht11_readTemperature(dht11_sensor_id);",
+        "Humidity":   "dht11_readHumidity(dht11_sensor_id);"
+    },
+    "var type": {
+        "Temperature": "float",
+        "Humidity": "float"  
+    }
+
+}

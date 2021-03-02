@@ -9,3 +9,5 @@ def ms_windows_serial_scanner():
         if device.find(('(')) != -1: ports_dict[port] = device[:device.find('(') - 1]
 
     return ports_dict
+
+

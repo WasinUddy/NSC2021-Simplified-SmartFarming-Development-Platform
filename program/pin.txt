@@ -2,7 +2,7 @@
 
             
 =======
-16x2-I2C-LCD_0
+ALCD_0
 I2C: True
 SPI: None
 Serial: None
@@ -11,71 +11,20 @@ Analog_pins: []
 =======
                 
 =======
-DS18B20_0
+soilmoisture_0
+I2C: False
+SPI: None
+Serial: None
+Digital_pins: []
+Analog_pins: [14]
+=======
+                
+=======
+relay_0
 I2C: False
 SPI: None
 Serial: None
 Digital_pins: [0]
 Analog_pins: []
 =======
-                
-=======
-<<<<<<< HEAD
-DHT11_1
-=======
-DHT11_0
->>>>>>> 92ca2d9ee09b8537efea03f647696dec78102dd3
-I2C: False
-SPI: None
-Serial: None
-Digital_pins: [1]
-Analog_pins: []
-=======
-                
-=======
-<<<<<<< HEAD
-relay_0
-=======
-DHT22_0
->>>>>>> 92ca2d9ee09b8537efea03f647696dec78102dd3
-I2C: False
-SPI: None
-Serial: None
-Digital_pins: [2]
-Analog_pins: []
-=======
-                
-=======
-<<<<<<< HEAD
-relay_1
-=======
-relay_0
->>>>>>> 92ca2d9ee09b8537efea03f647696dec78102dd3
-I2C: False
-SPI: None
-Serial: None
-Digital_pins: [3]
-Analog_pins: []
-=======
-<<<<<<< HEAD
-=======
-                
-=======
-relay_1
-I2C: False
-SPI: None
-Serial: None
-Digital_pins: [4]
-Analog_pins: []
-=======
-                
-=======
-relay_2
-I2C: False
-SPI: None
-Serial: None
-Digital_pins: [5]
-Analog_pins: []
-=======
->>>>>>> 92ca2d9ee09b8537efea03f647696dec78102dd3
                 

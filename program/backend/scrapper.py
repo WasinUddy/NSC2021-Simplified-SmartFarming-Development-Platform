@@ -56,7 +56,8 @@ def check_library():
             boards_list.append(f'"{lib}"')
 
     for URL in set(URL_list):
-        os.system(f"arduino-cli core update-index --additional-url {URL}")
+        if URL is not None:
+            os.system(f"arduino-cli core update-index --additional-url {URL}")
 
     for lib in set(boards_list):
         os.system(f"arduino-cli core install {lib}")

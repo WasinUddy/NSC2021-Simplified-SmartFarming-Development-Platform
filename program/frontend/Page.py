@@ -7,6 +7,7 @@ from backend.input_output_seperator import input_output_seperator
 from Schemetic.main import *
 import tkinter.filedialog
 import time
+from Schemetic.get_connection import get_connection
 
 class Advance:
     def __init__(self, screen):
@@ -213,10 +214,16 @@ class Advance:
             self.page3_result['row'] = self.page3_result.pop('used_analog_pins')
             item_dict = self.page1_result
             item_dict_keys = item_dict.keys()
+            pin_pos = {'NAME':[],
+                        'TYPE':[],
+                        'PIN':[]}
             polymer = '''
 
             '''
             for key in item_dict_keys:
+                pin_pos['NAME'].append(get_connection(key, item_dict)['NAME'])
+                pin_pos['TYPE'].append(get_connection(key, item_dict)['TYPE'])
+                pin_pos['PIN'].append(get_connection(key, item_dict)['PIN'])
                 monomer = f'''
 =======
 {key}
@@ -239,10 +246,9 @@ Analog_pins: {item_dict[key]['Analog_pins']}
             #if noncondition_dict["INPUT"][0] is 'None':
             if noncondition_dict["INPUT"] == 'None':
                 noncondition_dict = None
-            
             generate_and_upload(item_dict, condition_dict, noncondition_dict,self.official_name, "Test")
-            item_name = self.board.result.split(' ')[1]
-            generate_schemetics(item_name.upper(), list(self.page1_result.keys()))
+            
+            generate_schemetics(self.board.result, pin_pos)
           
     def draw(self, drawtext, pos):
         #self.surface.blit(self.logo, (25, -50))

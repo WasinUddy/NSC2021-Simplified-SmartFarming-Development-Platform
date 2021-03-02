@@ -1,7 +1,6 @@
 import requests
 import os 
 import json
-from banana import Banana
 
 
 def checkInternetRequests(url='http://www.google.com/', timeout=3):
@@ -14,7 +13,6 @@ def checkInternetRequests(url='http://www.google.com/', timeout=3):
         return False
 
 def check_library():
-    logger = Banana()
     
     directory = 'resources/items'
     items_file = []
@@ -38,7 +36,7 @@ def check_library():
             item_info_dictionary = json.load(jsons)
 
         for lib in item_info_dictionary["Library"]:
-            logger.log(f"Installing {lib}")
+            
             os.system(f'arduino-cli lib install "{lib}"')
 
 

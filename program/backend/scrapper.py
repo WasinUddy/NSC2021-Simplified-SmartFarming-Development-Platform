@@ -42,3 +42,21 @@ def check_library():
     for lib in set(items_list):
         os.system(f"arduino-cli lib install {lib}")
     
+
+    boards_list = []
+    URL_list = []
+    for json_file in board_file:
+        with open(json_file) as jsons:
+            item_info_dictionary = json.load(jsons)
+
+        for link in item_info_dictionary["URL"]:
+            URL_list.append(link)
+
+        for lib in item_info_dictionary["Library"]:
+            boards_list.append(f'"{lib}"')
+
+    for URL in set(URL_list):
+        os.system(f"arduino-cli core update-index --additional-url {URL}")
+
+    for lib in set(boards_list):
+        os.system(f"arduino-cli core install {lib}")

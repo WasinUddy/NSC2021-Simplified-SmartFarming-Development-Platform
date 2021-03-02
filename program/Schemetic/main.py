@@ -16,7 +16,7 @@ def generate_schemetics(BOARD, SENSOR):
     screen.fill((255,255,255))
     board.draw()
     H_list = []
-    color_list = [black, red, blue, donecolor, green, yellow, whiteblue]
+    color_list = [black, red, blue, donecolor, green, yellow, whiteblue, blue, donecolor, green, yellow, whiteblue]
     for index, item_ID in enumerate(SENSOR["NAME"]):
         item_name = item_ID.split('_')[0].upper()
         exec(f'from Schemetic.items.{item_name} import {item_name}')
@@ -24,14 +24,14 @@ def generate_schemetics(BOARD, SENSOR):
         # sensor name
         font = pg.font.SysFont(None, 100)
         txt = font.render(item_name, True, black)
-        if index <= 4:
+        if index <= 5:
             sen = eval(f"{item_name}(screen, board.board_rect.center[0] - 1000, 20*board.r + 1.5*sum(H_list), board.r/2)")
              # draw name
-            screen.blit(txt, (sen.item_rect.left - sen.item_rect.w/2, 20*board.r + 1.5*sum(H_list) - 4*board.r))
-        elif index > 4:
-            sen = eval(f"{item_name}(screen, board.board_rect.center[0] + 1000, 20*board.r + 1.5*sum(H_list[6:]), board.r/2, 180)")
+            screen.blit(txt, (sen.item_rect.left - sen.item_rect.w/4, 20*board.r + 1.5*sum(H_list) - 4*board.r))
+        elif index > 5:
+            sen = eval(f"{item_name}(screen, board.board_rect.center[0] + 1000, 20*board.r + 1.5*sum(H_list[6:]), board.r/2, True)")
              # draw name
-            screen.blit(txt, (sen.item_rect.left - sen.item_rect.w/2, (sen.item_rect.center[1] - sen.item[1]) + (sum(H_list)/10 + 10)*(board.r)))
+            screen.blit(txt, (sen.item_rect.left + sen.item_rect.w/4, 20*board.r + 1.5*sum(H_list[6:]) - 4*board.r))
         sen.draw()
         height = sen.item_img.get_height()
         H_list.append(height)

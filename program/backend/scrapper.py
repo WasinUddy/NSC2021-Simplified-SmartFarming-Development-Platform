@@ -48,6 +48,7 @@ def check_library():
     for json_file in board_file:
         with open(json_file) as jsons:
             item_info_dictionary = json.load(jsons)
+        #print(item_info_dictionary)
         if item_info_dictionary["URL"] is not None:
             for link in item_info_dictionary["URL"]:
                 URL_list.append(link)

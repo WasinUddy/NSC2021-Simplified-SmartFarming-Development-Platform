@@ -3,7 +3,7 @@ from frontend.setting import *
 class RELAY:
     def __init__(self, screen, x, y,r, rotation = 360):
         self.r = r
-        self.item_img = pg.transform.scale(pg.transform.rotate(pg.image.load("Schemetic/items/RELAY.png"), rotation + 90),(int(23*2*r),int(16*2*r)))
+        self.item_img = pg.transform.flip(pg.transform.scale(pg.transform.rotate(pg.image.load("Schemetic/items/RELAY.png"), 90),(int(23*2*r),int(16*2*r))), rotation == 180, False)
         self.item_rect = self.item_img.get_rect()
         self.item_rect.midtop = (int(x), int(y))
         self.screen = screen

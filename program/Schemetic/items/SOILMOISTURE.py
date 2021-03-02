@@ -3,7 +3,7 @@ from frontend.setting import *
 class SOILMOISTURE:
     def __init__(self, screen, x, y,r, rotation = 360):
         self.r = r
-        self.item_img = pg.transform.scale(pg.transform.rotate(pg.image.load("Schemetic/items/SOILMOISTURE.png"), rotation + 90),(int(46*r),int(20*r)))
+        self.item_img = pg.transform.flip(pg.transform.scale(pg.transform.rotate(pg.image.load("Schemetic/items/SOILMOISTURE.png"), 90),(int(46*r),int(20*r))), rotation == 180, False)
         self.item_rect = self.item_img.get_rect()
         self.item_rect.midtop = (int(x), int(y))
         self.screen = screen

@@ -20,18 +20,22 @@ def generate_schemetics(BOARD, SENSOR):
     for index, item_ID in enumerate(SENSOR["NAME"]):
         item_name = item_ID.split('_')[0].upper()
         exec(f'from Schemetic.items.{item_name} import {item_name}')
-        width, height = Image.open(f'Schemetic/items/{item_name}.png').size
-        H_list.append(height)
-        if index <= 4:
-            sen = eval(f"{item_name}(screen, board.board_rect.center[0] - 1000, (sum(H_list)/10)*(board.r), board.r/2)")
-        elif index > 4:
-            sen = eval(f"{item_name}(screen, board.board_rect.center[0] + 1000, (index-4)*(height/10)*(board.r)/2, board.r/2, 180)")
-        sen.draw()
+        #width, height = Image.open(f'Schemetic/items/{item_name}.png').size
         # sensor name
         font = pg.font.SysFont(None, 100)
         txt = font.render(item_name, True, black)
-        # draw name
-        screen.blit(txt, (board.board_rect.center[0] - 1000, (sen.item_rect.center[1] - sen.item[1]) + (sum(H_list)/10)*(board.r)))
+        if index <= 4:
+            sen = eval(f"{item_name}(screen, board.board_rect.center[0] - 1000, 20*board.r + 1.5*sum(H_list), board.r/2)")
+             # draw name
+            screen.blit(txt, (sen.item_rect.left - sen.item_rect.w/2, 20*board.r + 1.5*sum(H_list) - 4*board.r))
+        elif index > 4:
+            sen = eval(f"{item_name}(screen, board.board_rect.center[0] + 1000, 20*board.r + 1.5*sum(H_list[6:]), board.r/2, 180)")
+             # draw name
+            screen.blit(txt, (sen.item_rect.left - sen.item_rect.w/2, (sen.item_rect.center[1] - sen.item[1]) + (sum(H_list)/10 + 10)*(board.r)))
+        sen.draw()
+        height = sen.item_img.get_height()
+        H_list.append(height)
+       
         # draw line
         b_pin, s_pin = [], []
         if len(SENSOR["PIN"][index]) > 1:

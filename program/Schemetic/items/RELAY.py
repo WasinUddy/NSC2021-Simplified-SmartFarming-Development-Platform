@@ -5,7 +5,7 @@ class RELAY:
         self.r = r
         self.item_img = pg.transform.scale(pg.transform.rotate(pg.image.load("Schemetic/items/RELAY.png"), rotation + 90),(int(23*2*r),int(16*2*r)))
         self.item_rect = self.item_img.get_rect()
-        self.item_rect.center = (int(x), int(y))
+        self.item_rect.midtop = (int(x), int(y))
         self.screen = screen
         self.item = [self.item_rect[0], self.item_rect.y, self.item_rect[2], self.item_rect.y + 25*r]
         self.pin_pos_dict = {

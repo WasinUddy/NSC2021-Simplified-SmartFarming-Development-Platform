@@ -5,7 +5,7 @@ class DHT12:
         self.r = r
         self.item_img = pg.transform.scale(pg.transform.rotate(pg.image.load("Schemetic/items/DHT12.png"), rotation),(int(55*r),int(55*r)))
         self.item_rect = self.item_img.get_rect()
-        self.item_rect.center = (int(x), int(y))
+        self.item_rect.midtop = (int(x), int(y))
         self.screen = screen
         self.item = [self.item_rect[0], self.item_rect.y, self.item_rect[2], self.item_rect.y + 42*r]
         self.pin_pos_dict = {

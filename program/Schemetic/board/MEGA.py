@@ -4,7 +4,7 @@ from frontend.setting import *
 class MEGA:
     def __init__(self, screen, WIDTH, HEIGHT,r):
         self.r = r
-        self.board_img = pg.transform.scale(pg.transform.rotate(pg.image.load("Schemetic/board/NANO.png"), 270),(int(32*r),int(52*r)))
+        self.board_img = pg.transform.scale(pg.transform.rotate(pg.image.load("Schemetic/board/MEGA.png"), 270),(int(32*r),int(52*r)))
         self.board_rect = self.board_img.get_rect()
         self.board_rect.center = (int(WIDTH/2), int(HEIGHT/2))
         self.screen = screen

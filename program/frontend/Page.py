@@ -5,9 +5,15 @@ from backend.arduino_code_generator import generate_and_upload
 from backend.get_list import get_board_list, get_item_list
 from backend.input_output_seperator import input_output_seperator
 from Schemetic.main import *
-import tkinter.filedialog
 import time
 from Schemetic.get_connection import get_connection
+from tkinter import filedialog
+import os
+
+
+
+
+
 
 class Advance:
     def __init__(self, screen):
@@ -212,6 +218,7 @@ class Advance:
             self.page3_result['INPUT'] = self.page3_result.pop('amount')
             self.page3_result['OUTPUT'] = self.page3_result.pop('used_digital_pins')
             self.page3_result['row'] = self.page3_result.pop('used_analog_pins')
+            folder = str(filedialog.askdirectory())
             item_dict = self.page1_result
             item_dict_keys = item_dict.keys()
             pin_pos = {'NAME':[],
@@ -235,7 +242,7 @@ Analog_pins: {item_dict[key]['Analog_pins']}
 =======
                 '''
                 polymer += monomer
-            with open(TXT_FILE, 'w') as f:
+            with open(os.path.join(folder , TXT_FILE), 'w') as f:
                 f.write(polymer)
             #file_path = tkinter.filedialog.asksaveasfile(defaultextension=".ino")
             # Create Folder
@@ -246,10 +253,10 @@ Analog_pins: {item_dict[key]['Analog_pins']}
             #if noncondition_dict["INPUT"][0] is 'None':
             if noncondition_dict["INPUT"] == 'None':
                 noncondition_dict = None
-            generate_and_upload(item_dict, condition_dict, noncondition_dict,self.official_name, "Test")
             
-            generate_schemetics(self.board.result, pin_pos)
-          
+            generate_and_upload(item_dict, condition_dict, noncondition_dict,self.official_name, name=folder)
+              
+            generate_schemetics(self.board.result, pin_pos, folder)
     def draw(self, drawtext, pos):
         #self.surface.blit(self.logo, (25, -50))
         drawtext(str(self.page), 20, white, self.width - 20, self.height - 26)

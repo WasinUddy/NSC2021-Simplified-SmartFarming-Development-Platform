@@ -42,7 +42,7 @@ class Sketch:
         os.system(f"arduino-cli upload -p {self.port} --fqbn {self.board} {self.sketch}")
 
     def write_sketch(self, text):
-        with open(f"{self.sketch}/{self.sketch}.ino", "wt") as ino:
+        with open(f"{os.path.join(self.sketch, self.sketch.split('/')[-1])}.ino", "wt") as ino:
             ino.truncate(0)
             code = text
             ino.write(code)

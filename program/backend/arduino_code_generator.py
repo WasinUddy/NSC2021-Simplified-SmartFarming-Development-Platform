@@ -11,7 +11,7 @@ from backend import command
 import pandas as pd
 
 
-def generate_and_upload(items_dict, condition_dict, noncondition_dict, board, port, name="example"):
+def generate_and_upload(items_dict, condition_dict, noncondition_dict, board, name="example"):
     # generate setup function and header required
     initial_header, initial_setup, initial_function, usable_function = setup_and_header_generator(items_dict)
     # initial_header : import required library and special starting variable declaration on file header

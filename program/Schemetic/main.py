@@ -1,8 +1,9 @@
 from frontend.setting import *
+import os
 import json
 
 
-def generate_schemetics(BOARD, SENSOR):
+def generate_schemetics(BOARD, SENSOR, folder):
     from PIL import Image
     from Schemetic.line_2 import line_generator
     board_name = BOARD.split(' ')[1].upper()
@@ -29,7 +30,7 @@ def generate_schemetics(BOARD, SENSOR):
              # draw name
             screen.blit(txt, (sen.item_rect.left - sen.item_rect.w/4, 20*board.r + 1.5*sum(H_list) - 4*board.r))
         elif index > 5:
-            sen = eval(f"{item_name}(screen, board.board_rect.center[0] + 1000, 20*board.r + 1.5*sum(H_list[6:]), board.r/2, True)")
+            sen = eval(f"{item_name}(screen, board.board_rect.center[0] + 1000, 20*board.r + 1.5*sum(H_list[6:]), board.r/2, 180)")
              # draw name
             screen.blit(txt, (sen.item_rect.left + sen.item_rect.w/4, 20*board.r + 1.5*sum(H_list[6:]) - 4*board.r))
         sen.draw()
@@ -50,7 +51,7 @@ def generate_schemetics(BOARD, SENSOR):
         # get sensor pin
         sensor_pin_position = [sen.pin_pos_dict["GND"], sen.pin_pos_dict["VCC"]] + s_pin
         line_generator(screen, board_pin_position, sensor_pin_position, color_list[:2] + color_list[2+index:], board, sen, board.r)
-    pg.image.save(screen,"Schemetic.png")
+    pg.image.save(screen, os.path.join(folder, "Schemetic.png"))
 
 
 

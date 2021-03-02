@@ -4,7 +4,7 @@ class LEONARDO:
     def __init__(self, screen, WIDTH, HEIGHT,r):
         # ratio 68:53
         self.r = r
-        self.board_img = pg.transform.scale(pg.transform.rotate(pg.image.load("Schemetic/board/UNO.png"), 270),(int(32*r),int(46*r)))
+        self.board_img = pg.transform.scale(pg.transform.rotate(pg.image.load("Schemetic/board/LEONARDO.png"), 270),(int(32*r),int(46*r)))
         self.board_rect = self.board_img.get_rect()
         self.board_rect.center = (int(WIDTH/2), int(HEIGHT/2))
         self.screen = screen

@@ -35,7 +35,7 @@ def check_library():
         with open(json_file) as jsons:
             item_info_dictionary = json.load(jsons)
 
-        for lib in item_info_dictionary["Library"]:
+        for lib in list(set([libs for lib in item_info_dictionary["Library"]]))
             
             os.system(f'arduino-cli lib install "{lib}"')
 

@@ -1,7 +1,6 @@
 import json
 def word2vec(item_name, max_length):
-    SENSORNAME = ['ALCD','DHT11','DHT12','DHT22','DS18B20','hc-sr04','MH-RD','relay']
-    item_name = [x for x in SENSORNAME if str(x) in item_name][0]
+    item_name = item_name.split('_')[0]
     with open(f"resources/items/{item_name}.json") as json_file:
             sentence = json.load(json_file)["Description"]
     word_length = len(sentence)

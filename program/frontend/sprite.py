@@ -630,14 +630,13 @@ class Table:
             with open(item_json_filename) as json_file:
                 item_dict = json.load(json_file)
             if item_dict["PIN"]["Digital"] != 0:
-                if self.table['used_digital_pins'][item_index] + item_dict["PIN"]["Digital"] * quantity >= 0:
-                    self.table['used_digital_pins'][item_index] += item_dict["PIN"]["Digital"] * quantity
-                    self.table['used_analog_pins'][item_index] += 0
-                else:
-                    self.clear(item_index)
+                self.table['used_digital_pins'][item_index] += item_dict["PIN"]["Digital"] * quantity
+                self.table['used_analog_pins'][item_index] += 0    
             if item_dict["PIN"]["Analog"] != 0:
                 self.table['used_analog_pins'][item_index] += item_dict["PIN"]["Analog"] * quantity
                 self.table['used_digital_pins'][item_index] += 0
+            if self.table['amount'][item_index] < 1:
+                self.clear(item_index)
         elif quantity > 0:
             item_json_filename = f'resources/items/{item}.json'
             with open(item_json_filename) as json_file:

@@ -34,9 +34,9 @@ def analog_output_codegenerator(input_dataframe):
         header_name = (f"'{header_name}'").replace("'", '"')
 
         # modified unmodified function
-        unmodified_function = unmodified_function.replace(item_dictionary["custom id key"], row["INPUT"])
+        unmodified_function = unmodified_function.replace(item_dictionary["custom id key"], row["OUTPUT"])
         unmodified_function = unmodified_function.replace("header", header_name)
-        unmodified_function = unmodified_function.replace("value", row["OUTPUT"])
+        unmodified_function = unmodified_function.replace("value", row["INPUT"])
         unmodified_function = unmodified_function.replace("row", row["row"])
 
         # modified function to code

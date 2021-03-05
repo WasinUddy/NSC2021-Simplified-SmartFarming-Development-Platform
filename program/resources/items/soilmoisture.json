@@ -21,7 +21,7 @@
     "custom id key":"soilmoisture_sensor_id",
     "code_in_setup": [],
     "code_function": [
-"int soilmoisture(int analog_pin){int range = map(analogRead(analog_pin), 0, 1024, 0, 100); return range}"
+"int soilmoisture(int analog_pin){int range = map(analogRead(analog_pin), 0, 1024, 0, 100); return range;}"
     ],
     "function_list": {
         "SM": "soilmoisture(soilmoisture_custom_input);"

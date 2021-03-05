@@ -10,39 +10,35 @@ class MEGA:
         self.screen = screen
         self.board = [self.board_rect[0], self.board_rect.y, self.board_rect[2], self.board_rect.y + 42*r]
         self.pin_pos_dict = {
-            "0": (int(self.board_rect.x + 21.2*r), int(self.board_rect.y + 39.3*r)),
-            "1": (int(self.board_rect.x + 21.2*r), int(self.board_rect.y + 37.9*r)),
-            "2": (int(self.board_rect.x + 21.2*r), int(self.board_rect.y + 32*r)),
-            "3": (int(self.board_rect.x + 21.2*r), int(self.board_rect.y + 30.2*r)),
-            "4": (int(self.board_rect.x + 21.2*r), int(self.board_rect.y + 28.3*r)),
-            "5": (int(self.board_rect.x + 21.2*r), int(self.board_rect.y + 26.2*r)),
-            "6": (int(self.board_rect.x + 21.2*r), int(self.board_rect.y + 24.3*r)),
-            "7": (int(self.board_rect.x + 21.2*r), int(self.board_rect.y + 22.6*r)),
-            "8": (int(self.board_rect.x + 21.2*r), int(self.board_rect.y + 20.5*r)),
-            "9": (int(self.board_rect.x + 21.2*r), int(self.board_rect.y + 18.6*r)),
-            "10": (int(self.board_rect.x + 21.2*r), int(self.board_rect.y + 16.9*r)),
-            "11": (int(self.board_rect.x + 21.2*r), int(self.board_rect.y + 15*r)),
-            "12": (int(self.board_rect.x + 21.2*r), int(self.board_rect.y + 13.1*r)),
-            "13": (int(self.board_rect.x + 10*r), int(self.board_rect.y + 13.1*r)),
-            "14": (int(self.board_rect.x + 10*r), int(self.board_rect.y + 18.8*r)),
-            "15": (int(self.board_rect.x + 10*r), int(self.board_rect.y + 20.7*r)),
-            "16": (int(self.board_rect.x + 10*r), int(self.board_rect.y + 22.4*r)),
-            "17": (int(self.board_rect.x + 10*r), int(self.board_rect.y + 24*r)),
-            "18": (int(self.board_rect.x + 10*r), int(self.board_rect.y + 26*r)),
-            "19": (int(self.board_rect.x + 10*r), int(self.board_rect.y + 28*r)),
-            "20": (int(self.board_rect.x + 10*r), int(self.board_rect.y + 30*r)),
-            "21": (int(self.board_rect.x + 10*r), int(self.board_rect.y + 31.7*r))
+             "0": (self.board_rect.x + 30*r, self.board_rect.y + 42.2*r),
+            "1": (self.board_rect.x + 30*r, self.board_rect.y + 41*r),
+            "2": (self.board_rect.x + 30*r, self.board_rect.y + 39.2*r),
+            "3": (self.board_rect.x + 30*r, self.board_rect.y + 37.5*r),
+            "4": (self.board_rect.x + 30*r, self.board_rect.y + 36*r),
+            "5": (self.board_rect.x + 30*r, self.board_rect.y + 34.6*r),
+            "6": (self.board_rect.x + 30*r, self.board_rect.y + 33.1*r),
+            "7": (self.board_rect.x + 30*r, self.board_rect.y + 31.6*r),
+            "8": (self.board_rect.x + 30*r, self.board_rect.y + 29.1*r),
+            "9": (self.board_rect.x + 30*r, self.board_rect.y + 27.4*r),
+            "10": (self.board_rect.x + 30*r, self.board_rect.y + 25.9*r),
+            "11": (self.board_rect.x + 30*r, self.board_rect.y + 24.3*r),
+            "12": (self.board_rect.x + 30*r, self.board_rect.y + 22.7*r),
+            "13": (self.board_rect.x + 30*r, self.board_rect.y + 21.3*r),
+            "14": (self.board_rect.x + 1.2*r, self.board_rect.y + 34.5*r),
+            "15": (self.board_rect.x + 1.2*r, self.board_rect.y + 36*r),
+            "16": (self.board_rect.x + 1.2*r, self.board_rect.y + 37.6*r),
+            "17": (self.board_rect.x + 1.2*r, self.board_rect.y + 39.3*r),
+            "18": (self.board_rect.x + 1.2*r, self.board_rect.y + 40.8*r),
+            "19": (self.board_rect.x + 1.2*r, self.board_rect.y + 42.3*r)
         }
-        
         self.power_pos_dict = {
-            "3.3V": (int(self.board_rect.x + 10*r), int(self.board_rect.y + 15*r)),
-            "5V": (int(self.board_rect.x + 10*r),int(self.board_rect.y + 33.5*r)),
-            "GND0": (int(self.board_rect.x + 21.2*r), int(self.board_rect.y + 33.4*r)),
-            "GND1": (int(self.board_rect.x + 10*r), int(self.board_rect.y + 37.3*r)),
-            "Vin": (int(self.board_rect.x + 10*r), int(self.board_rect.y + 39*r))
+            "3.3V": (self.board_rect.x + 1.2*r, self.board_rect.y + 25.3*r),
+            "5V": (self.board_rect.x + 1.2*r, self.board_rect.y +  27*r),
+            "GND0": (self.board_rect.x + 1.2*r, self.board_rect.y + 28.5*r),
+            "GND1": (self.board_rect.x + 1.2*r, self.board_rect.y + 30.1*r),
+            "Vin": (self.board_rect.x + 1.2*r, self.board_rect.y + 31.6*r),
+            "GND2": (self.board_rect.x + 30*r, self.board_rect.y + 19.8*r),
         }
-        
-
 
 
     def draw(self):

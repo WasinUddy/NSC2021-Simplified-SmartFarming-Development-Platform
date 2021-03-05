@@ -1,9 +1,5 @@
 import json
 def word2vec(item_name, max_length):
-<<<<<<< HEAD
-    
-=======
->>>>>>> f18030c74d5045a1c912de0ff63b902eb5e750a5
     item_name = item_name.split('_')[0]
     with open(f"resources/items/{item_name}.json") as json_file:
             sentence = json.load(json_file)["Description"]
